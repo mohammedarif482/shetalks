@@ -46,14 +46,14 @@ const FeatureCard: React.FC<{ title: string; body: string; variant?: "filled" | 
   const base = "rounded-pill w-[390px] h-[223px] p-6";
   if (variant === "filled") {
     return (
-      <div className={}>
+      <div className="">
         <h3 className="text-[48px] font-medium">{title}</h3>
         <p className="mt-2 max-w-[345px]">{body}</p>
       </div>
     );
   }
   return (
-    <div className={}>
+    <div className="">
       <h3 className="text-[48px] text-primary font-medium">{title}</h3>
       <p className="mt-2 max-w-[345px]">{body}</p>
     </div>
