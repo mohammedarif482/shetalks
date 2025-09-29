@@ -4,7 +4,13 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+@font-face {
+  font-family: 'Freude';
+  src: url('/fonts/Freude.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 :root {
   /* Color palette */
   --bg-primary: #FFECE3;
@@ -13,7 +19,8 @@
   --primary-pink: #EB7470;
   --text-dark: #454545;
   --text-white: #ffffff;
-  
+  /* Freude Font Face Definition */
+
   /* Typography */
   --font-heading: 'Freude', cursive;
   --font-body: 'Poppins', sans-serif;
