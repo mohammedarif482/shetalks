@@ -82,14 +82,47 @@
 }
 
 /* Header Styles */
-.header {
+/* Announcement Bar - Fixed at bottom */
+.announcement-bar {
   position: fixed;
-  width: 100%;
-  padding: 2rem 0;
-  background: #FFECE3;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: rgba(255, 255, 255, 0.5); /* Reduced opacity from 0.9 to 0.7 */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(221, 191, 181, 0.3);
+  padding: 12px 20px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.announcement-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.announcement-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.announcement-content p {
+  margin: 0;
+}
+
+.header {
+  position: relative;
   z-index: 1000;
+  background-color: var(--bg-primary);
+  padding: 2rem 0;
   transition: all 0.3s ease;
 }
 
@@ -97,6 +130,15 @@
   .header {
     position: relative;
     padding: 1.5rem 0;
+  }
+  
+  .announcement-bar {
+    position: fixed;
+    padding: 10px 16px;
+  }
+  
+  .hero {
+    padding: 1.5rem 0 2rem; /* Reduced top padding for mobile */
   }
   
   /* Hide Join button in navbar on mobile */
@@ -196,7 +238,7 @@
 }
 
 .logo-image {
-  height: 60px;
+  height: 75px; /* Increased from 60px to 75px */
   width: auto;
   object-fit: contain;
 }
@@ -274,9 +316,9 @@
   justify-content: center;
 }
 
-/* Hero Section */
+/* Hero Section - Reset padding */
 .hero {
-  padding: 8rem 0 4rem;
+  padding: 2rem 0 4rem; /* Reduced top padding from 4rem to 2rem */
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -483,7 +525,7 @@
   }
   
   .logo-image {
-    height: 45px;
+    height: 70px; /* Adjusted for mobile */
   }
   
   .preloader-logo-image {
@@ -536,4 +578,76 @@
 .animate-cards {
   opacity: 0;
   transform: translateY(100px);
+}
+
+/* Social Footer */
+.social-footer {
+  background: #FFECE3;
+  padding: 40px 0 calc(40px + 60px); /* Added extra bottom padding for announcement bar */
+  text-align: center;
+}
+
+.social-footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.social-footer-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: #EB7470;
+  margin: 0;
+}
+
+.social-icons-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.social-icon-link {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.social-icon-link:hover {
+  transform: scale(1.15);
+}
+
+.social-icon-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .social-footer {
+    padding: 32px 20px;
+  }
+  
+  .social-footer-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .social-footer-text {
+    font-size: 18px;
+  }
+  
+  .social-icons-row {
+    gap: 14px;
+  }
+  
+  .social-icon-img {
+    width: 28px;
+    height: 28px;
+  }
 }

@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Header from './components/Header'
+import AnnouncementBar from './components/AnnouncementBar'
 import Hero from './components/Hero'
 import Cards from './components/Cards'
+import SocialFooter from './components/SocialFooter'
 import Preloader from './components/Preloader'
 import CursorTrail from './components/CursorTrail'
 import './App.css'
@@ -79,30 +81,7 @@ function App() {
   }
 
   const setupScrollAnimations = () => {
-    // Header scroll animation (removed elevation/shadow effect)
-    ScrollTrigger.create({
-      trigger: 'body',
-      start: 'top top',
-      end: 'bottom top',
-      onUpdate: (self) => {
-        const header = document.querySelector('.header')
-        if (header) {
-          if (self.progress > 0.1) {
-            gsap.to(header, {
-              paddingTop: '1rem',
-              paddingBottom: '1rem',
-              duration: 0.3
-            })
-          } else {
-            gsap.to(header, {
-              paddingTop: '2rem',
-              paddingBottom: '2rem',
-              duration: 0.3
-            })
-          }
-        }
-      }
-    })
+    // Cards animation on scroll only - header scroll animations removed
 
     // Cards animation on scroll
     ScrollTrigger.batch('.card', {
@@ -242,8 +221,9 @@ return (
         <main>
           <Hero />
           <Cards />
+          <SocialFooter />
         </main>
-        <FloatingJoinButton />
+        <AnnouncementBar />
       </div>
     </>
   )
