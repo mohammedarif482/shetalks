@@ -65,44 +65,4 @@ const Hero: React.FC = () => (
     <div>
       <AvatarStack />
       <h1 className="heading-primary mt-6 whitespace-pre-line text-[96px] leading-[75px] md:leading-[75px]">
-        {"Let's Talk.
-Heal Together.
-Rise Fearlessly."}
-      </h1>
-      <p className="mt-6 max-w-[707px] text-base">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.
-      </p>
-    </div>
-    <div className="justify-self-end">
-      <img src="/hero.svg" alt="Hero" className="w-[334px] h-[624px] object-cover" />
-    </div>
-  </section>
-);
-
-function App() {
-  return (
-    <div className="min-h-screen">
-      <Header />
-      <Hero />
-      <section className="mx-auto max-w-[1512px] px-6 mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 pb-16">
-        <FeatureCard
-          title="Community"
-          body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          variant="filled"
-        />
-        <FeatureCard
-          title="Events"
-          body="Ut enim ad minim veniam. consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua."
-          variant="outline"
-        />
-        <FeatureCard
-          title="Launches"
-          body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          variant="outline"
-        />
-      </section>
-    </div>
-  );
-}
-
-export default App;
+                {}
