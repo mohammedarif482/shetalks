@@ -65,7 +65,9 @@ const Hero: React.FC = () => (
     <div>
       <AvatarStack />
       <h1 className="heading-primary mt-6 whitespace-pre-line text-[96px] leading-[75px] md:leading-[75px]">
-        {}
+        {"Let's Talk.
+Heal Together.
+Rise Fearlessly."}
       </h1>
       <p className="mt-6 max-w-[707px] text-base">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.
