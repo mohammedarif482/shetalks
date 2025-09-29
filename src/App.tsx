@@ -27,7 +27,7 @@ const CTAButton: React.FC = () => (
 );
 
 const Header: React.FC = () => (
-  <header className="container mx-auto flex items-center justify-between pt-6">
+  <header className="mx-auto max-w-[1512px] px-6 flex items-center justify-between pt-6">
     <div className="w-[107px] h-[110px] text-primary">
       <div className="w-full h-full bg-primary/10 rounded" />
     </div>
@@ -61,7 +61,7 @@ const FeatureCard: React.FC<{ title: string; body: string; variant?: "filled" | 
 };
 
 const Hero: React.FC = () => (
-  <section className="container mx-auto mt-16 grid grid-cols-1 lg:grid-cols-[1fr_334px] gap-10">
+  <section className="mx-auto max-w-[1512px] px-6 mt-16 grid grid-cols-1 lg:grid-cols-[1fr_334px] gap-10">
     <div>
       <AvatarStack />
       <h1 className="heading-primary mt-6 whitespace-pre-line text-[96px] leading-[75px] md:leading-[75px]">
@@ -84,7 +84,7 @@ function App() {
     <div className="min-h-screen">
       <Header />
       <Hero />
-      <section className="container mx-auto mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 pb-16">
+      <section className="mx-auto max-w-[1512px] px-6 mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 pb-16">
         <FeatureCard
           title="Community"
           body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
