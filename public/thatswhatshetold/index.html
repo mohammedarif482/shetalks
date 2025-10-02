@@ -53,6 +53,10 @@
             color: #FFC107;
         }
 
+        .sync-status.error {
+            color: #f44336;
+        }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -66,20 +70,41 @@
             margin-bottom: 8px;
         }
 
-        .stats-button {
-            background-color: white;
-            border: 1px solid #ddd;
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .stats-button, .add-button {
             padding: 10px 16px;
             border-radius: 8px;
             font-size: 14px;
-            color: #454545;
             cursor: pointer;
-            margin: 20px 0;
-            display: inline-block;
+            border: 1px solid #ddd;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .stats-button {
+            background-color: white;
+            color: #454545;
         }
 
         .stats-button:hover {
             background-color: #f5f5f5;
+        }
+
+        .add-button {
+            background-color: #EB7470;
+            color: white;
+            border-color: #EB7470;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .add-button:hover {
+            background-color: #d86662;
         }
 
         .month-section {
@@ -252,6 +277,16 @@
             font-size: 16px;
         }
 
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
         .hidden {
             display: none;
         }
@@ -272,22 +307,25 @@
             <h1>That's What She Told</h1>
             <div class="sync-status" id="syncStatus">
                 <span>●</span>
-                <span>Connected</span>
+                <span>Connecting...</span>
             </div>
         </div>
     </div>
 
     <div class="container">
         <h1 class="main-title">If you could teach men one thing about women's health what would it be?</h1>
-        <button class="stats-button" onclick="showStats()">📊 View Statistics</button>
+        
+        <div class="button-group">
+            <button class="stats-button" onclick="showStats()">📊 View Statistics</button>
+            <a href="sheform.html" class="add-button">+ Share Your Thoughts</a>
+        </div>
 
         <div id="content" class="loading">Loading responses...</div>
     </div>
 
     <script type="module">
-        // Firebase Configuration
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getDatabase, ref, set, get, onValue, update, push, runTransaction } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+        import { getDatabase, ref, onValue, runTransaction, push, set } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
 
         const firebaseConfig = {
             apiKey: "AIzaSyAmTb1CuKCgDu3Wxo8bMLQJPmRNMqAU7J0",
@@ -299,59 +337,17 @@
             appId: "1:733741930919:web:a6490cd8df334cd3abbe82"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
-        // Google Apps Script URL
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbydTR13M32o7PkEP7EIFSs9-PgNL95g-safLYCZoeNNbzu-_NqUGSwvKGiZp5uiegYTHw/exec';
-
         let allResponses = {};
 
-        // Sync data from Google Apps Script to Firebase
-        async function syncFromGoogleToFirebase() {
-            updateSyncStatus('syncing', 'Syncing...');
-            try {
-                const response = await fetch(`${SCRIPT_URL}?action=getResponses`);
-                const result = await response.json();
-                
-                if (result.success && result.data) {
-                    const responsesRef = ref(database, 'responses');
-                    
-                    // Transform array to object with timestamp as key
-                    const responsesObj = {};
-                    result.data.forEach(item => {
-                        const key = item.timestamp.replace(/[.#$\[\]]/g, '_');
-                        responsesObj[key] = {
-                            title: item.title || 'Untitled',
-                            brief: item.brief || 'No description provided',
-                            timestamp: item.timestamp,
-                            likes: item.likes || 0,
-                            dislikes: item.dislikes || 0,
-                            comments: item.comments || []
-                        };
-                    });
-                    
-                    await set(responsesRef, responsesObj);
-                    updateSyncStatus('connected', 'Connected');
-                    console.log('Data synced successfully to Firebase');
-                } else {
-                    throw new Error('Failed to fetch data from Google');
-                }
-            } catch (error) {
-                console.error('Sync error:', error);
-                updateSyncStatus('error', 'Sync failed');
-            }
-        }
-
-        // Update sync status indicator
         function updateSyncStatus(status, text) {
             const statusEl = document.getElementById('syncStatus');
             statusEl.className = `sync-status ${status}`;
             statusEl.innerHTML = `<span>●</span><span>${text}</span>`;
         }
 
-        // Listen to Firebase real-time updates
         function listenToFirebase() {
             const responsesRef = ref(database, 'responses');
             
@@ -362,23 +358,37 @@
                     displayResponses(data);
                     updateSyncStatus('connected', 'Connected');
                 } else {
-                    document.getElementById('content').innerHTML = '<p>No responses yet. Syncing from Google...</p>';
+                    const content = document.getElementById('content');
+                    content.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-icon">💭</div>
+                            <h2 style="margin-bottom: 12px;">No responses yet</h2>
+                            <p style="color: #666; margin-bottom: 24px;">Be the first to share your thoughts!</p>
+                            <a href="sheform.html" class="add-button">Share Your Thoughts</a>
+                        </div>
+                    `;
+                    updateSyncStatus('connected', 'Connected');
                 }
             }, (error) => {
-                console.error('Firebase listening error:', error);
+                console.error('Firebase error:', error);
                 updateSyncStatus('error', 'Connection error');
+                document.getElementById('content').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">⚠️</div>
+                        <h2 style="margin-bottom: 12px;">Connection Error</h2>
+                        <p style="color: #666;">Unable to load responses. Please check your Firebase configuration.</p>
+                    </div>
+                `;
             });
         }
 
-        // Display responses grouped by month
         function displayResponses(responses) {
             const content = document.getElementById('content');
             
-            // Convert object to array and group by month
             const responsesArray = Object.entries(responses).map(([key, value]) => ({
                 key,
                 ...value
-            }));
+            })).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
             const grouped = {};
             responsesArray.forEach(r => {
@@ -398,6 +408,7 @@
                 items.forEach(item => {
                     const date = new Date(item.timestamp);
                     const formattedDate = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+                    const comments = item.comments ? Object.values(item.comments) : [];
                     
                     html += `
                         <div class="response-card">
@@ -419,7 +430,7 @@
                                 </button>
                                 <button class="interaction-btn" onclick="window.toggleComments('${item.key}')">
                                     <svg fill="currentColor" viewBox="0 0 24 24"><path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z"/></svg>
-                                    <span>${(item.comments || []).length}</span>
+                                    <span>${comments.length}</span>
                                 </button>
                             </div>
                             
@@ -429,7 +440,7 @@
                                     <button class="comment-submit" onclick="window.submitComment('${item.key}')">Post</button>
                                 </div>
                                 <div id="comment-list-${item.key}">
-                                    ${(item.comments || []).map(c => `
+                                    ${comments.map(c => `
                                         <div class="comment">
                                             <div class="comment-text">${c.text}</div>
                                             <div class="comment-time">${new Date(c.timestamp).toLocaleString()}</div>
@@ -447,7 +458,6 @@
             content.innerHTML = html;
         }
 
-        // Handle like with Firebase transaction
         window.handleLike = async function(key, btn) {
             const likesRef = ref(database, `responses/${key}/likes`);
             
@@ -463,7 +473,6 @@
             }
         };
 
-        // Handle dislike with Firebase transaction
         window.handleDislike = async function(key, btn) {
             const dislikesRef = ref(database, `responses/${key}/dislikes`);
             
@@ -479,13 +488,11 @@
             }
         };
 
-        // Toggle comment section visibility
         window.toggleComments = function(key) {
             const section = document.getElementById(`comments-${key}`);
             section.classList.toggle('hidden');
         };
 
-        // Submit comment to Firebase
         window.submitComment = async function(key) {
             const input = document.getElementById(`comment-input-${key}`);
             const text = input.value.trim();
@@ -508,38 +515,22 @@
             }
         };
 
-        // Show statistics
         window.showStats = function() {
             const totalResponses = Object.keys(allResponses).length;
-            const totalLikes = Object.values(allResponses).reduce((sum, r) => sum + (r.likes || 0), 0);
-            const totalDislikes = Object.values(allResponses).reduce((sum, r) => sum + (r.dislikes || 0), 0);
-            const totalComments = Object.values(allResponses).reduce((sum, r) => sum + ((r.comments || []).length), 0);
+            let totalLikes = 0, totalDislikes = 0, totalComments = 0;
+            
+            Object.values(allResponses).forEach(r => {
+                totalLikes += r.likes || 0;
+                totalDislikes += r.dislikes || 0;
+                if (r.comments) {
+                    totalComments += Object.keys(r.comments).length;
+                }
+            });
             
             alert(`📊 Statistics\n\nTotal Responses: ${totalResponses}\nTotal Likes: ${totalLikes}\nTotal Dislikes: ${totalDislikes}\nTotal Comments: ${totalComments}`);
         };
 
-        // Initialize the app
-        async function initialize() {
-            console.log('Initializing app...');
-            
-            // First, check if Firebase has data
-            const responsesRef = ref(database, 'responses');
-            const snapshot = await get(responsesRef);
-            
-            if (!snapshot.exists()) {
-                console.log('No data in Firebase, syncing from Google...');
-                await syncFromGoogleToFirebase();
-            }
-            
-            // Start listening to real-time updates
-            listenToFirebase();
-        }
-
-        // Start the app
-        initialize();
-
-        // Optional: Sync from Google every 5 minutes to get new responses
-        setInterval(syncFromGoogleToFirebase, 5 * 60 * 1000);
+        listenToFirebase();
     </script>
 </body>
 </html>
