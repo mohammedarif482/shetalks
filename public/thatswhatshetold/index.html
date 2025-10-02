@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thats What She Told</title>
+    <title>That's What She Told</title>
     <style>
         * {
             margin: 0;
@@ -41,29 +41,22 @@
             font-weight: 600;
         }
 
-        .header-subtitle {
+        .sync-status {
             font-size: 12px;
-            color: #999;
+            color: #4CAF50;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sync-status.syncing {
+            color: #FFC107;
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-        }
-
-        .logo {
-            width: 48px;
-            height: 48px;
-            background-color: #FFF5F0;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 20px;
-            color: white;
-            margin-bottom: 20px;
         }
 
         .main-title {
@@ -74,7 +67,7 @@
         }
 
         .stats-button {
-            background-color: #FFF5F0;
+            background-color: white;
             border: 1px solid #ddd;
             padding: 10px 16px;
             border-radius: 8px;
@@ -85,6 +78,10 @@
             display: inline-block;
         }
 
+        .stats-button:hover {
+            background-color: #f5f5f5;
+        }
+
         .month-section {
             margin-top: 40px;
         }
@@ -92,7 +89,7 @@
         .month-title {
             font-size: 24px;
             font-weight: 600;
-            color: #FFF5F0;
+            color: #2c2c2e;
             margin-bottom: 20px;
         }
 
@@ -100,6 +97,7 @@
             font-weight: normal;
             font-size: 18px;
             margin-left: 8px;
+            color: #666;
         }
 
         .response-card {
@@ -108,6 +106,12 @@
             padding: 20px;
             margin-bottom: 16px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .response-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         .response-title {
@@ -166,7 +170,7 @@
         }
 
         .interaction-btn.active {
-            color: #FFF5F0;
+            color: #EB7470;
             font-weight: 600;
         }
 
@@ -204,6 +208,7 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
+            transition: background-color 0.2s;
         }
 
         .comment-submit:hover {
@@ -215,6 +220,18 @@
             background-color: #FFF5F0;
             border-radius: 8px;
             margin-bottom: 8px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .comment-text {
@@ -235,61 +252,136 @@
             font-size: 16px;
         }
 
-        .show-comments-btn {
-            background: none;
-            border: none;
-            color: #666;
-            cursor: pointer;
-            font-size: 13px;
-            padding: 4px 0;
-            text-decoration: underline;
-        }
-
         .hidden {
             display: none;
+        }
+
+        .pulse {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
     </style>
 </head>
 <body>
-
+    <div class="header">
+        <div class="header-content">
+            <h1>That's What She Told</h1>
+            <div class="sync-status" id="syncStatus">
+                <span>●</span>
+                <span>Connected</span>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
-     
         <h1 class="main-title">If you could teach men one thing about women's health what would it be?</h1>
-        <button class="stats-button" onclick="showStats()">📊 View The She Responses</button>
+        <button class="stats-button" onclick="showStats()">📊 View Statistics</button>
 
         <div id="content" class="loading">Loading responses...</div>
     </div>
 
-    <script>
-        // REPLACE THIS URL WITH YOUR APPS SCRIPT WEB APP URL
+    <script type="module">
+        // Firebase Configuration
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getDatabase, ref, set, get, onValue, update, push, runTransaction } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAmTb1CuKCgDu3Wxo8bMLQJPmRNMqAU7J0",
+            authDomain: "thats-what-she-told-cdbf1.firebaseapp.com",
+            databaseURL: "https://thats-what-she-told-cdbf1-default-rtdb.firebaseio.com",
+            projectId: "thats-what-she-told-cdbf1",
+            storageBucket: "thats-what-she-told-cdbf1.firebasestorage.app",
+            messagingSenderId: "733741930919",
+            appId: "1:733741930919:web:a6490cd8df334cd3abbe82"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Google Apps Script URL
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyIENv2xJYcsDT25XohwzLgWgO4RmS1LzWF06lagLpqCEJq-G8hcRHXlLHgwXMkVg2nYw/exec';
 
-        let allResponses = [];
+        let allResponses = {};
 
-        async function loadResponses() {
+        // Sync data from Google Apps Script to Firebase
+        async function syncFromGoogleToFirebase() {
+            updateSyncStatus('syncing', 'Syncing...');
             try {
                 const response = await fetch(`${SCRIPT_URL}?action=getResponses`);
                 const result = await response.json();
                 
-                if (result.success) {
-                    allResponses = result.data;
-                    displayResponses(allResponses);
+                if (result.success && result.data) {
+                    const responsesRef = ref(database, 'responses');
+                    
+                    // Transform array to object with timestamp as key
+                    const responsesObj = {};
+                    result.data.forEach(item => {
+                        const key = item.timestamp.replace(/[.#$\[\]]/g, '_');
+                        responsesObj[key] = {
+                            title: item.title || 'Untitled',
+                            brief: item.brief || 'No description provided',
+                            timestamp: item.timestamp,
+                            likes: item.likes || 0,
+                            dislikes: item.dislikes || 0,
+                            comments: item.comments || []
+                        };
+                    });
+                    
+                    await set(responsesRef, responsesObj);
+                    updateSyncStatus('connected', 'Connected');
+                    console.log('Data synced successfully to Firebase');
                 } else {
-                    document.getElementById('content').innerHTML = '<p>Error loading responses</p>';
+                    throw new Error('Failed to fetch data from Google');
                 }
             } catch (error) {
-                console.error('Error:', error);
-                document.getElementById('content').innerHTML = '<p>Failed to load responses. Please check the script URL.</p>';
+                console.error('Sync error:', error);
+                updateSyncStatus('error', 'Sync failed');
             }
         }
 
+        // Update sync status indicator
+        function updateSyncStatus(status, text) {
+            const statusEl = document.getElementById('syncStatus');
+            statusEl.className = `sync-status ${status}`;
+            statusEl.innerHTML = `<span>●</span><span>${text}</span>`;
+        }
+
+        // Listen to Firebase real-time updates
+        function listenToFirebase() {
+            const responsesRef = ref(database, 'responses');
+            
+            onValue(responsesRef, (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    allResponses = data;
+                    displayResponses(data);
+                    updateSyncStatus('connected', 'Connected');
+                } else {
+                    document.getElementById('content').innerHTML = '<p>No responses yet. Syncing from Google...</p>';
+                }
+            }, (error) => {
+                console.error('Firebase listening error:', error);
+                updateSyncStatus('error', 'Connection error');
+            });
+        }
+
+        // Display responses grouped by month
         function displayResponses(responses) {
             const content = document.getElementById('content');
             
-            // Group by month
+            // Convert object to array and group by month
+            const responsesArray = Object.entries(responses).map(([key, value]) => ({
+                key,
+                ...value
+            }));
+
             const grouped = {};
-            responses.forEach(r => {
+            responsesArray.forEach(r => {
                 const date = new Date(r.timestamp);
                 const monthKey = `${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`;
                 if (!grouped[monthKey]) grouped[monthKey] = [];
@@ -310,34 +402,34 @@
                     html += `
                         <div class="response-card">
                             <div class="response-title">
-                                💡 ${item.title || 'Untitled'}
+                                💡 ${item.title}
                             </div>
                             <div class="response-source">Anonymous Submission</div>
-                            <div class="response-brief">${item.brief || 'No description provided'}</div>
+                            <div class="response-brief">${item.brief}</div>
                             <div class="response-date">${formattedDate}</div>
                             
                             <div class="interaction-bar">
-                                <button class="interaction-btn" onclick="handleLike('${item.timestamp}', this)">
+                                <button class="interaction-btn" onclick="window.handleLike('${item.key}', this)">
                                     <svg fill="currentColor" viewBox="0 0 24 24"><path d="M7 22H4C3.46957 22 2.96086 21.7893 2.58579 21.4142C2.21071 21.0391 2 20.5304 2 20V13C2 12.4696 2.21071 11.9609 2.58579 11.5858C2.96086 11.2107 3.46957 11 4 11H7M14 9V5C14 4.20435 13.6839 3.44129 13.1213 2.87868C12.5587 2.31607 11.7956 2 11 2L7 11V22H18.28C18.7623 22.0055 19.2304 21.8364 19.5979 21.524C19.9654 21.2116 20.2077 20.7769 20.28 20.3L21.66 11.3C21.7035 11.0134 21.6842 10.7207 21.6033 10.4423C21.5225 10.1638 21.3821 9.90629 21.1919 9.68751C21.0016 9.46873 20.7661 9.29393 20.5016 9.17522C20.2371 9.0565 19.9499 8.99672 19.66 9H14Z"/></svg>
-                                    <span class="like-count">${item.likes}</span>
+                                    <span class="like-count">${item.likes || 0}</span>
                                 </button>
-                                <button class="interaction-btn" onclick="handleDislike('${item.timestamp}', this)">
+                                <button class="interaction-btn" onclick="window.handleDislike('${item.key}', this)">
                                     <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17 2H20C20.5304 2 21.0391 2.21071 21.4142 2.58579C21.7893 2.96086 22 3.46957 22 4V11C22 11.5304 21.7893 12.0391 21.4142 12.4142C21.0391 12.7893 20.5304 13 20 13H17M10 15V19C10 19.7956 10.3161 20.5587 10.8787 21.1213C11.4413 21.6839 12.2044 22 13 22L17 13V2H5.72C5.23767 1.99448 4.76962 2.16359 4.40213 2.47599C4.03464 2.78839 3.79227 3.22309 3.72 3.7L2.34 12.7C2.29649 12.9866 2.31583 13.2793 2.39667 13.5577C2.47751 13.8362 2.61788 14.0937 2.80814 14.3125C2.9984 14.5313 3.23394 14.7061 3.49843 14.8248C3.76291 14.9435 4.05009 15.0033 4.34 15H10Z"/></svg>
-                                    <span class="dislike-count">${item.dislikes}</span>
+                                    <span class="dislike-count">${item.dislikes || 0}</span>
                                 </button>
-                                <button class="interaction-btn" onclick="toggleComments('${item.timestamp}')">
+                                <button class="interaction-btn" onclick="window.toggleComments('${item.key}')">
                                     <svg fill="currentColor" viewBox="0 0 24 24"><path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z"/></svg>
-                                    <span>${item.comments.length}</span>
+                                    <span>${(item.comments || []).length}</span>
                                 </button>
                             </div>
                             
-                            <div class="comment-section hidden" id="comments-${item.timestamp}">
+                            <div class="comment-section hidden" id="comments-${item.key}">
                                 <div class="comment-input-wrapper">
-                                    <input type="text" class="comment-input" placeholder="Add a comment..." id="comment-input-${item.timestamp}">
-                                    <button class="comment-submit" onclick="submitComment('${item.timestamp}')">Post</button>
+                                    <input type="text" class="comment-input" placeholder="Add a comment..." id="comment-input-${item.key}">
+                                    <button class="comment-submit" onclick="window.submitComment('${item.key}')">Post</button>
                                 </div>
-                                <div id="comment-list-${item.timestamp}">
-                                    ${item.comments.map(c => `
+                                <div id="comment-list-${item.key}">
+                                    ${(item.comments || []).map(c => `
                                         <div class="comment">
                                             <div class="comment-text">${c.text}</div>
                                             <div class="comment-time">${new Date(c.timestamp).toLocaleString()}</div>
@@ -355,60 +447,99 @@
             content.innerHTML = html;
         }
 
-        async function handleLike(timestamp, btn) {
-            await sendInteraction(timestamp, 'like');
-            const countSpan = btn.querySelector('.like-count');
-            countSpan.textContent = parseInt(countSpan.textContent) + 1;
-            btn.classList.add('active');
-        }
+        // Handle like with Firebase transaction
+        window.handleLike = async function(key, btn) {
+            const likesRef = ref(database, `responses/${key}/likes`);
+            
+            try {
+                await runTransaction(likesRef, (currentLikes) => {
+                    return (currentLikes || 0) + 1;
+                });
+                
+                btn.classList.add('pulse');
+                setTimeout(() => btn.classList.remove('pulse'), 500);
+            } catch (error) {
+                console.error('Error updating likes:', error);
+            }
+        };
 
-        async function handleDislike(timestamp, btn) {
-            await sendInteraction(timestamp, 'dislike');
-            const countSpan = btn.querySelector('.dislike-count');
-            countSpan.textContent = parseInt(countSpan.textContent) + 1;
-            btn.classList.add('active');
-        }
+        // Handle dislike with Firebase transaction
+        window.handleDislike = async function(key, btn) {
+            const dislikesRef = ref(database, `responses/${key}/dislikes`);
+            
+            try {
+                await runTransaction(dislikesRef, (currentDislikes) => {
+                    return (currentDislikes || 0) + 1;
+                });
+                
+                btn.classList.add('pulse');
+                setTimeout(() => btn.classList.remove('pulse'), 500);
+            } catch (error) {
+                console.error('Error updating dislikes:', error);
+            }
+        };
 
-        function toggleComments(timestamp) {
-            const section = document.getElementById(`comments-${timestamp}`);
+        // Toggle comment section visibility
+        window.toggleComments = function(key) {
+            const section = document.getElementById(`comments-${key}`);
             section.classList.toggle('hidden');
-        }
+        };
 
-        async function submitComment(timestamp) {
-            const input = document.getElementById(`comment-input-${timestamp}`);
+        // Submit comment to Firebase
+        window.submitComment = async function(key) {
+            const input = document.getElementById(`comment-input-${key}`);
             const text = input.value.trim();
             
             if (!text) return;
             
-            await sendInteraction(timestamp, 'comment', text);
+            const commentsRef = ref(database, `responses/${key}/comments`);
             
-            const commentList = document.getElementById(`comment-list-${timestamp}`);
-            const newComment = document.createElement('div');
-            newComment.className = 'comment';
-            newComment.innerHTML = `
-                <div class="comment-text">${text}</div>
-                <div class="comment-time">${new Date().toLocaleString()}</div>
-            `;
-            commentList.insertBefore(newComment, commentList.firstChild);
-            
-            input.value = '';
-        }
-
-        async function sendInteraction(timestamp, type, comment = '') {
             try {
-                const url = `${SCRIPT_URL}?action=addInteraction&timestamp=${encodeURIComponent(timestamp)}&type=${type}&comment=${encodeURIComponent(comment)}`;
-                await fetch(url);
+                const newCommentRef = push(commentsRef);
+                await set(newCommentRef, {
+                    text: text,
+                    timestamp: new Date().toISOString()
+                });
+                
+                input.value = '';
             } catch (error) {
-                console.error('Error sending interaction:', error);
+                console.error('Error posting comment:', error);
+                alert('Failed to post comment. Please try again.');
             }
+        };
+
+        // Show statistics
+        window.showStats = function() {
+            const totalResponses = Object.keys(allResponses).length;
+            const totalLikes = Object.values(allResponses).reduce((sum, r) => sum + (r.likes || 0), 0);
+            const totalDislikes = Object.values(allResponses).reduce((sum, r) => sum + (r.dislikes || 0), 0);
+            const totalComments = Object.values(allResponses).reduce((sum, r) => sum + ((r.comments || []).length), 0);
+            
+            alert(`📊 Statistics\n\nTotal Responses: ${totalResponses}\nTotal Likes: ${totalLikes}\nTotal Dislikes: ${totalDislikes}\nTotal Comments: ${totalComments}`);
+        };
+
+        // Initialize the app
+        async function initialize() {
+            console.log('Initializing app...');
+            
+            // First, check if Firebase has data
+            const responsesRef = ref(database, 'responses');
+            const snapshot = await get(responsesRef);
+            
+            if (!snapshot.exists()) {
+                console.log('No data in Firebase, syncing from Google...');
+                await syncFromGoogleToFirebase();
+            }
+            
+            // Start listening to real-time updates
+            listenToFirebase();
         }
 
-        function showStats() {
-            alert(`Total Responses: ${allResponses.length}\n\nThis feature can be expanded!`);
-        }
+        // Start the app
+        initialize();
 
-        // Load responses on page load
-        loadResponses();
+        // Optional: Sync from Google every 5 minutes to get new responses
+        setInterval(syncFromGoogleToFirebase, 5 * 60 * 1000);
     </script>
 </body>
 </html>
