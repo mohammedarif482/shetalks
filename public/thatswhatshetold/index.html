@@ -188,7 +188,17 @@
             background-color: #FFF5F0;
         }
 
-        .interaction-btn.active {
+        .interaction-btn.active[onclick*="handleLike"] {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+        
+        .interaction-btn.active[onclick*="handleDislike"] {
+            color: #F44336;
+            font-weight: 600;
+        }
+        
+        .interaction-btn.active[onclick*="toggleComments"] {
             color: #EB7470;
             font-weight: 600;
         }
@@ -307,7 +317,7 @@
         
         <div class="button-group">
             <!-- <button class="stats-button" onclick="showStats()">📊 View Statistics</button> -->
-    <a href="../sheform.html" class="add-button">+ Share Your Thoughts</a>
+    <a href="../sheform/sheform.html" class="add-button">+ Share Your Thoughts</a>
         </div>
 
         <div id="content" class="loading">Loading responses...</div>
@@ -347,7 +357,7 @@
                             <div class="empty-icon">💭</div>
                             <h2 style="margin-bottom: 12px;">No responses yet</h2>
                             <p style="color: #666; margin-bottom: 24px;">Be the first to share your thoughts!</p>
-                            <a href="sheform.html" class="add-button">Share Your Thoughts</a>
+                            <a href="../sheform/sheform.html" class="add-button">Share Your Thoughts</a>
                         </div>
                     `;
                 }
