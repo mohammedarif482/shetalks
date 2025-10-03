@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en        .header-content {
+            max-width: 98%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }d>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>That's What She Told</title>
@@ -42,12 +47,10 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 98%;
             margin: 0 auto;
-            padding: 20px;
-        }
-
-        .main-title {
+            padding: 20px 1px;
+        }        .main-title {
             font-size: 28px;
             font-weight: bold;
             color: #2c2c2e;
@@ -95,25 +98,32 @@
             margin-top: 40px;
         }
 
+        .month-section {
+            position: relative;
+        }
+
         .month-title {
             font-size: 24px;
             font-weight: 600;
             color: #2c2c2e;
             margin-bottom: 20px;
+            display: none;
         }
 
         .month-count {
+            position: absolute;
+            bottom: -30px;
+            right: 0;
             font-weight: normal;
-            font-size: 18px;
-            margin-left: 8px;
-            color: #666;
+            font-size: 12px;
+            color: #999;
         }
 
         .response-card {
             background-color: white;
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 16px;
+            border-radius: 16px;
+            padding: 16px 8px;
+            margin-bottom: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             transition: transform 0.2s;
         }
@@ -295,10 +305,10 @@
     <div class="container">
         <h1 class="main-title">If you could teach men one thing about women's health what would it be?</h1>
         
-        <div class="button-group">
+        <!-- <div class="button-group">
             <button class="stats-button" onclick="showStats()">📊 View Statistics</button>
-            <a href="sheform.html" class="add-button">+ Share Your Thoughts</a>
-        </div>
+    <a href="../sheform.html" class="add-button">+ Share Your Thoughts</a>
+        </div> -->
 
         <div id="content" class="loading">Loading responses...</div>
     </div>
@@ -373,7 +383,8 @@
             for (const [month, items] of Object.entries(grouped)) {
                 html += `
                     <div class="month-section">
-                        <h2 class="month-title">${month} <span class="month-count">(${items.length})</span></h2>
+                        <h2 class="month-title">${month}</h2>
+                        <div class="month-count">${items.length} responses</div>
                 `;
                 
                 items.forEach(item => {
@@ -386,7 +397,6 @@
                             <div class="response-title">
                                 💡 ${item.title}
                             </div>
-                            <div class="response-source">Anonymous Submission</div>
                             <div class="response-brief">${item.brief}</div>
                             <div class="response-date">${formattedDate}</div>
                             
