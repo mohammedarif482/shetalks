@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Thoughts - That's What She Told</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #FFF5F0 0%, #FFE8E0 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #2c2c2e;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 32px;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2c2e;
+            margin-bottom: 12px;
+        }
+
+        .question {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #EB7470;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background-color: #EB7470;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #d86662;
+        }
+
+        .submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .success-text {
+            font-size: 24px;
+            color: #2c2c2e;
+            margin-bottom: 12px;
+        }
+
+        .view-responses-btn {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 14px 32px;
+            background-color: #2c2c2e;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .view-responses-btn:hover {
+            background-color: #1a1a1c;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">💭</div>
+            <h1>That's What She Told</h1>
+            <p class="subtitle">Share your knowledge and help educate others about women's health</p>
+        </div>
+
+        <div class="form-card">
+            <form id="responseForm">
+                <div class="form-group">
+                    <label>Your Response</label>
+                    <p class="question">If you could teach men one thing about women's health, what would it be?</p>
+                    <textarea id="mainResponse" required placeholder="Share your thoughts here..."></textarea>
+                    <div class="error-message" id="mainError">Please provide a response</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Context (Optional)</label>
+                    <input type="text" id="context" placeholder="Add any additional details or context...">
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Response</button>
+            </form>
+
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">✓</div>
+                <div class="success-text">Thank you for sharing!</div>
+                <p class="subtitle">Your response has been submitted successfully.</p>
+                <a href="index.html" class="view-responses-btn">View All Responses</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getDatabase, ref, push, set } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAmTb1CuKCgDu3Wxo8bMLQJPmRNMqAU7J0",
+            authDomain: "thats-what-she-told-cdbf1.firebaseapp.com",
+            databaseURL: "https://thats-what-she-told-cdbf1-default-rtdb.firebaseio.com",
+            projectId: "thats-what-she-told-cdbf1",
+            storageBucket: "thats-what-she-told-cdbf1.firebasestorage.app",
+            messagingSenderId: "733741930919",
+            appId: "1:733741930919:web:a6490cd8df334cd3abbe82"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        const form = document.getElementById('responseForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const mainResponse = document.getElementById('mainResponse').value.trim();
+            const context = document.getElementById('context').value.trim();
+
+            if (!mainResponse) {
+                document.getElementById('mainError').classList.add('show');
+                return;
+            }
+
+            document.getElementById('mainError').classList.remove('show');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                const responsesRef = ref(database, 'responses');
+                const newResponseRef = push(responsesRef);
+
+                const responseData = {
+                    title: mainResponse,
+                    brief: context || mainResponse,
+                    timestamp: new Date().toISOString(),
+                    likes: 0,
+                    dislikes: 0,
+                    comments: []
+                };
+
+                await set(newResponseRef, responseData);
+
+                form.style.display = 'none';
+                successMessage.classList.add('show');
+
+            } catch (error) {
+                console.error('Error submitting response:', error);
+                alert('Failed to submit response. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Response';
+            }
+        });
+    </script>
+</body>
+</html>
