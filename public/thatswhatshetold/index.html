@@ -1,11 +1,6 @@
 <!DOCTYPE html>
-<html lang="en        .header-content {
-            max-width: 98%;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }d>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>That's What She Told</title>
@@ -50,7 +45,9 @@
             max-width: 98%;
             margin: 0 auto;
             padding: 20px 1px;
-        }        .main-title {
+        }
+
+        .main-title {
             font-size: 28px;
             font-weight: bold;
             color: #2c2c2e;
@@ -303,6 +300,32 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.2); }
         }
+
+        /* Floating Join Button */
+        .floating-join-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #EB7470;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            box-shadow: 0 4px 20px rgba(235, 116, 112, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .floating-join-btn:hover {
+            background-color: #d86662;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(235, 116, 112, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -317,11 +340,16 @@
         
         <div class="button-group">
             <!-- <button class="stats-button" onclick="showStats()">📊 View Statistics</button> -->
-    <a href="../sheform/sheform.html" class="add-button">+ Share Your Thoughts</a>
+            <a href="../sheform/sheform.html" class="add-button">+ Share Your Thoughts</a>
         </div>
 
         <div id="content" class="loading">Loading responses...</div>
     </div>
+
+    <!-- Floating Join Button -->
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQtaS_iGAdCvsRVQeeHcZ5r3cQTPIkbbMcoMBy_grINDx_ZQ/viewform" target="_blank" class="floating-join-btn">
+        Join #The She Talks
+    </a>
 
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
@@ -450,7 +478,6 @@
         }
 
         window.handleLike = async function(key, btn) {
-            // Check if user has already liked this response
             const userVotes = JSON.parse(localStorage.getItem('userVotes') || '{}');
             if (userVotes[key] === 'liked') {
                 alert('You have already liked this response!');
@@ -468,11 +495,9 @@
                     return (currentLikes || 0) + 1;
                 });
                 
-                // Store user's vote in localStorage
                 userVotes[key] = 'liked';
                 localStorage.setItem('userVotes', JSON.stringify(userVotes));
                 
-                // Update button appearance
                 btn.classList.add('pulse', 'active');
                 btn.style.pointerEvents = 'none';
                 setTimeout(() => btn.classList.remove('pulse'), 500);
@@ -482,7 +507,6 @@
         };
 
         window.handleDislike = async function(key, btn) {
-            // Check if user has already disliked this response
             const userVotes = JSON.parse(localStorage.getItem('userVotes') || '{}');
             if (userVotes[key] === 'disliked') {
                 alert('You have already disliked this response!');
@@ -500,11 +524,9 @@
                     return (currentDislikes || 0) + 1;
                 });
                 
-                // Store user's vote in localStorage
                 userVotes[key] = 'disliked';
                 localStorage.setItem('userVotes', JSON.stringify(userVotes));
                 
-                // Update button appearance
                 btn.classList.add('pulse', 'active');
                 btn.style.pointerEvents = 'none';
                 setTimeout(() => btn.classList.remove('pulse'), 500);
