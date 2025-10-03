@@ -172,7 +172,7 @@
         </div>
 
         <div class="form-card">
-            <form id="responseForm">
+            <!-- <form id="responseForm">
                 <div class="form-group">
                     <label>Your Response</label>
                     <p class="question">If you could teach men one thing about women's health, what would it be?</p>
@@ -186,8 +186,23 @@
                 </div>
 
                 <button type="submit" class="submit-btn" id="submitBtn">Submit Response</button>
-            </form>
+            </form> -->
+            <form id="responseForm">
+                <div class="form-group">
+                    <label>Contextual Title</label>
+                    <input type="text" id="context" required placeholder="Enter a brief title...">
+                    <div class="error-message" id="contextError">Please provide a title</div>
+                </div>
 
+                <div class="form-group">
+                    <label>Add details or explain</label>
+                    <p class="question">If you could teach men one thing about women's health, what would it be?</p>
+                    <textarea id="mainResponse" required placeholder="Share your thoughts here..."></textarea>
+                    <div class="error-message" id="mainError">Please provide a response</div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Response</button>
+            </form>
             <div class="success-message" id="successMessage">
                 <div class="success-icon">✓</div>
                 <div class="success-text">Thank you for sharing!</div>
