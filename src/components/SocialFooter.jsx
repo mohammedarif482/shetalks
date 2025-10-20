@@ -1,16 +1,16 @@
 const SocialFooter = () => {
   const socialLinks = [
-    { name: 'Instagram', icon: '/instagram.svg', url: '#' },
-    { name: 'Facebook', icon: '/facebook.svg', url: '#' },
-    { name: 'YouTube', icon: '/youtube.svg', url: '#' },
-    { name: 'Pinterest', icon: '/pinterest.svg', url: '#' },
-    { name: 'X', icon: '/x.svg', url: '#' }
+    { name: 'Instagram', icon: '/instagram.svg', url: 'https://www.instagram.com/the.she.talks/' },
+    { name: 'Facebook', icon: '/facebook.svg', url: 'https://www.facebook.com/people/The-She-Talks/61581217366290' },
+    { name: 'YouTube', icon: '/youtube.svg', url: 'https://www.youtube.com/@TheSheTalksCommunity' },
+    { name: 'Pinterest', icon: '/pinterest.svg', url: 'https://pin.it/3pgootz70' },
+    { name: 'X', icon: '/x.svg', url: 'https://x.com/theshetalksclub' }
   ]
 
   return (
     <footer className="social-footer">
       <div className="social-footer-content">
-        <p className="social-footer-text">Follow The She Talks on</p>
+        <p className="social-footer-text">Follow <span className="freude-text">The She Talks</span> on</p>
         <div className="social-icons-row">
           {socialLinks.map((social) => (
             <a

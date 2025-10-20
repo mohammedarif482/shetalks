@@ -1,35 +1,65 @@
 import { useState } from 'react'
 
-const Header = () => {
+const Header = ({ activePage, onPageChange }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
   }
 
+  const handleNavClick = (page) => {
+    onPageChange(page)
+    setIsMobileMenuOpen(false)
+  }
+
   return (
     <header className="header">
       <div className="header-content">
         {/* Logo */}
-        <a href="#" className="logo animate-on-load">
+        <div className="logo">
           <img 
-            src="/logo.png" 
-            alt="The She Talks" 
+            src="/logo.svg" 
+            alt="The She Talks Logo" 
             className="logo-image"
           />
-        </a>
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="nav">
           <ul className="nav-links">
-            <li><a href="#community" className="nav-link animate-on-load">Community</a></li>
-            <li><a href="#events" className="nav-link animate-on-load">Events</a></li>
-            <li><a href="#launches" className="nav-link animate-on-load">Launches</a></li>
+            <li>
+              <button 
+                onClick={() => handleNavClick('community')} 
+                className={`nav-link ${activePage === 'community' ? 'nav-link-active' : ''}`}
+              >
+                Community
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={() => handleNavClick('events')} 
+                className={`nav-link ${activePage === 'events' ? 'nav-link-active' : ''}`}
+              >
+                Events
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={() => handleNavClick('launches')} 
+                className={`nav-link ${activePage === 'launches' ? 'nav-link-active' : ''}`}
+              >
+                Launches
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={() => handleNavClick('updates')} 
+                className={`nav-link ${activePage === 'updates' ? 'nav-link-active' : ''}`}
+              >
+                Updates
+              </button>
+            </li>
           </ul>
-          
-          <a href="#join" className="btn btn-primary animate-on-load">
-            Join The She Talks
-          </a>
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -46,13 +76,37 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div className="mobile-menu">
           <ul className="mobile-nav-links">
-            <li><a href="#community" className="nav-link">Community</a></li>
-            <li><a href="#events" className="nav-link">Events</a></li>
-            <li><a href="#launches" className="nav-link">Launches</a></li>
             <li>
-              <a href="#join" className="btn btn-primary">
-                Join The She Talks
-              </a>
+              <button 
+                onClick={() => handleNavClick('community')} 
+                className={`nav-link ${activePage === 'community' ? 'nav-link-active' : ''}`}
+              >
+                Community
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={() => handleNavClick('events')} 
+                className={`nav-link ${activePage === 'events' ? 'nav-link-active' : ''}`}
+              >
+                Events
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={() => handleNavClick('launches')} 
+                className={`nav-link ${activePage === 'launches' ? 'nav-link-active' : ''}`}
+              >
+                Launches
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={() => handleNavClick('updates')} 
+                className={`nav-link ${activePage === 'updates' ? 'nav-link-active' : ''}`}
+              >
+                Updates
+              </button>
             </li>
           </ul>
         </div>

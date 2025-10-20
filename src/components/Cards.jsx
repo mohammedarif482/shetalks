@@ -1,58 +1,27 @@
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
-
 const Cards = () => {
-  const cardsRef = useRef(null)
-  
   const cards = [
     {
       id: 1,
       title: "Community",
-      description: "Connect with like-minded women in our supportive community. Share your experiences, ask questions, and build lasting friendships in a safe, inclusive environment.",
+      description: "A safe space where women connect, share, and grow together. It's where real stories meet real support, reminding us that healing feels lighter when we're not alone.",
       type: "filled"
     },
     {
       id: 2,
       title: "Events",
-      description: "Join our regular events, workshops, and meetups designed to inspire and empower. From networking sessions to skill-building workshops, there's something for everyone.",
+      description: "Conversations and workshops that nurture healing, self-awareness, and connection, helping women find strength in shared experiences.",
       type: "outlined"
     },
     {
       id: 3,
       title: "Launches",
-      description: "Be the first to know about new features, partnerships, and opportunities within our community. Stay updated with exclusive launches and early access benefits.",
+      description: "Products and services designed to support women's well-being, growth, and everyday life, created with purpose and care.",
       type: "outlined"
     }
   ]
 
-  useEffect(() => {
-    const cardElements = cardsRef.current.querySelectorAll('.card')
-    
-    gsap.fromTo(cardElements, 
-      {
-        opacity: 0,
-        y: 50
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: cardsRef.current,
-          start: "top center+=100",
-          toggleActions: "play none none reverse"
-        }
-      }
-    )
-  }, [])
-
   return (
-    <section className="cards-section" ref={cardsRef}>
+    <section className="cards-section">
       <div className="cards-container">
         <div className="cards-wrapper">
           {cards.map((card) => (
@@ -62,6 +31,13 @@ const Cards = () => {
             >
               <h2 className="card-title">{card.title}</h2>
               <p className="card-description">{card.description}</p>
+              <div className="card-icon">
+                <img 
+                  src="/arrow.svg" 
+                  alt="Arrow icon" 
+                  className="card-arrow-icon"
+                />
+              </div>
             </div>
           ))}
         </div>

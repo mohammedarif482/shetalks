@@ -12,17 +12,17 @@
   font-display: swap;
 }
 :root {
-  /* Color palette */
-  --bg-primary: #FFECE3;
-  --capsule-bg: #FDDDCF;
-  --capsule-outline: #DDBFB5;
+  /* Color palette - Updated to match image exactly */
+  --bg-primary: #FFF5F0;
   --primary-pink: #EB7470;
+  --light-pink: #FDDDCF;
+  --card-border: #DDBFB5;
   --text-dark: #454545;
   --text-white: #ffffff;
-  /* Freude Font Face Definition */
-
+  --footer-text: #B0A090;
+  
   /* Typography */
-  --font-heading: 'Freude', cursive;
+  --font-heading: 'Poppins', sans-serif;
   --font-body: 'Poppins', sans-serif;
   
   /* Spacing */
@@ -30,7 +30,7 @@
   --section-padding: 4rem 0;
   
   /* Border radius */
-  --border-radius: 20px;
+  --border-radius: 28px;
   --border-radius-sm: 12px;
   
   /* Shadows */
