@@ -12,107 +12,204 @@ const ArohaEvent = () => {
     <div className={`aroha-event ${isLoaded ? 'loaded' : ''}`}>
       {/* Hero Section */}
       <section className="aroha-hero">
-        <div className="aroha-hero-content">
-          <div className="aroha-logo">
-            <h1 className="aroha-title">AROHA</h1>
-            <p className="aroha-subtitle">A Celebration of Women's Voices</p>
+        {/* Logos */}
+        <div className="aroha-logos">
+          <div className="logo-left">
+            <img src="/logo.svg" alt="The She Talks" className="logo-image" />
           </div>
+          <div className="logo-right">
+            <div className="peak-tale-logo">Peak Tale Trips</div>
+          </div>
+        </div>
+
+        {/* Geometric Background Elements */}
+        <div className="geometric-shapes">
+          <div className="shape shape-1"></div>
+          <div className="shape shape-2"></div>
+          <div className="shape shape-3"></div>
+          <div className="shape shape-4"></div>
+        </div>
+
+        {/* Main Content */}
+        <div className="aroha-hero-content">
+          <h1 className="aroha-title">
+            <span className="title-main">AROHA:</span>
+            <span className="title-script">Celebrate Woman</span>
+          </h1>
           
           <div className="aroha-hero-text">
-            <h2>Join us for an extraordinary evening</h2>
-            <p>An exclusive event celebrating the power, resilience, and achievements of women from all walks of life.</p>
+            <p className="hero-subtitle">She gives. She heals. She creates.</p>
+            <p className="hero-description">Now it's her time to breathe, to feel, to celebrate.</p>
+          </div>
+
+          <div className="event-details">
+            <div className="event-date">🗓️ Nov 22–23, 2025</div>
+            <div className="event-location">📍 Petals Resort, Wayanad</div>
           </div>
 
           <div className="aroha-cta">
-            <button className="aroha-btn primary">Register Now</button>
-            <button className="aroha-btn secondary">Learn More</button>
-          </div>
-        </div>
-        
-        <div className="aroha-hero-visual">
-          <div className="aroha-gradient-circle"></div>
-        </div>
-      </section>
-
-      {/* Event Details */}
-      <section className="aroha-details">
-        <div className="container">
-          <div className="aroha-info-grid">
-            <div className="aroha-info-card">
-              <h3>📅 Date & Time</h3>
-              <p>Coming Soon</p>
-              <span>Stay tuned for updates</span>
-            </div>
-            
-            <div className="aroha-info-card">
-              <h3>📍 Location</h3>
-              <p>To be announced</p>
-              <span>Details coming soon</span>
-            </div>
-            
-            <div className="aroha-info-card">
-              <h3>🎤 Speakers</h3>
-              <p>Inspiring women leaders</p>
-              <span>Lineup to be revealed</span>
-            </div>
-            
-            <div className="aroha-info-card">
-              <h3>🎟️ Tickets</h3>
-              <p>Limited availability</p>
-              <span>Early bird pricing available</span>
-            </div>
+            <button className="aroha-btn primary">Get Early Bird Access</button>
+            <button className="aroha-btn secondary">Discover the Experience</button>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
+      {/* About Aroha */}
       <section className="aroha-about">
         <div className="container">
-          <div className="aroha-about-content">
-            <h2>About Aroha</h2>
-            <p>
-              Aroha is more than just an event—it's a movement. We're creating a space where women's stories, 
-              achievements, and aspirations take center stage. Join us as we celebrate the incredible women 
-              who are shaping our world and inspiring the next generation.
-            </p>
-            <p>
-              This exclusive gathering will feature inspiring speakers, meaningful conversations, and 
-              opportunities to connect with like-minded individuals who share our vision of empowerment and growth.
-            </p>
+          <div className="about-content">
+            <div className="about-text">
+              <h2>About Aroha</h2>
+              <p>
+                Aroha isn't just an event — it's a homecoming.
+                Two serene days of yoga, sound healing, art, music, and sisterhood 
+                in the calm green hills of Wayanad.
+              </p>
+            </div>
+            <div className="about-visual">
+              <div className="visual-placeholder">
+                <div className="geometric-pattern"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Newsletter Signup */}
-      <section className="aroha-newsletter">
+      {/* Experiences */}
+      <section className="aroha-experiences">
         <div className="container">
-          <div className="aroha-newsletter-content">
-            <h2>Stay Updated</h2>
-            <p>Be the first to know about event details, speaker announcements, and exclusive updates.</p>
+          <h2 className="section-title">What Awaits You</h2>
+          <div className="experiences-grid">
+            <div className="experience-card">
+              <div className="card-icon">🧘</div>
+              <h3>Yoga & Breathwork</h3>
+              <p>Connect with your inner rhythm</p>
+            </div>
+            <div className="experience-card">
+              <div className="card-icon">🎵</div>
+              <h3>Sound Healing</h3>
+              <p>Harmonize your soul</p>
+            </div>
+            <div className="experience-card">
+              <div className="card-icon">🎨</div>
+              <h3>Art & Expression</h3>
+              <p>Paint your emotions</p>
+            </div>
+            <div className="experience-card">
+              <div className="card-icon">🎶</div>
+              <h3>Music Evenings</h3>
+              <p>Dance under the stars</p>
+            </div>
+            <div className="experience-card">
+              <div className="card-icon">🤝</div>
+              <h3>Sisterhood Circles</h3>
+              <p>Share sacred stories</p>
+            </div>
+            <div className="experience-card">
+              <div className="card-icon">🌿</div>
+              <h3>Forest Walks</h3>
+              <p>Nature's gentle embrace</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Artists & Facilitators */}
+      <section className="aroha-facilitators">
+        <div className="container">
+          <h2 className="section-title">Meet the Souls Guiding You</h2>
+          <div className="facilitators-grid">
+            <div className="facilitator-card">
+              <div className="facilitator-portrait"></div>
+              <h3>Priya Sharma</h3>
+              <p>Sound Healer</p>
+            </div>
+            <div className="facilitator-card">
+              <div className="facilitator-portrait"></div>
+              <h3>Meera Patel</h3>
+              <p>Yoga Guide</p>
+            </div>
+            <div className="facilitator-card">
+              <div className="facilitator-portrait"></div>
+              <h3>Anita Kumar</h3>
+              <p>Artist</p>
+            </div>
+            <div className="facilitator-card">
+              <div className="facilitator-portrait"></div>
+              <h3>Deepa Singh</h3>
+              <p>Music Therapist</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Venue */}
+      <section className="aroha-venue">
+        <div className="venue-image">
+          <div className="venue-overlay">
+            <h2>In the heart of nature, where stillness meets soul.</h2>
+            <button className="venue-btn">View Gallery</button>
+          </div>
+        </div>
+      </section>
+
+      {/* Tickets / Early Bird */}
+      <section className="aroha-tickets">
+        <div className="container">
+          <div className="tickets-content">
+            <h2>Reserve Your Space</h2>
+            <p>Early bird tickets dropping soon! Sign up to be the first to know.</p>
             
-            <form className="aroha-form">
+            <form className="tickets-form">
               <input 
                 type="email" 
                 placeholder="Enter your email address"
-                className="aroha-input"
+                className="tickets-input"
               />
-              <button type="submit" className="aroha-btn primary">Subscribe</button>
+              <button type="submit" className="tickets-btn">Notify Me</button>
             </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Presented By */}
+      <section className="aroha-presented">
+        <div className="container">
+          <div className="presented-content">
+            <div className="presented-logos">
+              <div className="presented-logo">
+                <img src="/logo.svg" alt="The She Talks" />
+                <span>The She Talks</span>
+              </div>
+              <div className="presented-x">×</div>
+              <div className="presented-logo">
+                <div className="peak-tale-logo-large">Peak Tale Trips</div>
+              </div>
+            </div>
+            <p className="presented-caption">
+              A soulful collaboration celebrating the spirit of womanhood.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="aroha-footer">
-        <div className="container">
-          <div className="aroha-footer-content">
-            <p>&copy; 2024 SheTalks. All rights reserved.</p>
-            <div className="aroha-social">
-              <a href="#" aria-label="Instagram">📷</a>
-              <a href="#" aria-label="Facebook">📘</a>
-              <a href="#" aria-label="Twitter">🐦</a>
-              <a href="#" aria-label="LinkedIn">💼</a>
-            </div>
+        <div className="footer-content">
+          <div className="footer-social">
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="YouTube">📺</a>
+          </div>
+          <div className="footer-hashtags">
+            <span>#Aroha2025</span>
+            <span>#CelebrateWoman</span>
+            <span>#SheTalks</span>
+            <span>#PeakTaleTrips</span>
+          </div>
+          <div className="footer-copyright">
+            <p>&copy; 2025 The She Talks × Peak Tale Trips. All rights reserved.</p>
           </div>
         </div>
       </footer>
