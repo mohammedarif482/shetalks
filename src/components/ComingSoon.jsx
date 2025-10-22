@@ -35,3 +35,4 @@ const ComingSoon = ({ pageName }) => {
 }
 
 export default ComingSoon
+

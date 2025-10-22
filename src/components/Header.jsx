@@ -12,6 +12,11 @@ const Header = ({ activePage, onPageChange }) => {
     setIsMobileMenuOpen(false)
   }
 
+  // Hide header on Aroha event page
+  if (activePage === 'aroha') {
+    return null
+  }
+
   return (
     <header className="header">
       <div className="header-content">
