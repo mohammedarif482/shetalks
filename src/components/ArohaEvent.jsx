@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './ArohaEvent.css'
 
 const ArohaEvent = () => {
   const [selectedArtist, setSelectedArtist] = useState(null)
+  const experiencesRef = useRef(null)
 
   const artists = [
     {
@@ -62,6 +63,13 @@ const ArohaEvent = () => {
   const handleCloseModal = () => {
     setSelectedArtist(null)
   }
+
+  const scrollToExperiences = () => {
+    experiencesRef.current?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    })
+  }
   return (
     <div className="aroha-event">
       {/* Hero Section */}
@@ -85,7 +93,6 @@ const ArohaEvent = () => {
           
           <div className="aroha-hero-text">
             <p className="hero-subtitle">She gives. She heals. She creates.</p>
-            <p className="hero-description">Now it's her time to breathe, to feel, to celebrate.</p>
           </div>
 
           <div className="event-details">
@@ -105,7 +112,7 @@ const ArohaEvent = () => {
 
           <div className="aroha-cta">
             <button className="aroha-btn primary">Get Early Bird Access</button>
-            <button className="aroha-btn secondary">Discover the Experience</button>
+            <button className="aroha-btn secondary" onClick={scrollToExperiences}>Discover the Experience</button>
           </div>
         </div>
       </section>
@@ -149,7 +156,7 @@ const ArohaEvent = () => {
       </section>
 
       {/* Experiences */}
-      <section className="aroha-experiences">
+      <section className="aroha-experiences" ref={experiencesRef}>
         <div className="container">
           <h2>What Awaits You</h2>
           <div className="experiences-grid">
