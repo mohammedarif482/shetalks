@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import Cards from './components/Cards'
 import SocialFooter from './components/SocialFooter'
 import ComingSoon from './components/ComingSoon'
+import ArohaEvent from './components/ArohaEvent'
 import './App.css'
 
 function App() {
@@ -25,11 +26,13 @@ function App() {
           </>
         )
       case 'events':
-        return <ComingSoon pageName="Events" />
+        return <ComingSoon pageName="Events" onPageChange={handlePageChange} />
       case 'launches':
         return <ComingSoon pageName="Launches" />
       case 'updates':
         return <ComingSoon pageName="Updates" />
+      case 'aroha':
+        return <ArohaEvent />
       default:
         return (
           <>

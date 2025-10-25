@@ -11,7 +11,7 @@ const ArohaEvent = () => {
       title: "Yoga & Mindfulness Session",
       description: "Led by Anjali Pandey, yoga facilitator and founder of Yogaendless, this session is a gentle invitation to return to yourself through movement, breath, and awareness. Anjali's approach to yoga goes beyond postures — it's about honest connection, mindful presence, and inner clarity.",
       image: "/aroha/artists/anjali.png",
-      instagram: "https://instagram.com/anjali_yoga"
+      instagram: "https://instagram.com/anjalipandey_yoga"
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ const ArohaEvent = () => {
       title: "Sound Journey & Drum Circle",
       description: "Led by Udukku, rhythm alchemist and founder of the Iyashi Sound Experience, this transformative session blends ancient drumming traditions with meditative soundscapes to create a deeply immersive healing experience. The Sound Journey & Drum Circle invites you to connect with your inner rhythm, where every beat becomes a path to harmony, balance, and emotional release.",
       image: "/aroha/artists/udukku.png",
-      instagram: "https://instagram.com/udukku_sound"
+      instagram: "https://instagram.com/udukku"
     },
     {
       id: 3,
@@ -27,7 +27,7 @@ const ArohaEvent = () => {
       title: "Eco-Printing & Natural Dye Workshop",
       description: "Led by Rizvana Khalid, artist and eco-textile creator, this enchanting workshop invites you to immerse yourself in the ancient art of eco-printing and natural dyeing where nature and creativity beautifully intertwine. Participants will explore the alchemy of leaves, flowers, and fibers, learning how to transfer nature's delicate imprints onto fabric.",
       image: "/aroha/artists/rizwa.png",
-      instagram: "https://instagram.com/rizvana_eco"
+      instagram: "https://instagram.com/_rizvanakhalid"
     },
     {
       id: 4,
@@ -35,7 +35,7 @@ const ArohaEvent = () => {
       title: "Health & Wellness Session",
       description: "Join Arya Biju, founder of Adowlz and The She Talk Community, for a heartfelt conversation on wellness, womanhood, and the beautiful chaos of finding balance. A passionate young entrepreneur and advocate for women's voices, Arya opens up real, honest discussions around mental health, self-worth, and the everyday challenges women face.",
       image: "/aroha/artists/arya.png",
-      instagram: "https://instagram.com/arya_biju"
+      instagram: "https://instagram.com/arya__biju"
     },
     {
       id: 5,
@@ -43,7 +43,7 @@ const ArohaEvent = () => {
       title: "Art Flow Workshop",
       description: "Led by visionary artist and creative guide Jinil, the Art Flow Workshop is a soulful blend of intuitive art, mindful expression, and emotional healing through color. This transformative experience invites you to slow down, reconnect, and awaken your creative energy — turning painting into a journey of self-discovery and inner balance.",
       image: "/aroha/artists/jinil.png",
-      instagram: "https://instagram.com/jinil_artist"
+      instagram: "https://instagram.com/jinil_jinn"
     },
     {
       id: 6,
@@ -51,7 +51,7 @@ const ArohaEvent = () => {
       title: "Special Workshop",
       description: "Join Ajesh for an inspiring workshop that brings together creativity, mindfulness, and personal growth. Details about this transformative session will be announced soon.",
       image: "/aroha/artists/ajesh.png",
-      instagram: "https://instagram.com/ajesh_workshop"
+      instagram: "https://instagram.com/fooooofighter_"
     }
   ]
 

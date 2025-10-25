@@ -781,3 +781,210 @@
     padding: 0.875rem 1.5rem;
   }
 }
+
+/* Events Page Styles */
+.events-page {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  padding: 4rem 0;
+}
+
+.events-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.events-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.events-title {
+  font-size: 3.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.events-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.event-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-medium);
+}
+
+.aroha-card {
+  background: linear-gradient(135deg, #f8f4f0 0%, #ffffff 100%);
+}
+
+.event-card-image {
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8f4f0 0%, #ffffff 100%);
+}
+
+.event-card-image img {
+  max-height: 120px;
+  width: auto;
+  object-fit: contain;
+}
+
+.event-card-content {
+  padding: 2rem;
+}
+
+.event-card-logos {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.event-logo {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+}
+
+.event-card-title {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.event-card-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 300;
+}
+
+.event-card-description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.event-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.event-date,
+.event-location {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.event-card-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #EB7470;
+  font-weight: 500;
+}
+
+.event-arrow {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.event-card:hover .event-arrow {
+  transform: translateX(4px);
+}
+
+.coming-soon-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border: 2px dashed #e0e0e0;
+}
+
+.coming-soon-card .coming-soon-icon {
+  margin-bottom: 1.5rem;
+}
+
+.coming-soon-card .event-card-title {
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+}
+
+.coming-soon-card .event-card-description {
+  font-size: 0.9rem;
+  max-width: 200px;
+  text-align: center;
+}
+
+/* Responsive Events Page */
+@media (max-width: 768px) {
+  .events-page {
+    padding: 2rem 0;
+  }
+  
+  .events-title {
+    font-size: 2.5rem;
+  }
+  
+  .events-subtitle {
+    font-size: 1rem;
+  }
+  
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .event-card-content {
+    padding: 1.5rem;
+  }
+  
+  .event-card-title {
+    font-size: 1.5rem;
+  }
+  
+  .event-card-logos {
+    margin-bottom: 1rem;
+  }
+  
+  .event-logo {
+    height: 25px;
+  }
+}
