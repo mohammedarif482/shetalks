@@ -4,6 +4,8 @@
   padding: 0;
   box-sizing: border-box;
 }
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 @font-face {
   font-family: 'Freude';
   src: url('/fonts/Freude.otf') format('opentype');
@@ -13,7 +15,7 @@
 }
 :root {
   /* Color palette - Updated to match image exactly */
-  --bg-primary: #FFF5F0;
+  --bg-primary: #1C1E1E;
   --primary-pink: #EB7470;
   --light-pink: #FDDDCF;
   --card-border: #DDBFB5;
@@ -22,8 +24,8 @@
   --footer-text: #B0A090;
   
   /* Typography */
-  --font-heading: 'Poppins', sans-serif;
-  --font-body: 'Poppins', sans-serif;
+  --font-heading: 'Albert Sans', sans-serif;
+  --font-body: 'Albert Sans', sans-serif;
   
   /* Spacing */
   --container-padding: 2rem;

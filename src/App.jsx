@@ -11,8 +11,10 @@ function App() {
   const [activePage, setActivePage] = useState('community')
 
   useEffect(() => {
-    // Check if we're on the aroha subdomain
-    if (window.location.hostname === 'aroha.theshetalks.club') {
+    // Check if we're on the aroha subdomain or localhost for testing
+    if (window.location.hostname === 'aroha.theshetalks.club' || 
+        window.location.hostname === 'localhost' || 
+        window.location.hostname === '127.0.0.1') {
       setActivePage('aroha')
     }
   }, [])

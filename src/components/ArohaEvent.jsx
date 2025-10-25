@@ -1,41 +1,87 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './ArohaEvent.css'
 
 const ArohaEvent = () => {
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [selectedArtist, setSelectedArtist] = useState(null)
 
-  useEffect(() => {
-    setIsLoaded(true)
-  }, [])
+  const artists = [
+    {
+      id: 1,
+      name: "Anjali Pandey",
+      title: "Yoga & Mindfulness Session",
+      description: "Led by Anjali Pandey, yoga facilitator and founder of Yogaendless, this session is a gentle invitation to return to yourself through movement, breath, and awareness. Anjali's approach to yoga goes beyond postures — it's about honest connection, mindful presence, and inner clarity.",
+      image: "/aroha/artists/anjali.png",
+      instagram: "https://instagram.com/anjali_yoga"
+    },
+    {
+      id: 2,
+      name: "Udukku",
+      title: "Sound Journey & Drum Circle",
+      description: "Led by Udukku, rhythm alchemist and founder of the Iyashi Sound Experience, this transformative session blends ancient drumming traditions with meditative soundscapes to create a deeply immersive healing experience. The Sound Journey & Drum Circle invites you to connect with your inner rhythm, where every beat becomes a path to harmony, balance, and emotional release.",
+      image: "/aroha/artists/udukku.png",
+      instagram: "https://instagram.com/udukku_sound"
+    },
+    {
+      id: 3,
+      name: "Rizvana Khalid",
+      title: "Eco-Printing & Natural Dye Workshop",
+      description: "Led by Rizvana Khalid, artist and eco-textile creator, this enchanting workshop invites you to immerse yourself in the ancient art of eco-printing and natural dyeing where nature and creativity beautifully intertwine. Participants will explore the alchemy of leaves, flowers, and fibers, learning how to transfer nature's delicate imprints onto fabric.",
+      image: "/aroha/artists/rizwa.png",
+      instagram: "https://instagram.com/rizvana_eco"
+    },
+    {
+      id: 4,
+      name: "Arya Biju",
+      title: "Health & Wellness Session",
+      description: "Join Arya Biju, founder of Adowlz and The She Talk Community, for a heartfelt conversation on wellness, womanhood, and the beautiful chaos of finding balance. A passionate young entrepreneur and advocate for women's voices, Arya opens up real, honest discussions around mental health, self-worth, and the everyday challenges women face.",
+      image: "/aroha/artists/arya.png",
+      instagram: "https://instagram.com/arya_biju"
+    },
+    {
+      id: 5,
+      name: "Jinil M",
+      title: "Art Flow Workshop",
+      description: "Led by visionary artist and creative guide Jinil, the Art Flow Workshop is a soulful blend of intuitive art, mindful expression, and emotional healing through color. This transformative experience invites you to slow down, reconnect, and awaken your creative energy — turning painting into a journey of self-discovery and inner balance.",
+      image: "/aroha/artists/jinil.png",
+      instagram: "https://instagram.com/jinil_artist"
+    },
+    {
+      id: 6,
+      name: "Ajesh",
+      title: "Special Workshop",
+      description: "Join Ajesh for an inspiring workshop that brings together creativity, mindfulness, and personal growth. Details about this transformative session will be announced soon.",
+      image: "/aroha/artists/ajesh.png",
+      instagram: "https://instagram.com/ajesh_workshop"
+    }
+  ]
 
+  const handleArtistClick = (artist) => {
+    setSelectedArtist(artist)
+  }
+
+  const handleCloseModal = () => {
+    setSelectedArtist(null)
+  }
   return (
-    <div className={`aroha-event ${isLoaded ? 'loaded' : ''}`}>
+    <div className="aroha-event">
       {/* Hero Section */}
       <section className="aroha-hero">
         {/* Logos */}
         <div className="aroha-logos">
           <div className="logo-left">
-            <img src="/logo.svg" alt="The She Talks" className="logo-image" />
+            <img src="/aroha/shetalk.png" alt="The She Talks" className="logo-image" />
           </div>
           <div className="logo-right">
-            <div className="peak-tale-logo">Peak Tale Trips</div>
+            <img src="/aroha/peaktale.png" alt="Peaktales" className="logo-image" />
           </div>
-        </div>
-
-        {/* Geometric Background Elements */}
-        <div className="geometric-shapes">
-          <div className="shape shape-1"></div>
-          <div className="shape shape-2"></div>
-          <div className="shape shape-3"></div>
-          <div className="shape shape-4"></div>
         </div>
 
         {/* Main Content */}
         <div className="aroha-hero-content">
-          <h1 className="aroha-title">
-            <span className="title-main">AROHA:</span>
-            <span className="title-script">Celebrate Woman</span>
-          </h1>
+          <div className="aroha-title-images">
+            <img src="/aroha/aroha.png" alt="Aroha" className="aroha-title-image" />
+            <img src="/aroha/celebratewoman.png" alt="Celebrate Woman" className="celebrate-woman-image" />
+          </div>
           
           <div className="aroha-hero-text">
             <p className="hero-subtitle">She gives. She heals. She creates.</p>
@@ -57,20 +103,37 @@ const ArohaEvent = () => {
       {/* About Aroha */}
       <section className="aroha-about">
         <div className="container">
-          <div className="about-content">
-            <div className="about-text">
-              <h2>About Aroha</h2>
-              <p>
-                Aroha isn't just an event — it's a homecoming.
-                Two serene days of yoga, sound healing, art, music, and sisterhood 
-                in the calm green hills of Wayanad.
-              </p>
-            </div>
-            <div className="about-visual">
-              <div className="visual-placeholder">
-                <div className="geometric-pattern"></div>
+          <h2>About Aroha</h2>
+          <p>
+            Aroha isn't just an event — it's a homecoming.
+            Two serene days of yoga, sound healing, art, music, and sisterhood 
+            in the calm green hills of Wayanad.
+          </p>
+        </div>
+      </section>
+
+      {/* Artists Section */}
+      <section className="aroha-artists">
+        <div className="container">
+          <h2>Meet Our Artists & Facilitators</h2>
+          <div className="artists-grid">
+            {artists.map((artist) => (
+              <div 
+                key={artist.id}
+                className="artist-card"
+                onClick={() => handleArtistClick(artist)}
+              >
+                <div className="artist-image">
+                  <img src={artist.image} alt={artist.name} />
+                </div>
+                <div className="artist-overlay">
+                  <h3>{artist.name}</h3>
+                  <h4>{artist.title}</h4>
+                  <p>{artist.description}</p>
+                  <button className="read-more-btn">Read More</button>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -78,77 +141,14 @@ const ArohaEvent = () => {
       {/* Experiences */}
       <section className="aroha-experiences">
         <div className="container">
-          <h2 className="section-title">What Awaits You</h2>
-          <div className="experiences-grid">
-            <div className="experience-card">
-              <div className="card-icon">🧘</div>
-              <h3>Yoga & Breathwork</h3>
-              <p>Connect with your inner rhythm</p>
-            </div>
-            <div className="experience-card">
-              <div className="card-icon">🎵</div>
-              <h3>Sound Healing</h3>
-              <p>Harmonize your soul</p>
-            </div>
-            <div className="experience-card">
-              <div className="card-icon">🎨</div>
-              <h3>Art & Expression</h3>
-              <p>Paint your emotions</p>
-            </div>
-            <div className="experience-card">
-              <div className="card-icon">🎶</div>
-              <h3>Music Evenings</h3>
-              <p>Dance under the stars</p>
-            </div>
-            <div className="experience-card">
-              <div className="card-icon">🤝</div>
-              <h3>Sisterhood Circles</h3>
-              <p>Share sacred stories</p>
-            </div>
-            <div className="experience-card">
-              <div className="card-icon">🌿</div>
-              <h3>Forest Walks</h3>
-              <p>Nature's gentle embrace</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Artists & Facilitators */}
-      <section className="aroha-facilitators">
-        <div className="container">
-          <h2 className="section-title">Meet the Souls Guiding You</h2>
-          <div className="facilitators-grid">
-            <div className="facilitator-card">
-              <div className="facilitator-portrait"></div>
-              <h3>Priya Sharma</h3>
-              <p>Sound Healer</p>
-            </div>
-            <div className="facilitator-card">
-              <div className="facilitator-portrait"></div>
-              <h3>Meera Patel</h3>
-              <p>Yoga Guide</p>
-            </div>
-            <div className="facilitator-card">
-              <div className="facilitator-portrait"></div>
-              <h3>Anita Kumar</h3>
-              <p>Artist</p>
-            </div>
-            <div className="facilitator-card">
-              <div className="facilitator-portrait"></div>
-              <h3>Deepa Singh</h3>
-              <p>Music Therapist</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* The Venue */}
-      <section className="aroha-venue">
-        <div className="venue-image">
-          <div className="venue-overlay">
-            <h2>In the heart of nature, where stillness meets soul.</h2>
-            <button className="venue-btn">View Gallery</button>
+          <h2>What Awaits You</h2>
+          <div className="experiences-list">
+            <div className="experience-item">Yoga & Breathwork</div>
+            <div className="experience-item">Sound Healing</div>
+            <div className="experience-item">Art & Expression</div>
+            <div className="experience-item">Music Evenings</div>
+            <div className="experience-item">Sisterhood Circles</div>
+            <div className="experience-item">Forest Walks</div>
           </div>
         </div>
       </section>
@@ -156,63 +156,47 @@ const ArohaEvent = () => {
       {/* Tickets / Early Bird */}
       <section className="aroha-tickets">
         <div className="container">
-          <div className="tickets-content">
-            <h2>Reserve Your Space</h2>
-            <p>Early bird tickets dropping soon! Sign up to be the first to know.</p>
-            
-            <form className="tickets-form">
-              <input 
-                type="email" 
-                placeholder="Enter your email address"
-                className="tickets-input"
-              />
-              <button type="submit" className="tickets-btn">Notify Me</button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      {/* Presented By */}
-      <section className="aroha-presented">
-        <div className="container">
-          <div className="presented-content">
-            <div className="presented-logos">
-              <div className="presented-logo">
-                <img src="/logo.svg" alt="The She Talks" />
-                <span>The She Talks</span>
-              </div>
-              <div className="presented-x">×</div>
-              <div className="presented-logo">
-                <div className="peak-tale-logo-large">Peak Tale Trips</div>
-              </div>
-            </div>
-            <p className="presented-caption">
-              A soulful collaboration celebrating the spirit of womanhood.
-            </p>
-          </div>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="aroha-footer">
-        <div className="footer-content">
-          <div className="footer-social">
-            <a href="#" aria-label="Instagram">📷</a>
-            <a href="#" aria-label="Facebook">📘</a>
-            <a href="#" aria-label="Twitter">🐦</a>
-            <a href="#" aria-label="YouTube">📺</a>
-          </div>
-          <div className="footer-hashtags">
-            <span>#Aroha2025</span>
-            <span>#CelebrateWoman</span>
-            <span>#SheTalks</span>
-            <span>#PeakTaleTrips</span>
-          </div>
-          <div className="footer-copyright">
-            <p>&copy; 2025 The She Talks × Peak Tale Trips. All rights reserved.</p>
-          </div>
+        <div className="container">
+          <p>&copy; 2025 The She Talks × Peak Tale Trips. All rights reserved.</p>
         </div>
       </footer>
+
+      {/* Artist Modal */}
+      {selectedArtist && (
+        <div className="artist-modal" onClick={handleCloseModal}>
+          <div className="artist-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="artist-modal-close" onClick={handleCloseModal}>
+              <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+              </svg>
+            </button>
+            <div className="artist-modal-image">
+              <img src={selectedArtist.image} alt={selectedArtist.name} />
+            </div>
+            <div className="artist-modal-info">
+              <h2>{selectedArtist.name}</h2>
+              <h3>{selectedArtist.title}</h3>
+              <p>{selectedArtist.description}</p>
+              <a 
+                href={selectedArtist.instagram} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="instagram-link"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                Follow on Instagram
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
