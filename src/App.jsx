@@ -8,10 +8,23 @@ import ArohaEvent from './components/ArohaEvent'
 import './App.css'
 
 function App() {
-  const [activePage, setActivePage] = useState('community')
+  // Check if we're on the aroha subdomain
+  const isArohaSubdomain = window.location.hostname === 'aroha.theshetalks.club'
+  
+  const [activePage, setActivePage] = useState(isArohaSubdomain ? 'aroha' : 'community')
 
+  // Prevent navigation away from Aroha page when on aroha subdomain
+  useEffect(() => {
+    if (isArohaSubdomain && activePage !== 'aroha') {
+      setActivePage('aroha')
+    }
+  }, [isArohaSubdomain, activePage])
 
   const handlePageChange = (page) => {
+    // Don't allow navigation away from aroha page when on aroha subdomain
+    if (isArohaSubdomain) {
+      return
+    }
     setActivePage(page)
   }
 

@@ -12,8 +12,9 @@ const Header = ({ activePage, onPageChange }) => {
     setIsMobileMenuOpen(false)
   }
 
-  // Hide header on Aroha event page
-  if (activePage === 'aroha') {
+  // Hide header on Aroha event page or aroha subdomain
+  const isArohaSubdomain = window.location.hostname === 'aroha.theshetalks.club'
+  if (activePage === 'aroha' || isArohaSubdomain) {
     return null
   }
 
