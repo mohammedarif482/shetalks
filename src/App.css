@@ -321,13 +321,13 @@
 .speaker-name {
   font-weight: bold;
   font-size: 0.9rem;
-  color: var(--text-dark);
+  color: #FFF5F0;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .speaker-title {
   font-size: 0.8rem;
-  color: var(--text-dark);
+  color: #FFF5F0;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
