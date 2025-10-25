@@ -89,8 +89,18 @@ const ArohaEvent = () => {
           </div>
 
           <div className="event-details">
-            <div className="event-date">🗓️ Nov 22–23, 2025</div>
-            <div className="event-location">📍 Petals Resort, Wayanad</div>
+            <div className="event-date" style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+              </svg>
+              Nov 22–23, 2025
+            </div>
+            <div className="event-location" style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              Petals Resort, Wayanad
+            </div>
           </div>
 
           <div className="aroha-cta">
@@ -217,9 +227,6 @@ const ArohaEvent = () => {
                 <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
               </svg>
             </button>
-            <div className="artist-modal-image">
-              <img src={selectedArtist.image} alt={selectedArtist.name} />
-            </div>
             <div className="artist-modal-info">
               <h2>{selectedArtist.name}</h2>
               <h3>{selectedArtist.title}</h3>
