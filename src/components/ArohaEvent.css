@@ -285,6 +285,7 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -370,11 +371,28 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
   animation: fadeIn 0.3s ease;
+  /* Fallback for browsers that don't support backdrop-filter */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+}
+
+/* Ensure backdrop-filter works on mobile Safari and other mobile browsers */
+@supports (backdrop-filter: blur(10px)) {
+  .artist-modal {
+    background: rgba(0, 0, 0, 0.4);
+  }
+}
+
+@supports not (backdrop-filter: blur(10px)) {
+  .artist-modal {
+    background: rgba(0, 0, 0, 0.8);
+  }
 }
 
 .artist-modal-content {
@@ -392,6 +410,9 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  /* Ensure proper stacking context for mobile */
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .artist-modal-image {
@@ -421,6 +442,9 @@
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  /* Ensure proper stacking for mobile */
+  position: relative;
+  z-index: 1;
 }
 
 .artist-modal-info h2 {
@@ -810,6 +834,7 @@
   .artist-overlay p {
     font-size: 0.85rem;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
   }
   
   .read-more-btn {
@@ -817,10 +842,28 @@
     padding: 0.4rem 0.8rem;
   }
   
+  /* Mobile Modal Enhancements */
+  .artist-modal {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    /* Fallback for older mobile browsers */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+    /* Force hardware acceleration for better performance */
+    transform: translateZ(0);
+    will-change: transform;
+    /* Ensure proper stacking context */
+    isolation: isolate;
+  }
+  
   .artist-modal-content {
     width: 95%;
     max-width: 500px;
     max-height: 95vh;
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    background: rgba(249, 235, 216, 0.08);
+    border: 1px solid rgba(249, 235, 216, 0.2);
   }
   
   .artist-modal-image {
@@ -829,6 +872,9 @@
   
   .artist-modal-info {
     padding: 2rem 1.5rem;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    background: rgba(0, 0, 0, 0.4);
   }
   
   .artist-modal-info h2 {
@@ -850,6 +896,8 @@
   .instagram-link {
     padding: 0.875rem 1.5rem;
     font-size: 0.85rem;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
   
   .artist-modal-close {
@@ -857,6 +905,8 @@
     right: 12px;
     width: 36px;
     height: 36px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
   }
   
   .artist-modal-close svg {
