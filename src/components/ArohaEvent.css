@@ -526,32 +526,107 @@
 /* Experiences Section */
 .aroha-experiences {
   padding: 4rem 0;
+  margin: 0 8rem;
   background: #1C1E1E;
   text-align: center;
+}
+
+.aroha-experiences .container {
+  max-width: none;
+  padding: 0 1rem;
 }
 
 .aroha-experiences h2 {
   font-size: clamp(1.8rem, 4vw, 2.2rem);
   color: white;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   font-family: 'Albert Sans', sans-serif;
 }
 
-.experiences-list {
+.experiences-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  max-width: 600px;
-  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.experience-item {
-  background: var(--white);
-  padding: 1rem;
+.experience-card {
+  background: transparent;
   border-radius: 10px;
-  color: var(--dark-brown);
-  font-weight: 500;
-  border: 1px solid rgba(22, 83, 68, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  aspect-ratio: 3/2;
+}
+
+.experience-card:hover {
+  transform: translateY(-5px);
+  background: rgba(249, 235, 216, 0.15);
+  border-color: rgba(249, 235, 216, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.experience-image {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.experience-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.experience-card:hover .experience-image img {
+  transform: scale(1.05);
+}
+
+.experience-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  color: white;
+}
+
+.experience-overlay h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  font-family: 'Albert Sans', sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.experience-image.placeholder-image {
+  background: linear-gradient(135deg, var(--deep-green), var(--terracotta-orange));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-content {
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Tickets Section */
@@ -637,6 +712,11 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
+  
+  .experiences-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -662,8 +742,30 @@
     flex-direction: column;
   }
   
-  .experiences-list {
+  .experiences-grid {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .aroha-experiences {
+    margin: 0;
+  }
+  
+  .aroha-experiences .container {
+    padding: 0 1rem;
+  }
+  
+  .experience-card {
+    aspect-ratio: 3/2;
+  }
+  
+  .experience-overlay {
+    padding: 1rem;
+    height: 30%;
+  }
+  
+  .experience-overlay h3 {
+    font-size: 1.1rem;
   }
   
   .artists-grid {

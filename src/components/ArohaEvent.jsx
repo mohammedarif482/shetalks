@@ -142,13 +142,55 @@ const ArohaEvent = () => {
       <section className="aroha-experiences">
         <div className="container">
           <h2>What Awaits You</h2>
-          <div className="experiences-list">
-            <div className="experience-item">Yoga & Breathwork</div>
-            <div className="experience-item">Sound Healing</div>
-            <div className="experience-item">Art & Expression</div>
-            <div className="experience-item">Music Evenings</div>
-            <div className="experience-item">Sisterhood Circles</div>
-            <div className="experience-item">Forest Walks</div>
+          <div className="experiences-grid">
+            <div className="experience-card">
+              <div className="experience-image">
+                <img src="/aroha/events/yoga.png" alt="Yoga & Breathwork" />
+              </div>
+              <div className="experience-overlay">
+                <h3>Yoga & Breathwork</h3>
+              </div>
+            </div>
+            <div className="experience-card">
+              <div className="experience-image">
+                <img src="/aroha/events/sound.png" alt="Sound Healing" />
+              </div>
+              <div className="experience-overlay">
+                <h3>Sound Healing</h3>
+              </div>
+            </div>
+            <div className="experience-card">
+              <div className="experience-image">
+                <img src="/aroha/events/art.png" alt="Art & Expression" />
+              </div>
+              <div className="experience-overlay">
+                <h3>Art & Expression</h3>
+              </div>
+            </div>
+            <div className="experience-card">
+              <div className="experience-image placeholder-image">
+                <div className="placeholder-content">Music Evenings</div>
+              </div>
+              <div className="experience-overlay">
+                <h3>Music Evenings</h3>
+              </div>
+            </div>
+            <div className="experience-card">
+              <div className="experience-image placeholder-image">
+                <div className="placeholder-content">Sisterhood Circles</div>
+              </div>
+              <div className="experience-overlay">
+                <h3>Sisterhood Circles</h3>
+              </div>
+            </div>
+            <div className="experience-card">
+              <div className="experience-image">
+                <img src="/aroha/events/forest.png" alt="Forest Walks" />
+              </div>
+              <div className="experience-overlay">
+                <h3>Forest Walks</h3>
+              </div>
+            </div>
           </div>
         </div>
       </section>
