@@ -252,16 +252,16 @@ const ArohaEvent = () => {
               </div>
             </div>
             <div className="experience-card">
-              <div className="experience-image placeholder-image">
-                <div className="placeholder-content">Music Evenings</div>
+              <div className="experience-image">
+                <img src="/aroha/music.png" alt="Music Evenings" />
               </div>
               <div className="experience-overlay">
                 <h3>Music Evenings</h3>
               </div>
             </div>
             <div className="experience-card">
-              <div className="experience-image placeholder-image">
-                <div className="placeholder-content">Sisterhood Circles</div>
+              <div className="experience-image">
+                <img src="/aroha/sisterhood.png" alt="Sisterhood Circles" />
               </div>
               <div className="experience-overlay">
                 <h3>Sisterhood Circles</h3>
