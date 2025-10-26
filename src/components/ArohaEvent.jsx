@@ -10,7 +10,9 @@ const ArohaEvent = () => {
       id: 1,
       name: "Arya Biju",
       title: "Health & Wellness Session",
-      description: "Join Arya Biju, founder of Adowlz and The She Talk Community, for a heartfelt conversation on wellness, womanhood, and the beautiful chaos of finding balance. A passionate young entrepreneur and advocate for women's voices, Arya opens up real, honest discussions around mental health, self-worth, and the everyday challenges women face.",
+      description: (<>
+        Join Arya Biju, founder of <strong>Adowlz</strong> and <strong>The She Talk Community</strong>, for a heartfelt conversation on <strong>wellness, womanhood, and the beautiful chaos of finding balance</strong>. A passionate young entrepreneur and advocate for women's voices, Arya opens up real, honest discussions around <strong>mental health, self-worth, and the everyday challenges women face</strong>.
+      </>),
       image: "/aroha/artists/arya.png",
       instagram: "https://instagram.com/arya__biju"
     
@@ -19,7 +21,9 @@ const ArohaEvent = () => {
       id: 2,
       name: "Udukku",
       title: "Sound Journey & Drum Circle",
-      description: "Led by Udukku, rhythm alchemist and founder of the Iyashi Sound Experience, this transformative session blends ancient drumming traditions with meditative soundscapes to create a deeply immersive healing experience. The Sound Journey & Drum Circle invites you to connect with your inner rhythm, where every beat becomes a path to harmony, balance, and emotional release.",
+      description: (<>
+        Led by Udukku, rhythm alchemist and founder of the Iyashi Sound Experience, this transformative session blends <strong>ancient drumming traditions with meditative soundscapes</strong> to create a deeply immersive healing experience. The Sound Journey & Drum Circle invites you to connect with your inner rhythm through <strong>grounding drum beats, soothing vibrations, resonant tones</strong> where every beat becomes a path to harmony, balance, and emotional release.
+      </>),
       image: "/aroha/artists/udukku.png",
       instagram: "https://instagram.com/udukku"
     },
@@ -27,7 +31,9 @@ const ArohaEvent = () => {
       id: 3,
       name: "Rizvana Khalid",
       title: "Eco-Printing & Natural Dye Workshop",
-      description: "Led by Rizvana Khalid, artist and eco-textile creator, this enchanting workshop invites you to immerse yourself in the ancient art of eco-printing and natural dyeing where nature and creativity beautifully intertwine. Participants will explore the alchemy of leaves, flowers, and fibers, learning how to transfer nature's delicate imprints onto fabric.",
+      description: (<>
+        Led by Rizvana Khalid, artist and eco-textile creator, this enchanting workshop invites you to <strong>immerse yourself in the ancient art of eco-printing and natural dyeing</strong> where nature and creativity beautifully intertwine. Participants will explore the <strong>alchemy of leaves, flowers, and fibers</strong>, learning through <strong>gentle mordanting, careful bundling, and mindful steaming</strong> how to transfer nature's delicate imprints onto fabric in a celebration of <strong>sustainability, self-expression, and the magic of nature's palette</strong>.
+      </>),
       image: "/aroha/artists/rizwa.png",
       instagram: "https://instagram.com/_rizvanakhalid"
     },
@@ -35,7 +41,9 @@ const ArohaEvent = () => {
       id: 4,
       name: "Anjali Pandey",
       title: "Yoga & Mindfulness Session",
-      description: "Led by Anjali Pandey, yoga facilitator and founder of Yogaendless, this session is a gentle invitation to return to yourself through movement, breath, and awareness. Anjali's approach to yoga goes beyond postures — it's about honest connection, mindful presence, and inner clarity.",
+      description: (<>
+        Led by Anjali Pandey, yoga facilitator and founder of <strong>Yogaendless</strong>, this session is a gentle invitation to return to yourself through <strong>movement, breath, and awareness</strong>. Anjali's approach to yoga goes beyond postures — it's about <strong>honest connection, mindful presence, and inner clarity</strong>. Feel <strong>grounded yet light, centered yet open</strong>.
+      </>),
       image: "/aroha/artists/anjali.png",
       instagram: "https://instagram.com/anjalipandey_yoga"
     },
@@ -43,15 +51,19 @@ const ArohaEvent = () => {
       id: 5,
       name: "Jinil M",
       title: "Art Flow Workshop",
-      description: "Led by visionary artist and creative guide Jinil, the Art Flow Workshop is a soulful blend of intuitive art, mindful expression, and emotional healing through color. This transformative experience invites you to slow down, reconnect, and awaken your creative energy — turning painting into a journey of self-discovery and inner balance.",
+      description: (<>
+        Led by visionary artist and creative guide Jinil, the Art Flow Workshop is a soulful blend of <strong>intuitive art, mindful expression, and emotional healing</strong> through color. This transformative experience invites you to <strong>slow down, reconnect, and awaken your creative energy</strong> — turning painting into a journey of <strong>self-discovery and inner balance</strong>. Through <strong>expressive art and free-flow painting</strong>, <strong>creativity becomes meditation, breathe, release, and rediscover your true flow.</strong>
+      </>),
       image: "/aroha/artists/jinil.png",
       instagram: "https://instagram.com/jinil_jinn"
     },
     {
       id: 6,
-      name: "Ajesh",
-      title: "Special Workshop",
-      description: "Join Ajesh for an inspiring workshop that brings together creativity, mindfulness, and personal growth. Details about this transformative session will be announced soon.",
+      name: "S. J. Ajesh",
+      title: "Healing Through Books",
+      description: (<>
+        Led by S. J. Ajesh, writer and wellness enthusiast, this soulful session explores the <strong>transformative power of books and storytelling</strong> as tools for healing the mind and heart. Through heartfelt reflections, Ajesh guides you to discover how <strong>reading, writing, and self-expression</strong> can help you reflect, release, and realign with your inner self. Participants will explore how stories can bring <strong>peace, balance, and clarity</strong> to their thoughts — and how words can become gentle medicine for the soul. Alongside this enlightening talk, experience <strong>motivational insights and intuitive guidance</strong> through tarot reflections, helping you reconnect with your intuition, find direction, and embrace emotional healing. This session is a celebration of <strong>literature, self-awareness, and the quiet strength found within pages and pauses alike</strong>.
+      </>),
       image: "/aroha/artists/ajesh.png",
       instagram: "https://instagram.com/fooooofighter_"
     }
