@@ -19,17 +19,6 @@ const ArohaEvent = () => {
     },
     {
       id: 2,
-      name: "Arya Biju",
-      title: "Health & Wellness Session",
-      description: (<>
-        Join Arya Biju, founder of <strong>Adowlz</strong> and <strong>The She Talk Community</strong>, for a heartfelt conversation on <strong>wellness, womanhood, and the beautiful chaos of finding balance</strong>. A passionate young entrepreneur and advocate for women's voices, Arya opens up real, honest discussions around <strong>mental health, self-worth, and the everyday challenges women face</strong>.
-      </>),
-      image: "/aroha/artists/arya2.png",
-      instagram: "https://instagram.com/arya__biju"
-    
-    },
-    {
-      id: 3,
       name: "Udukku",
       title: "Sound Journey & Drum Circle",
       description: (<>
@@ -39,7 +28,7 @@ const ArohaEvent = () => {
       instagram: "https://instagram.com/udukku"
     },
     {
-      id: 4,
+      id: 3,
       name: "Rizvana Khalid",
       title: "Eco-Printing & Natural Dye Workshop",
       description: (<>
@@ -49,7 +38,7 @@ const ArohaEvent = () => {
       instagram: "https://instagram.com/_rizvanakhalid"
     },
     {
-      id: 5,
+      id: 4,
       name: "Anjali Pandey",
       title: "Yoga & Mindfulness Session",
       description: (<>
@@ -59,7 +48,7 @@ const ArohaEvent = () => {
       instagram: "https://instagram.com/anjalipandey_yoga"
     },
     {
-      id: 6,
+      id: 5,
       name: "Jinil M",
       title: "Art Flow Workshop",
       description: (<>
@@ -69,7 +58,7 @@ const ArohaEvent = () => {
       instagram: "https://instagram.com/jinil_jinn"
     },
     {
-      id: 7,
+      id: 6,
       name: "S. J. Ajesh",
       title: "Healing Through Books",
       description: (<>
