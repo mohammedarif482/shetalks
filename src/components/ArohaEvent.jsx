@@ -1,9 +1,26 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './ArohaEvent.css'
 
 const ArohaEvent = () => {
   const [selectedArtist, setSelectedArtist] = useState(null)
   const experiencesRef = useRef(null)
+
+  // Meta Pixel Code - Initialize on component mount
+  useEffect(() => {
+    // Initialize Meta Pixel
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    // Initialize the pixel
+    fbq('init', '1143743857867436');
+    fbq('track', 'PageView');
+  }, [])
 
   const artists = [
     {
@@ -335,6 +352,17 @@ const ArohaEvent = () => {
           </div>
         </div>
       )}
+
+      {/* Meta Pixel noscript fallback */}
+      <noscript>
+        <img 
+          height="1" 
+          width="1" 
+          style={{display: 'none'}} 
+          src="https://www.facebook.com/tr?id=1143743857867436&ev=PageView&noscript=1"
+          alt=""
+        />
+      </noscript>
     </div>
   )
 }
