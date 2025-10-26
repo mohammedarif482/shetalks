@@ -99,6 +99,15 @@ const ArohaEvent = () => {
             <button className="aroha-btn primary">Get Early Bird Access</button>
             <button className="aroha-btn secondary" onClick={scrollToExperiences}>Discover the Experience</button>
           </div>
+
+          <div className="instagram-follow">
+            <h3>Follow us on Instagram</h3>
+            <div className="instagram-handles">
+              <a href="https://instagram.com/the.she.talks" target="_blank" rel="noopener noreferrer">the.she.talks</a>
+              <a href="https://instagram.com/peaktaletrips" target="_blank" rel="noopener noreferrer">peaktaletrips</a>
+              <a href="https://instagram.com/aroha_event_s" target="_blank" rel="noopener noreferrer">aroha_event_s</a>
+            </div>
+          </div>
         </div>
         
         {/* Hero Corner Images */}
