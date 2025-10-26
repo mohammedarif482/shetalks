@@ -8,11 +8,12 @@ const ArohaEvent = () => {
   const artists = [
     {
       id: 1,
-      name: "Anjali Pandey",
-      title: "Yoga & Mindfulness Session",
-      description: "Led by Anjali Pandey, yoga facilitator and founder of Yogaendless, this session is a gentle invitation to return to yourself through movement, breath, and awareness. Anjali's approach to yoga goes beyond postures — it's about honest connection, mindful presence, and inner clarity.",
-      image: "/aroha/artists/anjali.png",
-      instagram: "https://instagram.com/anjalipandey_yoga"
+      name: "Arya Biju",
+      title: "Health & Wellness Session",
+      description: "Join Arya Biju, founder of Adowlz and The She Talk Community, for a heartfelt conversation on wellness, womanhood, and the beautiful chaos of finding balance. A passionate young entrepreneur and advocate for women's voices, Arya opens up real, honest discussions around mental health, self-worth, and the everyday challenges women face.",
+      image: "/aroha/artists/arya.png",
+      instagram: "https://instagram.com/arya__biju"
+    
     },
     {
       id: 2,
@@ -32,11 +33,11 @@ const ArohaEvent = () => {
     },
     {
       id: 4,
-      name: "Arya Biju",
-      title: "Health & Wellness Session",
-      description: "Join Arya Biju, founder of Adowlz and The She Talk Community, for a heartfelt conversation on wellness, womanhood, and the beautiful chaos of finding balance. A passionate young entrepreneur and advocate for women's voices, Arya opens up real, honest discussions around mental health, self-worth, and the everyday challenges women face.",
-      image: "/aroha/artists/arya.png",
-      instagram: "https://instagram.com/arya__biju"
+      name: "Anjali Pandey",
+      title: "Yoga & Mindfulness Session",
+      description: "Led by Anjali Pandey, yoga facilitator and founder of Yogaendless, this session is a gentle invitation to return to yourself through movement, breath, and awareness. Anjali's approach to yoga goes beyond postures — it's about honest connection, mindful presence, and inner clarity.",
+      image: "/aroha/artists/anjali.png",
+      instagram: "https://instagram.com/anjalipandey_yoga"
     },
     {
       id: 5,
