@@ -96,14 +96,14 @@ const ArohaEvent = () => {
           </div>
 
           <div className="event-details">
-            <div className="event-date" style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+            <div className="event-date" style={{ color: '#FFF3DD', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFF3DD">
                 <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
               </svg>
               Nov 22–23, 2025
             </div>
-            <div className="event-location" style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+            <div className="event-location" style={{ color: '#FFF3DD', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFF3DD">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
               </svg>
               Petals Resort, Wayanad
@@ -122,9 +122,10 @@ const ArohaEvent = () => {
         <div className="container">
           <h2>About Aroha</h2>
           <p>
-            Aroha isn't just an event — it's a homecoming.
-            Two serene days of yoga, sound healing, art, music, and sisterhood 
-            in the calm green hills of Wayanad.
+            Aroha is a soulful SheCamp curated by peaktaletrips and The She Talks to help women unwind, reconnect, and celebrate themselves amidst nature. <strong>Set against the stunning backdrop of Banasura Hill at the luxurious and tranquil Petals Resorts Wayanad</strong>, this retreat offers a peaceful escape. Here, you can truly breathe, rest, and rediscover yourself, perhaps even while enjoying a view from the breathtaking infinity pool.
+            The complete experience includes: Women's Health and Wellness Workshops, Yoga and Sound Healing, an Interactive Mentalist Session, Tie-dye, Eco Printing, and Art Therapy, plus a Drum Circle and Evening Gatherings under the Stars.
+            Enjoy meaningful conversations, soulful music, locally-sourced, wholesome food, and a serene stay in premium accommodation — all in the company of inspiring women.
+            It's not just a retreat — it's a complete women's experience, a celebration of you in every sense, designed to restore mind, body, and soul.
           </p>
         </div>
       </section>
@@ -221,7 +222,10 @@ const ArohaEvent = () => {
       {/* Footer */}
       <footer className="aroha-footer">
         <div className="container">
-          <p>&copy; 2025 The She Talks × Peak Tale Trips. All rights reserved.</p>
+          <div className="footer-content">
+            <p>&copy; 2025 The She Talks × Peak Tale Trips. All rights reserved.</p>
+            <a href="/aroha/terms" className="terms-link">Terms & Conditions</a>
+          </div>
         </div>
       </footer>
 
@@ -230,7 +234,7 @@ const ArohaEvent = () => {
         <div className="artist-modal" onClick={handleCloseModal}>
           <div className="artist-modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="artist-modal-close" onClick={handleCloseModal}>
-              <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
+              <svg viewBox="0 0 24 24" fill="#FFF3DD" width="24" height="24">
                 <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
               </svg>
             </button>

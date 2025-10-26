@@ -5,20 +5,30 @@ import Cards from './components/Cards'
 import SocialFooter from './components/SocialFooter'
 import ComingSoon from './components/ComingSoon'
 import ArohaEvent from './components/ArohaEvent'
+import ArohaTerms from './components/ArohaTerms'
 import './App.css'
 
 function App() {
   // Check if we're on the aroha subdomain
   const isArohaSubdomain = window.location.hostname === 'aroha.theshetalks.club'
   
-  const [activePage, setActivePage] = useState(isArohaSubdomain ? 'aroha' : 'community')
+  // Check if we're on the terms page
+  const isTermsPage = window.location.pathname === '/aroha/terms' || window.location.pathname.includes('/terms')
+  
+  const [activePage, setActivePage] = useState(() => {
+    if (isTermsPage) return 'aroha-terms'
+    if (isArohaSubdomain) return 'aroha'
+    return 'community'
+  })
 
-  // Prevent navigation away from Aroha page when on aroha subdomain
+  // Update active page based on pathname changes
   useEffect(() => {
-    if (isArohaSubdomain && activePage !== 'aroha') {
+    if (isTermsPage) {
+      setActivePage('aroha-terms')
+    } else if (isArohaSubdomain) {
       setActivePage('aroha')
     }
-  }, [isArohaSubdomain, activePage])
+  }, [isTermsPage, isArohaSubdomain])
 
   const handlePageChange = (page) => {
     // Don't allow navigation away from aroha page when on aroha subdomain
@@ -46,6 +56,8 @@ function App() {
         return <ComingSoon pageName="Updates" />
       case 'aroha':
         return <ArohaEvent />
+      case 'aroha-terms':
+        return <ArohaTerms />
       default:
         return (
           <>
@@ -57,9 +69,12 @@ function App() {
     }
   }
 
+  // Don't show header on terms page
+  const showHeader = activePage !== 'aroha-terms'
+
   return (
     <div className="app">
-      <Header activePage={activePage} onPageChange={handlePageChange} />
+      {showHeader && <Header activePage={activePage} onPageChange={handlePageChange} />}
       <main>
         {renderPageContent()}
       </main>

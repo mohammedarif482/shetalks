@@ -89,13 +89,13 @@
 .hero-subtitle {
   font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 600;
-  color: white;
+  color: #FFF3DD;
   margin-bottom: 0.5rem;
 }
 
 .hero-description {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: white;
+  color: #FFF3DD;
   opacity: 0.9;
 }
 
@@ -111,8 +111,8 @@
 .event-location {
   font-size: 1rem;
   font-weight: 500;
-  color: white;
-  background: rgba(255, 255, 255, 0.1);
+  color: #FFF3DD;
+  background: rgba(255, 243, 221, 0.1);
   padding: 0.5rem 1rem;
   border-radius: 20px;
 }
@@ -137,7 +137,7 @@
 
 .aroha-btn.primary {
   background: #FAA819;
-  color: var(--white);
+  color: #FFF3DD;
 }
 
 .aroha-btn.primary:hover {
@@ -146,7 +146,7 @@
 
 .aroha-btn.secondary {
   background: transparent;
-  color: white;
+  color: #FFF3DD;
   border: 2px solid white;
 }
 
@@ -158,21 +158,26 @@
 /* About Section */
 .aroha-about {
   padding: 4rem 0;
+  margin: 0 8rem;
   background: #1C1E1E;
   text-align: center;
 }
 
+.aroha-about .container {
+  max-width: none;
+  padding: 0 1rem;
+}
+
 .aroha-about h2 {
   font-size: clamp(1.8rem, 4vw, 2.2rem);
-  color: white;
+  color: #FFF3DD;
   margin-bottom: 1.5rem;
   font-family: 'Albert Sans', sans-serif;
 }
 
 .aroha-about p {
   font-size: 1.1rem;
-  color: white;
-  max-width: 600px;
+  color: #FFF3DD;
   margin: 0 auto;
 }
 
@@ -191,7 +196,7 @@
 
 .aroha-artists h2 {
   font-size: clamp(1.8rem, 4vw, 2.2rem);
-  color: white;
+  color: #FFF3DD;
   margin-bottom: 3rem;
   font-family: 'Albert Sans', sans-serif;
 }
@@ -255,13 +260,13 @@
   align-items: flex-start;
   text-align: left;
   padding: 1.5rem;
-  color: white;
+  color: #FFF3DD;
 }
 
 .artist-overlay h3 {
   font-size: 1.3rem;
   font-weight: 700;
-  color: white;
+  color: #FFF3DD;
   margin-bottom: 0.5rem;
   font-family: 'Albert Sans', sans-serif;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -279,7 +284,7 @@
 
 .artist-overlay p {
   font-size: 0.9rem;
-  color: white;
+  color: #FFF3DD;
   line-height: 1.4;
   margin-bottom: 1rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
@@ -291,11 +296,11 @@
 }
 
 .read-more-btn {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 243, 221, 0.2);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
+  border: 1px solid rgba(255, 243, 221, 0.3);
+  color: #FFF3DD;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.85rem;
@@ -306,8 +311,8 @@
 }
 
 .read-more-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 243, 221, 0.3);
+  border-color: rgba(255, 243, 221, 0.5);
   transform: translateY(-2px);
 }
 
@@ -318,7 +323,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--white);
+  color: #FFF3DD;
   font-size: 1.2rem;
   font-weight: 600;
 }
@@ -450,7 +455,7 @@
 .artist-modal-info h2 {
   font-size: 1.8rem;
   font-weight: 700;
-  color: white;
+  color: #FFF3DD;
   margin-bottom: 0.75rem;
   font-family: 'Albert Sans', sans-serif;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -469,7 +474,7 @@
 
 .artist-modal-info p {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 243, 221, 0.9);
   line-height: 1.7;
   margin-bottom: 2.5rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -483,7 +488,7 @@
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 243, 221, 0.2);
   cursor: pointer;
   z-index: 10001;
   transition: all 0.2s ease;
@@ -499,7 +504,7 @@
 .artist-modal-close:hover {
   transform: scale(1.1);
   background: rgba(229, 115, 115, 0.8);
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 243, 221, 0.4);
 }
 
 .artist-modal-close svg {
@@ -516,7 +521,7 @@
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border: 1px solid rgba(2, 95, 76, 0.5);
-  color: white;
+  color: #FFF3DD;
   padding: 1rem 2rem;
   border-radius: 30px;
   text-decoration: none;
@@ -570,7 +575,7 @@
 
 .aroha-experiences h2 {
   font-size: clamp(1.8rem, 4vw, 2.2rem);
-  color: white;
+  color: #FFF3DD;
   margin-bottom: 3rem;
   font-family: 'Albert Sans', sans-serif;
 }
@@ -634,13 +639,13 @@
   align-items: center;
   text-align: center;
   padding: 1.5rem;
-  color: white;
+  color: #FFF3DD;
 }
 
 .experience-overlay h3 {
   font-size: 1.2rem;
   font-weight: 700;
-  color: white;
+  color: #FFF3DD;
   margin: 0;
   font-family: 'Albert Sans', sans-serif;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -654,7 +659,7 @@
 }
 
 .placeholder-content {
-  color: var(--white);
+  color: #FFF3DD;
   font-size: 1.2rem;
   font-weight: 600;
   text-align: center;
@@ -668,16 +673,48 @@
   text-align: center;
 }
 
+/* Aroha Event Footer Styles */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.aroha-footer .container {
+  max-width: none;
+  padding: 0 1rem;
+}
+
+.footer-content p {
+  margin: 0;
+  flex: 1;
+}
+
+.terms-link {
+  color: #FFF3DD;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  margin-left: 2rem;
+}
+
+.terms-link:hover {
+  color: #E9B637;
+  text-decoration: underline;
+}
+
 .aroha-tickets h2 {
   font-size: clamp(1.8rem, 4vw, 2.2rem);
-  color: white;
+  color: #FFF3DD;
   margin-bottom: 1rem;
   font-family: 'Albert Sans', sans-serif;
 }
 
 .aroha-tickets p {
   font-size: 1.1rem;
-  color: white;
+  color: #FFF3DD;
   margin-bottom: 2rem;
 }
 
@@ -711,7 +748,7 @@
 
 .tickets-btn {
   background: var(--deep-green);
-  color: var(--white);
+  color: #FFF3DD;
   padding: 1rem 2rem;
   border: none;
   border-radius: 25px;
@@ -730,7 +767,7 @@
   background: #1C1E1E;
   color: var(--soft-beige);
   padding: 2rem 0;
-  text-align: center;
+  margin: 0 8rem;
 }
 
 .aroha-footer p {
@@ -769,6 +806,14 @@
   .aroha-cta {
     flex-direction: column;
     align-items: center;
+  }
+  
+  .aroha-about {
+    margin: 0;
+  }
+  
+  .aroha-about .container {
+    padding: 0 1rem;
   }
   
   .tickets-form {
@@ -920,6 +965,24 @@
   
   .celebrate-woman-image {
     max-width: 350px;
+  }
+  
+  .aroha-footer {
+    margin: 0;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .terms-link {
+    margin-left: 0;
+  }
+  
+  .aroha-footer .container {
+    padding: 0 1rem;
   }
 }
 
