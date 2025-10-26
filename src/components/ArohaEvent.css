@@ -183,37 +183,10 @@
   display: flex;
   justify-content: center;
   gap: 2rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
-.instagram-handles a {
-  color: #E9B637;
-  text-decoration: none;
-  font-size: clamp(0.95rem, 2vw, 1.1rem);
-  font-weight: 600;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.instagram-handles a:hover {
-  color: #FAA819;
-  transform: translateY(-2px);
-}
-
-.instagram-handles a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #FAA819;
-  transition: width 0.3s ease;
-}
-
-.instagram-handles a:hover::after {
-  width: 100%;
-}
+/* Removed old styles - now using .instagram-link class for consistent button styling */
 
 /* About Section */
 .aroha-about {
@@ -660,27 +633,31 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background: rgba(2, 95, 76, 0.3);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(2, 95, 76, 0.5);
+  border: 1px solid rgba(255, 243, 221, 0.3);
   color: #FFF3DD;
   padding: 1rem 2rem;
   border-radius: 30px;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-weight: 300;
+  font-size: clamp(0.85rem, 1.5vw, 0.9rem);
   transition: all 0.3s ease;
-  margin-top: 1rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 4px 15px rgba(2, 95, 76, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .instagram-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(2, 95, 76, 0.4);
-  background: rgba(2, 95, 76, 0.4);
-  border-color: rgba(2, 95, 76, 0.7);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 243, 221, 0.5);
+}
+
+/* For modal context specifically */
+.artist-modal-info .instagram-link {
+  margin-top: 1rem;
 }
 
 @keyframes fadeIn {
@@ -991,12 +968,9 @@
   }
   
   .instagram-handles {
-    gap: 1.5rem;
-    flex-direction: column;
-  }
-  
-  .instagram-handles a {
-    font-size: 0.9rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .aroha-about {
@@ -1160,10 +1134,16 @@
   }
   
   .instagram-link {
-    padding: 0.875rem 1.5rem;
-    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+    gap: 0.5rem;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+  }
+  
+  .instagram-link svg {
+    width: 16px;
+    height: 16px;
   }
   
   .artist-modal-close {
