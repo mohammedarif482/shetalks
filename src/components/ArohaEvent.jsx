@@ -155,18 +155,21 @@ const ArohaEvent = () => {
             <div className="inclusion-card">
               <div className="inclusion-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                  <path d="M2 17l10 5 10-5"></path>
-                  <path d="M2 12l10 5 10-5"></path>
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
               </div>
-              <h3>Luxury Amidst Nature</h3>
-              <p>Experience a premium retreat at Petals Resorts Wayanad with stunning views of Banasura Hill and access to amenities like the infinity pool.</p>
+              <h3>Community & Empowerment</h3>
+              <p>Recharge your social batteries with a supportive community. Aroha is dedicated to uplifting women, ensuring you leave with a powerful, authentic sisterhood and connections that genuinely empower your life.</p>
             </div>
             <div className="inclusion-card">
               <div className="inclusion-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20.21 15.54A8.23 8.23 0 0 1 16 16c-5 0-9-5.13-9-9a8.23 8.23 0 0 1 .46-4.21L2 2l3.79 5.46A8.23 8.23 0 0 1 16 2c0 5-5.13 9-9 9a8.23 8.23 0 0 1-4.21-.46L2 22l5.46-3.79z"></path>
+                  <path d="M12 5v14"></path>
+                  <path d="M8 8a4 4 0 1 1 8 0c0 1.5-2 4-2 4s-2-2.5-2-4"></path>
+                  <circle cx="12" cy="20" r="1"></circle>
                 </svg>
               </div>
               <h3>Holistic Wellness Activities</h3>
@@ -175,10 +178,15 @@ const ArohaEvent = () => {
             <div className="inclusion-card">
               <div className="inclusion-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="2" x2="12" y2="6"></line>
+                  <line x1="12" y1="18" x2="12" y2="22"></line>
+                  <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                  <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                  <line x1="2" y1="12" x2="6" y2="12"></line>
+                  <line x1="18" y1="12" x2="22" y2="12"></line>
+                  <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                  <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
                 </svg>
               </div>
               <h3>Creative & Social Gatherings</h3>
