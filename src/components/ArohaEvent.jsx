@@ -156,6 +156,47 @@ const ArohaEvent = () => {
         </div>
       </section>
 
+      {/* Key Inclusions Section */}
+      <section className="aroha-inclusions">
+        <div className="container">
+          <h2>Why Attend</h2>
+          <div className="inclusions-grid">
+            <div className="inclusion-card">
+              <div className="inclusion-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+              </div>
+              <h3>Luxury Amidst Nature</h3>
+              <p>Experience a premium retreat at Petals Resorts Wayanad with stunning views of Banasura Hill and access to amenities like the infinity pool.</p>
+            </div>
+            <div className="inclusion-card">
+              <div className="inclusion-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20.21 15.54A8.23 8.23 0 0 1 16 16c-5 0-9-5.13-9-9a8.23 8.23 0 0 1 .46-4.21L2 2l3.79 5.46A8.23 8.23 0 0 1 16 2c0 5-5.13 9-9 9a8.23 8.23 0 0 1-4.21-.46L2 22l5.46-3.79z"></path>
+                </svg>
+              </div>
+              <h3>Holistic Wellness Activities</h3>
+              <p>Dive into Women's Health and Wellness Workshops, daily Yoga, and deep relaxation with Sound Healing.</p>
+            </div>
+            <div className="inclusion-card">
+              <div className="inclusion-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h3>Creative & Social Gatherings</h3>
+              <p>Engage in interactive sessions like a Mentalist performance, hands-on Art Therapy/Eco Printing, and a joyous Drum Circle under the stars.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Experiences */}
       <section className="aroha-experiences" ref={experiencesRef}>
         <div className="container">
