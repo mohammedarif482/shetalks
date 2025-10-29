@@ -3,7 +3,9 @@ import './ArohaEvent.css'
 
 const ArohaEvent = () => {
   const [selectedArtist, setSelectedArtist] = useState(null)
+  const [showFloatingButton, setShowFloatingButton] = useState(false)
   const experiencesRef = useRef(null)
+  const heroRef = useRef(null)
 
   // Meta Pixel Code - Initialize on component mount
   useEffect(() => {
@@ -20,6 +22,22 @@ const ArohaEvent = () => {
     // Initialize the pixel
     fbq('init', '1143743857867436');
     fbq('track', 'PageView');
+  }, [])
+
+  // Scroll handler to show floating button after hero section
+  useEffect(() => {
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const heroBottom = heroRef.current.offsetTop + heroRef.current.offsetHeight
+        // Show floating button when scrolled past the hero section
+        setShowFloatingButton(window.scrollY > heroBottom - 100)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // Check on mount
+
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const artists = [
@@ -110,7 +128,7 @@ const ArohaEvent = () => {
   return (
     <div className="aroha-event">
       {/* Hero Section */}
-      <section className="aroha-hero">
+      <section className="aroha-hero" ref={heroRef}>
         {/* Logos */}
         <div className="aroha-logos">
           <div className="logo-left">
@@ -351,6 +369,22 @@ const ArohaEvent = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Floating Button */}
+      {showFloatingButton && (
+        <a 
+          href="https://in.bookmyshow.com/events/aroha-celebrate-women/ET00468598" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="aroha-floating-btn"
+        >
+          <span className="floating-btn-text">Get Early Bird Tickets</span>
+          <div className="floating-btn-logo-wrapper">
+            <span className="floating-btn-on">on</span>
+            <img src="/aroha/bmslogo.svg" alt="BookMyShow" className="floating-btn-logo" />
+          </div>
+        </a>
       )}
 
       {/* Meta Pixel noscript fallback */}
