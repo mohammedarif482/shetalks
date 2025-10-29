@@ -24,8 +24,8 @@ const ComingSoon = ({ pageName, onPageChange }) => {
           
           <div className="events-grid">
             <div className="event-card aroha-card" onClick={handleArohaClick}>
-              <div className="event-card-image">
-                <img src="/aroha/aroha.png" alt="Aroha Event" />
+              <div className="event-card-image event-banner">
+                <img src="/eventbanner.png" alt="Aroha - Celebrate Woman" />
               </div>
               <div className="event-card-content">
                 <div className="event-card-logos">

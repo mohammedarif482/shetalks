@@ -132,7 +132,7 @@ const ArohaEvent = () => {
           </div>
 
           <div className="aroha-cta">
-            <button className="aroha-btn primary">Get Early Bird Access</button>
+            <a href="https://in.bookmyshow.com/events/aroha-celebrate-women/ET00468598" target="_blank" rel="noopener noreferrer" className="aroha-btn primary">Get Early Bird Tickets</a>
             <button className="aroha-btn secondary" onClick={scrollToExperiences}>Discover the Experience</button>
           </div>
 

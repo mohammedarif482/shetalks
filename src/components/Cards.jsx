@@ -1,4 +1,4 @@
-const Cards = () => {
+const Cards = ({ onPageChange }) => {
   const cards = [
     {
       id: 1,
@@ -10,7 +10,8 @@ const Cards = () => {
       id: 2,
       title: "Events",
       description: "Conversations and workshops that nurture healing, self-awareness, and connection, helping women find strength in shared experiences.",
-      type: "outlined"
+      type: "outlined",
+      page: "events"
     },
     {
       id: 3,
@@ -20,6 +21,12 @@ const Cards = () => {
     }
   ]
 
+  const handleCardClick = (card) => {
+    if (card.page && onPageChange) {
+      onPageChange(card.page)
+    }
+  }
+
   return (
     <section className="cards-section">
       <div className="cards-container">
@@ -28,6 +35,7 @@ const Cards = () => {
             <div 
               key={card.id}
               className={`card card-${card.type}`}
+              onClick={() => handleCardClick(card)}
             >
               <h2 className="card-title">{card.title}</h2>
               <p className="card-description">{card.description}</p>

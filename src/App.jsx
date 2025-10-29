@@ -44,7 +44,7 @@ function App() {
         return (
           <>
             <Hero />
-            <Cards />
+            <Cards onPageChange={handlePageChange} />
             <SocialFooter />
           </>
         )
@@ -62,7 +62,7 @@ function App() {
         return (
           <>
             <Hero />
-            <Cards />
+            <Cards onPageChange={handlePageChange} />
             <SocialFooter />
           </>
         )
