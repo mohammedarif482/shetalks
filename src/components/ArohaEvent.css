@@ -37,7 +37,7 @@
 /* Hero Section */
 .aroha-hero {
   min-height: 100vh;
-  background: linear-gradient(rgba(36, 35, 33, 0.3), rgba(36, 35, 33, 0.3)), url('/aroha/hero.png');
+  background: linear-gradient(rgba(36, 35, 33, 0.3), rgba(36, 35, 33, 0.3)), url('/aroha/hero.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
