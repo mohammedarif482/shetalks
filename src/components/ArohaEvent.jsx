@@ -349,7 +349,7 @@ const ArohaEvent = () => {
         <div className="container">
           <h2>The Complete Experience starting at ₹11,000/- (All-Inclusive Value)</h2>
           <p className="pricing-intro">
-            Your investment of ₹14,000/- covers everything you need for a truly transformative and seamless two-day experience. There are no hidden costs—simply arrive and immerse yourself!
+            Your investment covers everything you need for a truly transformative and seamless two-day experience. There are no hidden costs—simply arrive and immerse yourself!
           </p>
           
           <div className="pricing-inclusions">
