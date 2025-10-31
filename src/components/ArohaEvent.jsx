@@ -497,7 +497,7 @@ const ArohaEvent = () => {
             <p className="contact-intro">For details:</p>
 
             <div className="contact-numbers">
-              <a href="tel:+919847896003" className="contact-link">📞 +91 98478 96003</a>
+              <a href="tel:+919847896003" className="contact-link"> +91 98478 96003</a>
               <span className="contact-separator">|</span>
               <a href="tel:+918089369113" className="contact-link">+91 80893 69113</a>
               <span className="contact-separator">|</span>
