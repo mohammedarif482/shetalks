@@ -1812,7 +1812,8 @@
   font-size: 0.85rem;
   color: rgba(255, 243, 221, 0.6);
   margin-bottom: 0.5rem;
-  font-weight: 300;
+  margin-top: 2rem;
+  font-weight: 600;
 }
 
 .contact-label {
