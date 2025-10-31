@@ -7,23 +7,6 @@ const ArohaEvent = () => {
   const experiencesRef = useRef(null)
   const heroRef = useRef(null)
 
-  // Meta Pixel Code - Initialize on component mount
-  useEffect(() => {
-    // Initialize Meta Pixel
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-
-    // Initialize the pixel
-    fbq('init', '1143743857867436');
-    fbq('track', 'PageView');
-  }, [])
-
   // Scroll handler to show floating button after hero section
   useEffect(() => {
     const handleScroll = () => {
@@ -119,6 +102,16 @@ const ArohaEvent = () => {
     })
   }
 
+  // Track ticket booking button clicks
+  const handleTicketBookingClick = () => {
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('track', 'Lead', {
+        content_name: 'Aroha Ticket Booking',
+        content_category: 'Event Registration'
+      })
+    }
+  }
+
   const getInstagramUsername = (url) => {
     // Extract username from Instagram URL
     // Formats: https://instagram.com/username or https://www.instagram.com/username
@@ -150,7 +143,7 @@ const ArohaEvent = () => {
           </div>
 
           <div className="aroha-cta">
-            <a href="https://in.bookmyshow.com/events/aroha-celebrate-women/ET00468598" target="_blank" rel="noopener noreferrer" className="aroha-btn primary">Get Early Bird Tickets</a>
+            <a href="https://in.bookmyshow.com/events/aroha-celebrate-women/ET00468598" target="_blank" rel="noopener noreferrer" className="aroha-btn primary" onClick={handleTicketBookingClick}>Get Early Bird Tickets</a>
             <button className="aroha-btn secondary" onClick={scrollToExperiences}>Discover the Experience</button>
           </div>
 
@@ -377,7 +370,7 @@ const ArohaEvent = () => {
           </p>
           
           <div className="pricing-cta-buttons">
-            <a href="https://in.bookmyshow.com/events/aroha-celebrate-women/ET00468598" target="_blank" rel="noopener noreferrer" className="aroha-btn primary pricing-btn">
+            <a href="https://in.bookmyshow.com/events/aroha-celebrate-women/ET00468598" target="_blank" rel="noopener noreferrer" className="aroha-btn primary pricing-btn" onClick={handleTicketBookingClick}>
               <span className="pricing-btn-text">Book Now</span>
               <div className="pricing-btn-logo-wrapper">
                 <span className="pricing-btn-on">on</span>
@@ -556,6 +549,7 @@ const ArohaEvent = () => {
           target="_blank" 
           rel="noopener noreferrer" 
           className="aroha-floating-btn"
+          onClick={handleTicketBookingClick}
         >
           <span className="floating-btn-text">Get Early Bird Tickets</span>
           <div className="floating-btn-logo-wrapper">
@@ -564,17 +558,6 @@ const ArohaEvent = () => {
           </div>
         </a>
       )}
-
-      {/* Meta Pixel noscript fallback */}
-      <noscript>
-        <img 
-          height="1" 
-          width="1" 
-          style={{display: 'none'}} 
-          src="https://www.facebook.com/tr?id=1143743857867436&ev=PageView&noscript=1"
-          alt=""
-        />
-      </noscript>
     </div>
   )
 }

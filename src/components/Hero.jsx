@@ -11,6 +11,16 @@ const Hero = () => {
     setIsModalOpen(false)
   }
 
+  // Track Join Community button clicks
+  const handleJoinCommunityClick = () => {
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('track', 'Lead', {
+        content_name: 'Join The She Talks Community',
+        content_category: 'Community Signup'
+      })
+    }
+  }
+
   return (
     <>
       <section className="hero">
@@ -45,7 +55,7 @@ const Hero = () => {
             </div>
 
             {/* CTA Button */}
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQtaS_iGAdCvsRVQeeHcZ5r3cQTPIkbbMcoMBy_grINDx_ZQ/viewform" target="_blank" rel="noopener noreferrer" className="btn btn-primary hero-cta">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQtaS_iGAdCvsRVQeeHcZ5r3cQTPIkbbMcoMBy_grINDx_ZQ/viewform" target="_blank" rel="noopener noreferrer" className="btn btn-primary hero-cta" onClick={handleJoinCommunityClick}>
               Join <span className="cta-dot">.</span><span className="freude-text">The She Talks</span> <span className="cta-dot">.</span>Community
             </a>
           </div>
