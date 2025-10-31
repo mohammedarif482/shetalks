@@ -2,18 +2,27 @@ import { useState, useRef, useEffect } from 'react'
 import './ArohaEvent.css'
 
 // Helper function to track Meta Pixel events reliably
-const trackMetaEvent = (eventName, params = {}) => {
+const trackMetaEvent = (eventName, params = {}, isCustom = false) => {
   try {
     if (typeof window !== 'undefined') {
       // Check if fbq is available as a function
       if (typeof window.fbq === 'function') {
-        window.fbq('track', eventName, params)
+        // Use trackCustom for custom events, track for standard events
+        if (isCustom) {
+          window.fbq('trackCustom', eventName, params)
+        } else {
+          window.fbq('track', eventName, params)
+        }
         console.log('Meta Pixel event tracked:', eventName, params)
         return true
       }
       // Fallback: queue event if fbq isn't ready yet
       else if (window._fbq && Array.isArray(window._fbq)) {
-        window._fbq.push(['track', eventName, params])
+        if (isCustom) {
+          window._fbq.push(['trackCustom', eventName, params])
+        } else {
+          window._fbq.push(['track', eventName, params])
+        }
         console.log('Meta Pixel event queued:', eventName, params)
         return true
       } else {
@@ -131,10 +140,16 @@ const ArohaEvent = () => {
 
   // Track ticket booking button clicks
   const handleTicketBookingClick = (e) => {
+    // Track as standard Lead event
     trackMetaEvent('Lead', {
       content_name: 'Aroha Ticket Booking',
       content_category: 'Event Registration'
     })
+    // Also track as a custom event with specific name for easier identification in Overview
+    trackMetaEvent('ArohaTicketClick', {
+      content_name: 'Aroha Ticket Booking',
+      content_category: 'Event Registration'
+    }, true)
   }
 
   const getInstagramUsername = (url) => {
