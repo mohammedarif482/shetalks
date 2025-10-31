@@ -188,12 +188,16 @@ const ArohaEvent = () => {
       {/* About Aroha */}
       <section className="aroha-about">
         <div className="container">
-          <h2>About Aroha</h2>
+          <h1>Welcome to Aroha<br />Celebrating Women: The First of its Kind in India!</h1>
+          
+          <h4>The Revolution Starts Here: India's Premier Women-Only SheCamp</h4>
+          
           <p>
-            Aroha is a soulful SheCamp curated by peaktaletrips and The She Talks to help women unwind, reconnect, and celebrate themselves amidst nature. <strong>Set against the stunning backdrop of Banasura Hill at the luxurious and tranquil Petals Resorts Wayanad</strong>, this retreat offers a peaceful escape. Here, you can truly breathe, rest, and rediscover yourself, perhaps even while enjoying a view from the breathtaking infinity pool.
-            The complete experience includes: Women's Health and Wellness Workshops, Yoga and Sound Healing, an Interactive Mentalist Session, Tie-dye, Eco Printing, and Art Therapy, plus a Drum Circle and Evening Gatherings under the Stars.
-            Enjoy meaningful conversations, soulful music, locally-sourced, wholesome food, and a serene stay in premium accommodation — all in the company of inspiring women.
-            It's not just a retreat — it's a complete women's experience, a celebration of you in every sense, designed to restore mind, body, and soul.
+            Aroha is not just a retreat—it is a pioneering movement. We are proud to launch India's first-ever luxurious, immersive SheCamp designed exclusively for women ready to reset, reconnect, and celebrate their power. Held in a breathtaking, hidden sanctuary in the Western Ghats—Petals Resorts Wayanad—Aroha is where contemporary elegance meets the wild, healing energy of nature.
+          </p>
+          
+          <p>
+            For two soulful days, step away from the city's demands and find your truest self. Watch the sunset from a stunning infinity pool, indulge in farm-to-table cuisine, and experience activities carefully curated to nurture your mind, body, and spirit.
           </p>
         </div>
       </section>
@@ -224,47 +228,162 @@ const ArohaEvent = () => {
         </div>
       </section>
 
-      {/* Key Inclusions Section */}
-      <section className="aroha-inclusions">
+      {/* Features: What Makes Aroha a Transformation */}
+      <section className="aroha-features">
         <div className="container">
-          <h2>Why Attend</h2>
-          <div className="inclusions-grid">
-            <div className="inclusion-card">
-              <div className="inclusion-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
+          <h2>What Makes Aroha a Transformation?</h2>
+          <p className="features-intro">
+            Aroha is structured around three core pillars: <strong>Restoration</strong>, <strong>Creativity</strong>, and <strong>Connection</strong>.
+          </p>
+          
+          <div className="features-grid">
+            {/* Pillar 1: Deep Restoration & Inner Health */}
+            <div className="feature-pillar">
+              <div className="pillar-header">
+                <div className="pillar-number">1</div>
+                <h3>Deep Restoration & Inner Health</h3>
               </div>
-              <h3>Community & Empowerment</h3>
-              <p>Recharge your social batteries with a supportive community. Aroha is dedicated to uplifting women, ensuring you leave with a powerful, authentic sisterhood and connections that genuinely empower your life.</p>
-            </div>
-            <div className="inclusion-card">
-              <div className="inclusion-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="12" y1="18" x2="12" y2="12"></line>
-                  <line x1="9" y1="15" x2="15" y2="15"></line>
-                </svg>
+              <p className="pillar-description">
+                This is your time to genuinely breathe and heal. We blend ancient wisdom with modern wellness to ensure you return home completely recharged.
+              </p>
+              <div className="pillar-items">
+                <div className="pillar-item">
+                  <div className="item-content">
+                    <h4>Women's Health & Wellness Workshops</h4>
+                    <p>Focused sessions on hormonal balance, stress management, and holistic health specific to women's needs.</p>
+                  </div>
+                </div>
+                <div className="pillar-item">
+                  <div className="item-content">
+                    <h4>Yoga & Sound Healing</h4>
+                    <p>Experience deeply relaxing practices designed to regulate your nervous system and restore inner peace.</p>
+                  </div>
+                </div>
               </div>
-              <h3>Holistic Wellness Activities</h3>
-              <p>Dive into Women's Health and Wellness Workshops, daily Yoga, and deep relaxation with Sound Healing, hands-on Art Therapy/Eco Printing, and a joyous Drum Circle under the stars.</p>
             </div>
-            <div className="inclusion-card">
-              <div className="inclusion-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 3v4"></path>
-                  <path d="M19 3v4"></path>
-                  <rect width="18" height="18" x="3" y="8" rx="2"></rect>
-                  <path d="M3 12h18"></path>
-                </svg>
+
+            {/* Pillar 2: Creative Expression & Joyful Energy */}
+            <div className="feature-pillar">
+              <div className="pillar-header">
+                <div className="pillar-number">2</div>
+                <h3>Creative Expression & Joyful Energy</h3>
               </div>
-              <h3>Luxury Amidst Nature</h3>
-              <p>Experience a premium retreat at Petals Resorts Wayanad with stunning views of Banasura Hill and access to amenities like the infinity pool.</p>
+              <p className="pillar-description">
+                Unleash your playful side and tap into your creative flow through immersive, hands-on activities designed for therapeutic release and fun.
+              </p>
+              <div className="pillar-items">
+                <div className="pillar-item">
+                  <div className="item-content">
+                    <h4>Creative Soul Sessions</h4>
+                    <p>Engaging Tie-dye, Eco Printing, and guided Art Therapy.</p>
+                  </div>
+                </div>
+                <div className="pillar-item">
+                  <div className="item-content">
+                    <h4>Interactive Mentalist Session</h4>
+                    <p>A thrilling and engaging session to spark curiosity and conversation.</p>
+                  </div>
+                </div>
+                <div className="pillar-item">
+                  <div className="item-content">
+                    <h4>Curated Pop-up Market</h4>
+                    <p>Shop for unique Art, Clothing, Jewellery, and specialty Food & Beverage items from our exclusive pop-up market, supporting women entrepreneurs.</p>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            {/* Pillar 3: Power of Sisterhood & Networking */}
+            <div className="feature-pillar">
+              <div className="pillar-header">
+                <div className="pillar-number">3</div>
+                <h3>Power of Sisterhood & Networking</h3>
+              </div>
+              <p className="pillar-description">
+                This is where authentic, soulful connection happens. Aroha is designed for networking that nourishes the soul. You will be surrounded by a community of uplifting women from diverse backgrounds who share a common goal: self-celebration and growth.
+              </p>
+              <div className="pillar-items">
+                <div className="pillar-item">
+                  <div className="item-content">
+                    <h4>Evening Gatherings under the Stars</h4>
+                    <p>Spend evenings sharing stories and building bonds in a judgment-free, supportive circle.</p>
+                  </div>
+                </div>
+                <div className="pillar-item">
+                  <div className="item-content">
+                    <h4>Drum Circle</h4>
+                    <p>A joyous, energetic activity to release stress and find collective rhythm and unity with your new community.</p>
+                  </div>
+                </div>
+                <div className="pillar-item">
+                  <div className="item-content">
+                    <h4>Meaningful Conversations</h4>
+                    <p>Forge relationships that extend beyond the event, creating a powerful, authentic support system for your personal and professional journey.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tickets / Early Bird */}
+      <section className="aroha-tickets">
+        <div className="container">
+          <h2>The Complete Experience for ₹14,000/- (All-Inclusive Value)</h2>
+          <p className="pricing-intro">
+            Your investment of ₹14,000/- covers everything you need for a truly transformative and seamless two-day experience. There are no hidden costs—simply arrive and immerse yourself!
+          </p>
+          
+          <div className="pricing-inclusions">
+            <table className="inclusions-table">
+              <thead>
+                <tr>
+                  <th>Inclusion</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="inclusion-label"><strong>Premium Accommodation</strong></td>
+                  <td className="inclusion-detail">A serene stay for 2 Days & 2 Nights at Petals Resorts Wayanad, ensuring comfort, tranquility, and safety (primarily on a shared basis).</td>
+                </tr>
+                <tr>
+                  <td className="inclusion-label"><strong>All-Inclusive Dining</strong></td>
+                  <td className="inclusion-detail">Farm-to-table, wholesome, delicious cuisine. Includes all meals (Breakfast, Lunch, Dinner) and snacks/beverages during the retreat.</td>
+                </tr>
+                <tr>
+                  <td className="inclusion-label"><strong>Full Workshop Access</strong></td>
+                  <td className="inclusion-detail">Access to ALL Women's Health, Wellness, Creative, and Mentalist sessions.</td>
+                </tr>
+                <tr>
+                  <td className="inclusion-label"><strong>Wellness Activities</strong></td>
+                  <td className="inclusion-detail">Participation in all Yoga, Sound Healing, Drum Circle, and Art Therapy sessions.</td>
+                </tr>
+                <tr>
+                  <td className="inclusion-label"><strong>Curated Access</strong></td>
+                  <td className="inclusion-detail">Exclusive access to the Women-led Pop-up Market and Evening Networking Gatherings.</td>
+                </tr>
+                <tr>
+                  <td className="inclusion-label"><strong>Venue Amenities</strong></td>
+                  <td className="inclusion-detail">Access to all luxurious resort facilities, including the stunning infinity pool and nature walks within the sanctuary.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <p className="pricing-cta">
+            Ready to claim your spot in this luxurious, transformative SheCamp?
+          </p>
+          
+          <div className="pricing-cta-buttons">
+            <a href="https://in.bookmyshow.com/events/aroha-celebrate-women/ET00468598" target="_blank" rel="noopener noreferrer" className="aroha-btn primary pricing-btn">
+              <span className="pricing-btn-text">Book Now</span>
+              <div className="pricing-btn-logo-wrapper">
+                <span className="pricing-btn-on">on</span>
+                <img src="/aroha/bmslogo.svg" alt="BookMyShow" className="pricing-btn-logo" />
+              </div>
+            </a>
           </div>
         </div>
       </section>
@@ -326,9 +445,68 @@ const ArohaEvent = () => {
         </div>
       </section>
 
-      {/* Tickets / Early Bird */}
-      <section className="aroha-tickets">
+      {/* Key Inclusions Section */}
+      <section className="aroha-inclusions">
         <div className="container">
+          <h2>Why Attend</h2>
+          <div className="inclusions-grid">
+            <div className="inclusion-card">
+              <div className="inclusion-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h3>Community & Empowerment</h3>
+              <p>Recharge your social batteries with a supportive community. Aroha is dedicated to uplifting women, ensuring you leave with a powerful, authentic sisterhood and connections that genuinely empower your life.</p>
+            </div>
+            <div className="inclusion-card">
+              <div className="inclusion-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="12" y1="18" x2="12" y2="12"></line>
+                  <line x1="9" y1="15" x2="15" y2="15"></line>
+                </svg>
+              </div>
+              <h3>Holistic Wellness Activities</h3>
+              <p>Dive into Women's Health and Wellness Workshops, daily Yoga, and deep relaxation with Sound Healing, hands-on Art Therapy/Eco Printing, and a joyous Drum Circle under the stars.</p>
+            </div>
+            <div className="inclusion-card">
+              <div className="inclusion-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 3v4"></path>
+                  <path d="M19 3v4"></path>
+                  <rect width="18" height="18" x="3" y="8" rx="2"></rect>
+                  <path d="M3 12h18"></path>
+                </svg>
+              </div>
+              <h3>Luxury Amidst Nature</h3>
+              <p>Experience a premium retreat at Petals Resorts Wayanad with stunning views of Banasura Hill and access to amenities like the infinity pool.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="aroha-contact">
+        <div className="container">
+          <div className="contact-content">
+            <p className="contact-intro">For details:</p>
+
+            <div className="contact-numbers">
+              <a href="tel:+919847896003" className="contact-link">📞 +91 98478 96003</a>
+              <span className="contact-separator">|</span>
+              <a href="tel:+918089369113" className="contact-link">+91 80893 69113</a>
+              <span className="contact-separator">|</span>
+              <a href="tel:+919048120488" className="contact-link">+91 90481 20488</a>
+              <span className="contact-separator">|</span>
+              <a href="tel:8592044723" className="contact-link">8592044723</a>
+            </div>
+            <p className="contact-closing">With love,<br />Team Aroha</p>
+          </div>
         </div>
       </section>
 
@@ -336,8 +514,8 @@ const ArohaEvent = () => {
       <footer className="aroha-footer">
         <div className="container">
           <div className="footer-content">
-            <p>&copy; 2025 The She Talks × Peak Tale Trips. All rights reserved.</p>
             <a href="/aroha/terms" className="terms-link">Terms & Conditions</a>
+            <p>&copy; 2025 The She Talks × Peak Tale Trips. All rights reserved.</p>
           </div>
         </div>
       </footer>
