@@ -40,16 +40,19 @@ const trackMetaEvent = (eventName, params = {}, isCustom = false) => {
 const ArohaEvent = () => {
   const [selectedArtist, setSelectedArtist] = useState(null)
   const [showFloatingButton, setShowFloatingButton] = useState(false)
+  const [showStickyHeader, setShowStickyHeader] = useState(false)
   const experiencesRef = useRef(null)
   const heroRef = useRef(null)
 
-  // Scroll handler to show floating button after hero section
+  // Scroll handler to show floating button and sticky header after hero section
   useEffect(() => {
     const handleScroll = () => {
       if (heroRef.current) {
         const heroBottom = heroRef.current.offsetTop + heroRef.current.offsetHeight
-        // Show floating button when scrolled past the hero section
-        setShowFloatingButton(window.scrollY > heroBottom - 100)
+        // Show sticky header and floating button when scrolled past the hero section
+        const shouldShow = window.scrollY > heroBottom - 100
+        setShowStickyHeader(shouldShow)
+        setShowFloatingButton(shouldShow)
       }
     }
 
@@ -160,6 +163,24 @@ const ArohaEvent = () => {
   }
   return (
     <div className="aroha-event">
+      {/* Sticky Header */}
+      <header className={`aroha-sticky-header ${showStickyHeader ? 'visible' : ''}`}>
+        <div className="sticky-header-content">
+          <div className="sticky-header-logo">
+            <img src="/aroha/celebratewoman.png" alt="Celebrate Woman" className="sticky-celebrate-image" />
+          </div>
+          <a 
+            href="https://in.bookmyshow.com/events/aroha-celebrate-women/ET00468598" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="aroha-btn primary sticky-book-btn" 
+            onClick={handleTicketBookingClick}
+          >
+            <span className="pricing-btn-text">BOOK NOW</span>
+          </a>
+        </div>
+      </header>
+
       {/* Hero Section */}
       <section className="aroha-hero" ref={heroRef}>
         {/* Logos */}
@@ -180,6 +201,10 @@ const ArohaEvent = () => {
           </div>
           
           <div className="aroha-hero-text">
+            <div className="hero-badge">
+              <span className="badge-text">India's First Ever SheCamp</span>
+            </div>
+            <p className="hero-subtitle">A Pioneering Luxury Retreat Exclusively for Women</p>
           </div>
 
           <div className="aroha-cta">
@@ -202,10 +227,13 @@ const ArohaEvent = () => {
         </div>
       </section>
 
-      {/* About Aroha */}
+      {/* The Aroha Vision */}
       <section className="aroha-about">
         <div className="container">
-          <h1>Welcome to Aroha<br />Celebrating Women: The First of its Kind in India!</h1>
+          <h1>Welcome to Aroha</h1>
+          <div className="vision-badge">
+            <span className="vision-badge-text">The First of its Kind in India</span>
+          </div>
           
           <h4>The Revolution Starts Here: India's Premier Women-Only SheCamp</h4>
           
@@ -216,6 +244,81 @@ const ArohaEvent = () => {
           <p>
             For two soulful days, step away from the city's demands and find your truest self. Watch the sunset from a stunning infinity pool, indulge in farm-to-table cuisine, and experience activities carefully curated to nurture your mind, body, and spirit.
           </p>
+
+          <div className="section-cta">
+            <a href="https://in.bookmyshow.com/events/aroha-celebrate-women/ET00468598" target="_blank" rel="noopener noreferrer" className="aroha-btn primary pricing-btn" onClick={handleTicketBookingClick}>
+              <span className="pricing-btn-text">Book Your Spot Now</span>
+              <div className="pricing-btn-logo-wrapper">
+                <span className="pricing-btn-on">on</span>
+                <img src="/aroha/bmslogo.svg" alt="BookMyShow" className="pricing-btn-logo" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Investment & Inclusions */}
+      <section className="aroha-tickets" id="investment">
+        <div className="container">
+          <h2>Investment & Inclusions</h2>
+          <div className="pricing-highlight">
+            <span className="pricing-main">₹11,000 onwards</span>
+            <span className="pricing-note">All-Inclusive Value</span>
+          </div>
+          <p className="pricing-intro">
+            Your investment covers everything you need for a truly transformative and seamless two-day experience. There are no hidden costs—simply arrive and immerse yourself!
+          </p>
+          
+          <div className="pricing-inclusions">
+            <table className="inclusions-table">
+              <thead>
+                <tr>
+                  <th>Inclusion</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="inclusion-label"><strong>Premium Accommodation</strong></td>
+                  <td className="inclusion-detail">A serene stay for 2 Days & 2 Nights at Petals Resorts Wayanad, ensuring comfort, tranquility, and safety (primarily on a shared basis).</td>
+                </tr>
+                <tr>
+                  <td className="inclusion-label"><strong>All-Inclusive Dining</strong></td>
+                  <td className="inclusion-detail">Farm-to-table, wholesome, delicious cuisine. Includes all meals (Breakfast, Lunch, Dinner) and snacks/beverages during the retreat.</td>
+                </tr>
+                <tr>
+                  <td className="inclusion-label"><strong>Full Workshop Access</strong></td>
+                  <td className="inclusion-detail">Access to ALL Women's Health, Wellness, Creative, and Mentalist sessions.</td>
+                </tr>
+                <tr>
+                  <td className="inclusion-label"><strong>Wellness Activities</strong></td>
+                  <td className="inclusion-detail">Participation in all Yoga, Sound Healing, Drum Circle, and Art Therapy sessions.</td>
+                </tr>
+                <tr>
+                  <td className="inclusion-label"><strong>Curated Access</strong></td>
+                  <td className="inclusion-detail">Exclusive access to the Women-led Pop-up Market and Evening Networking Gatherings.</td>
+                </tr>
+                <tr>
+                  <td className="inclusion-label"><strong>Venue Amenities</strong></td>
+                  <td className="inclusion-detail">Access to all luxurious resort facilities, including the stunning infinity pool and nature walks within the sanctuary.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <p className="pricing-cta">
+            Ready to claim your spot in this luxurious, transformative SheCamp?
+          </p>
+          
+          <div className="pricing-cta-buttons">
+            <a href="https://in.bookmyshow.com/events/aroha-celebrate-women/ET00468598" target="_blank" rel="noopener noreferrer" className="aroha-btn primary pricing-btn" onClick={handleTicketBookingClick}>
+              <span className="pricing-btn-text">Book Now</span>
+              <div className="pricing-btn-logo-wrapper">
+                <span className="pricing-btn-on">on</span>
+                <img src="/aroha/bmslogo.svg" alt="BookMyShow" className="pricing-btn-logo" />
+              </div>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -341,66 +444,267 @@ const ArohaEvent = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Tickets / Early Bird */}
-      <section className="aroha-tickets">
-        <div className="container">
-          <h2>The Complete Experience starting at ₹11,000/- (All-Inclusive Value)</h2>
-          <p className="pricing-intro">
-            Your investment covers everything you need for a truly transformative and seamless two-day experience. There are no hidden costs—simply arrive and immerse yourself!
-          </p>
           
-          <div className="pricing-inclusions">
-            <table className="inclusions-table">
-              <thead>
-                <tr>
-                  <th>Inclusion</th>
-                  <th>Details</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="inclusion-label"><strong>Premium Accommodation</strong></td>
-                  <td className="inclusion-detail">A serene stay for 2 Days & 2 Nights at Petals Resorts Wayanad, ensuring comfort, tranquility, and safety (primarily on a shared basis).</td>
-                </tr>
-                <tr>
-                  <td className="inclusion-label"><strong>All-Inclusive Dining</strong></td>
-                  <td className="inclusion-detail">Farm-to-table, wholesome, delicious cuisine. Includes all meals (Breakfast, Lunch, Dinner) and snacks/beverages during the retreat.</td>
-                </tr>
-                <tr>
-                  <td className="inclusion-label"><strong>Full Workshop Access</strong></td>
-                  <td className="inclusion-detail">Access to ALL Women's Health, Wellness, Creative, and Mentalist sessions.</td>
-                </tr>
-                <tr>
-                  <td className="inclusion-label"><strong>Wellness Activities</strong></td>
-                  <td className="inclusion-detail">Participation in all Yoga, Sound Healing, Drum Circle, and Art Therapy sessions.</td>
-                </tr>
-                <tr>
-                  <td className="inclusion-label"><strong>Curated Access</strong></td>
-                  <td className="inclusion-detail">Exclusive access to the Women-led Pop-up Market and Evening Networking Gatherings.</td>
-                </tr>
-                <tr>
-                  <td className="inclusion-label"><strong>Venue Amenities</strong></td>
-                  <td className="inclusion-detail">Access to all luxurious resort facilities, including the stunning infinity pool and nature walks within the sanctuary.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          
-          <p className="pricing-cta">
-            Ready to claim your spot in this luxurious, transformative SheCamp?
-          </p>
-          
-          <div className="pricing-cta-buttons">
+          <div className="section-cta">
             <a href="https://in.bookmyshow.com/events/aroha-celebrate-women/ET00468598" target="_blank" rel="noopener noreferrer" className="aroha-btn primary pricing-btn" onClick={handleTicketBookingClick}>
-              <span className="pricing-btn-text">Book Now</span>
+              <span className="pricing-btn-text">Experience the Transformation</span>
               <div className="pricing-btn-logo-wrapper">
                 <span className="pricing-btn-on">on</span>
                 <img src="/aroha/bmslogo.svg" alt="BookMyShow" className="pricing-btn-logo" />
               </div>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Sample Itinerary */}
+      <section className="aroha-itinerary">
+        <div className="container">
+          <h2>Sample Itinerary</h2>
+          <p className="itinerary-intro">Experience the flow of three transformative days designed to restore, inspire, and connect.</p>
+          
+          <div className="itinerary-days">
+            <div className="itinerary-day">
+              <div className="day-header">
+                <h3>Day 1: Saturday, 22.11.25</h3>
+              </div>
+              <div className="day-schedule">
+                <div className="schedule-item">
+                  <div className="schedule-time">7:00 AM - 11:00 AM</div>
+                  <div className="schedule-content">
+                    <h4>Guest Arrival</h4>
+                    <p>Expected guest arrival and welcome</p>
+                  </div>
+                </div>
+                <div className="schedule-item">
+                  <div className="schedule-time">10:00 AM</div>
+                  <div className="schedule-content">
+                    <h4>Inauguration Speech</h4>
+                    <p>Ice breaking session to begin our journey together</p>
+                  </div>
+                </div>
+                <div className="schedule-item">
+                  <div className="schedule-time">11:00 AM - 2:00 PM</div>
+                  <div className="schedule-content">
+                    <h4>Nature Walk & Ecoprinting</h4>
+                    <p>Nature Walk with Jyothis | Ecoprinting Workshop by Rizwana Khalid</p>
+                  </div>
+                </div>
+                <div className="schedule-item">
+                  <div className="schedule-time">2:00 PM - 3:00 PM</div>
+                  <div className="schedule-content">
+                    <h4>Lunch</h4>
+                    <p>Farm-to-table dining experience</p>
+                  </div>
+                </div>
+                <div className="schedule-item">
+                  <div className="schedule-time">4:30 PM - 6:30 PM</div>
+                  <div className="schedule-content">
+                    <h4>Intuitive Art & Tarot Reading</h4>
+                    <p>Intuitive Art Workshop by Jinil | Tarot Reading by Ajesh</p>
+                  </div>
+                </div>
+                <div className="schedule-item">
+                  <div className="schedule-time">7:00 PM - 9:00 PM</div>
+                  <div className="schedule-content">
+                    <h4>Dinner</h4>
+                    <p>Evening meal and gathering</p>
+                  </div>
+                </div>
+                <div className="schedule-item">
+                  <div className="schedule-time">8:00 PM - 11:30 PM</div>
+                  <div className="schedule-content">
+                    <h4>Drum Circle & Pool Party</h4>
+                    <p>Drum Circle led by Udduku | Open pool party with music</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="itinerary-day">
+              <div className="day-header">
+                <h3>Day 2: Sunday, 23.11.25</h3>
+              </div>
+              <div className="day-schedule">
+                <div className="schedule-item">
+                  <div className="schedule-time">6:00 AM - 8:00 AM</div>
+                  <div className="schedule-content">
+                    <h4>Sound Journey & Yoga</h4>
+                    <p>Sound Journey by Udduku | Yoga Session by Anjali</p>
+                  </div>
+                </div>
+                <div className="schedule-item">
+                  <div className="schedule-time">8:00 AM - 10:00 AM</div>
+                  <div className="schedule-content">
+                    <h4>Breakfast</h4>
+                    <p>Morning meal to start the day</p>
+                  </div>
+                </div>
+                <div className="schedule-item">
+                  <div className="schedule-time">10:00 AM - 12:00 PM</div>
+                  <div className="schedule-content">
+                    <h4>Eco Dying & Healing Through Books</h4>
+                    <p>Eco Dying Workshop by Rizwana Khalid | Healing through Books session by Ajesh</p>
+                  </div>
+                </div>
+                <div className="schedule-item">
+                  <div className="schedule-time">12:00 PM - 2:00 PM</div>
+                  <div className="schedule-content">
+                    <h4>Lunch</h4>
+                    <p>Midday meal break</p>
+                  </div>
+                </div>
+                <div className="schedule-item">
+                  <div className="schedule-time">3:00 PM - 5:00 PM</div>
+                  <div className="schedule-content">
+                    <h4>Health and Wellness Talk</h4>
+                    <p>Health and wellness session by Arya</p>
+                  </div>
+                </div>
+                <div className="schedule-item">
+                  <div className="schedule-time">7:00 PM - 11:30 PM</div>
+                  <div className="schedule-content">
+                    <h4>Music Evening</h4>
+                    <p>Live music performance by Tantrick Band</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="itinerary-day">
+              <div className="day-header">
+                <h3>Day 3: Monday, 24.11.25</h3>
+              </div>
+              <div className="day-schedule">
+                <div className="schedule-item">
+                  <div className="schedule-time">8:00 AM - 10:00 AM</div>
+                  <div className="schedule-content">
+                    <h4>Breakfast</h4>
+                    <p>Final morning meal together</p>
+                  </div>
+                </div>
+                <div className="schedule-item">
+                  <div className="schedule-time">10:00 AM - 12:00 PM</div>
+                  <div className="schedule-content">
+                    <h4>Gathering & Sharing Experience</h4>
+                    <p>Share experiences and reflections | Speech from multiple hosts</p>
+                  </div>
+                </div>
+                <div className="schedule-item">
+                  <div className="schedule-time">12:00 PM - 2:00 PM</div>
+                  <div className="schedule-content">
+                    <h4>Lunch</h4>
+                    <p>Farewell meal together</p>
+                  </div>
+                </div>
+                <div className="schedule-item">
+                  <div className="schedule-time">Farewell</div>
+                  <div className="schedule-content">
+                    <h4>Closing & Promise</h4>
+                    <p>Farewell with a promise: we will be back soon with another fine nature retreat</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="section-cta">
+            <a href="https://in.bookmyshow.com/events/aroha-celebrate-women/ET00468598" target="_blank" rel="noopener noreferrer" className="aroha-btn primary pricing-btn" onClick={handleTicketBookingClick}>
+              <span className="pricing-btn-text">Reserve Your Spot</span>
+              <div className="pricing-btn-logo-wrapper">
+                <span className="pricing-btn-on">on</span>
+                <img src="/aroha/bmslogo.svg" alt="BookMyShow" className="pricing-btn-logo" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Venue Snapshot */}
+      <section className="aroha-venue">
+        <div className="container">
+          <h2>Venue Snapshot</h2>
+          <p className="venue-intro">Petals Resorts Wayanad — Where Luxury Meets Nature</p>
+          
+          <div className="venue-highlights">
+            <div className="venue-highlight">
+              <h3>Stunning Infinity Pool</h3>
+              <p>Unwind with breathtaking views of Banasura Hill and the Western Ghats</p>
+            </div>
+            <div className="venue-highlight">
+              <h3>Nature Sanctuary</h3>
+              <p>Surrounded by pristine forests, offering peaceful nature walks and meditation spots</p>
+            </div>
+            <div className="venue-highlight">
+              <h3>Farm-to-Table Cuisine</h3>
+              <p>Wholesome, delicious meals prepared with locally sourced, fresh ingredients</p>
+            </div>
+            <div className="venue-highlight">
+              <h3>Panoramic Views</h3>
+              <p>Wake up to stunning sunrises and watch sunsets paint the sky from your retreat</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Power of Sisterhood */}
+      <section className="aroha-sisterhood">
+        <div className="container">
+          <h2>The Power of Sisterhood</h2>
+          <p className="sisterhood-intro">
+            Aroha is more than a retreat—it's where genuine connections are forged. This is your space to meet inspiring women from diverse backgrounds, share wisdom, and build an uplifting network that extends far beyond these two days.
+          </p>
+          
+          <div className="sisterhood-features">
+            <div className="sisterhood-feature">
+              <h3>Genuine Connection</h3>
+              <p>Form authentic relationships in a judgment-free, supportive environment where every voice is valued</p>
+            </div>
+            <div className="sisterhood-feature">
+              <h3>Shared Wisdom</h3>
+              <p>Learn from each other's experiences, challenges, and triumphs in meaningful conversations</p>
+            </div>
+            <div className="sisterhood-feature">
+              <h3>Lasting Network</h3>
+              <p>Leave with an empowering community of sisters who will support your personal and professional journey</p>
+            </div>
+          </div>
+
+          <div className="section-cta">
+            <a href="https://in.bookmyshow.com/events/aroha-celebrate-women/ET00468598" target="_blank" rel="noopener noreferrer" className="aroha-btn primary pricing-btn" onClick={handleTicketBookingClick}>
+              <span className="pricing-btn-text">Join the Sisterhood</span>
+              <div className="pricing-btn-logo-wrapper">
+                <span className="pricing-btn-on">on</span>
+                <img src="/aroha/bmslogo.svg" alt="BookMyShow" className="pricing-btn-logo" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet the Organizers */}
+      <section className="aroha-organizers">
+        <div className="container">
+          <h2>Meet the Organizers</h2>
+          <p className="organizers-intro">Brought to you by trusted names in women's empowerment and transformative travel</p>
+          
+          <div className="organizers-grid">
+            <div className="organizer-card">
+              <img src="/aroha/shetalk.png" alt="The She Talks" className="organizer-logo" />
+              <h3>The She Talks</h3>
+              <p>A community dedicated to uplifting women's voices, fostering meaningful conversations, and creating spaces where women can thrive, connect, and grow together.</p>
+              <a href="https://instagram.com/the.she.talks" target="_blank" rel="noopener noreferrer" className="organizer-link">
+                Follow @the.she.talks
+              </a>
+            </div>
+            <div className="organizer-card">
+              <img src="/aroha/peaktale.png" alt="Peaktales" className="organizer-logo" />
+              <h3>Peaktales</h3>
+              <p>Curating transformative travel experiences that combine luxury, adventure, and personal growth. Specializing in journeys that inspire and rejuvenate.</p>
+              <a href="https://instagram.com/peaktaletrips" target="_blank" rel="noopener noreferrer" className="organizer-link">
+                Follow @peaktaletrips
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -462,6 +766,23 @@ const ArohaEvent = () => {
         </div>
       </section>
 
+      {/* Final CTA Section */}
+      <section className="aroha-final-cta">
+        <div className="container">
+          <h2>Ready to Transform Your Journey?</h2>
+          <p className="final-cta-text">
+            Don't miss out on India's first-ever SheCamp. Limited spots available. Book now and secure your place in this transformative experience.
+          </p>
+          <a href="https://in.bookmyshow.com/events/aroha-celebrate-women/ET00468598" target="_blank" rel="noopener noreferrer" className="aroha-btn primary pricing-btn final-cta-btn" onClick={handleTicketBookingClick}>
+            <span className="pricing-btn-text">Book Now - ₹11,000 onwards</span>
+            <div className="pricing-btn-logo-wrapper">
+              <span className="pricing-btn-on">on</span>
+              <img src="/aroha/bmslogo.svg" alt="BookMyShow" className="pricing-btn-logo" />
+            </div>
+          </a>
+        </div>
+      </section>
+
       {/* Key Inclusions Section */}
       <section className="aroha-inclusions">
         <div className="container">
@@ -511,6 +832,9 @@ const ArohaEvent = () => {
       <section className="aroha-contact">
         <div className="container">
           <div className="contact-content">
+            <h2>Have Questions?</h2>
+            <p className="contact-intro">Connect with us on Instagram or reach out directly</p>
+            
             <div className="instagram-follow">
               <div className="instagram-handles">
                 <a href="https://instagram.com/the.she.talks" target="_blank" rel="noopener noreferrer" className="instagram-link">
@@ -533,7 +857,6 @@ const ArohaEvent = () => {
                 </a>
               </div>
             </div>
-            <p className="contact-intro">For More Details</p>
 
             <div className="contact-numbers">
               <a href="tel:+919847896003" className="contact-link"> +91 98478 96003</a>
