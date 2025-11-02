@@ -204,7 +204,6 @@ const ArohaEvent = () => {
             <div className="hero-badge">
               <span className="badge-text">India's First Ever SheCamp</span>
             </div>
-            <p className="hero-subtitle">A Pioneering Luxury Retreat Exclusively for Women</p>
           </div>
 
           <div className="aroha-cta">

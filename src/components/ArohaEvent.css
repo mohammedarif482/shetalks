@@ -166,6 +166,7 @@
   justify-content: space-between;
   align-items: flex-end;
   pointer-events: none;
+  z-index: 1;
 }
 
 .hero-corner-image {
@@ -1526,6 +1527,17 @@
   .aroha-cta {
     flex-direction: column;
     align-items: center;
+    margin-bottom: 4rem;
+    gap: 1rem;
+  }
+  
+  .aroha-btn.secondary {
+    position: relative;
+    z-index: 10;
+  }
+  
+  .hero-corner-images {
+    z-index: 1;
   }
   
   .instagram-follow {
