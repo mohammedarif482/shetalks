@@ -44,6 +44,29 @@ const ArohaEvent = () => {
   const experiencesRef = useRef(null)
   const heroRef = useRef(null)
 
+  // Initialize Google Analytics when component mounts
+  useEffect(() => {
+    // Initialize dataLayer and gtag function first (before loading the script)
+    window.dataLayer = window.dataLayer || []
+    function gtag(){window.dataLayer.push(arguments)}
+    window.gtag = gtag
+    gtag('js', new Date())
+    gtag('config', 'AW-17700555724')
+
+    // Add Google Analytics script
+    const script = document.createElement('script')
+    script.async = true
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17700555724'
+    document.head.appendChild(script)
+
+    // Cleanup function to remove script on unmount (optional, but good practice)
+    return () => {
+      if (document.head.contains(script)) {
+        document.head.removeChild(script)
+      }
+    }
+  }, [])
+
   // Scroll handler to show floating button and sticky header after hero section
   useEffect(() => {
     const handleScroll = () => {
