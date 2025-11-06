@@ -479,10 +479,10 @@ const ArohaEvent = () => {
         </div>
       </section>
 
-      {/* Sample Itinerary */}
+      {/* Itinerary */}
       <section className="aroha-itinerary">
         <div className="container">
-          <h2>Sample Itinerary</h2>
+          <h2>Itinerary</h2>
           <p className="itinerary-intro">Experience the flow of three transformative days designed to restore, inspire, and connect.</p>
           
           <div className="itinerary-days">
