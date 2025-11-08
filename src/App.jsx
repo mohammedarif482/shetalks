@@ -6,33 +6,40 @@ import SocialFooter from './components/SocialFooter'
 import ComingSoon from './components/ComingSoon'
 import ArohaEvent from './components/ArohaEvent'
 import ArohaTerms from './components/ArohaTerms'
+import ArohaTicketOffer from './components/ArohaTicketOffer'
 import './App.css'
 
 function App() {
   // Check if we're on the aroha subdomain
-  const isArohaSubdomain = window.location.hostname === 'aroha.theshetalks.club'
-  
-  // Check if we're on the terms page
-  const isTermsPage = window.location.pathname === '/aroha/terms' || window.location.pathname.includes('/terms')
-  
-  const [activePage, setActivePage] = useState(() => {
-    if (isTermsPage) return 'aroha-terms'
-    if (isArohaSubdomain) return 'aroha'
+  const resolveActivePage = () => {
+    const { hostname, pathname } = window.location
+    const isArohaSubdomain = hostname === 'aroha.theshetalks.club'
+    if (pathname === '/aroha/terms' || pathname.includes('/terms')) {
+      return 'aroha-terms'
+    }
+    if (
+      pathname === '/aroha/claim-ticket-offer' ||
+      pathname.includes('/claim-ticket-offer') ||
+      (isArohaSubdomain && pathname === '/claim-ticket-offer')
+    ) {
+      return 'aroha-ticket-offer'
+    }
+    if (isArohaSubdomain) {
+      return 'aroha'
+    }
     return 'community'
-  })
+  }
+
+  const [activePage, setActivePage] = useState(resolveActivePage)
 
   // Update active page based on pathname changes
   useEffect(() => {
-    if (isTermsPage) {
-      setActivePage('aroha-terms')
-    } else if (isArohaSubdomain) {
-      setActivePage('aroha')
-    }
-  }, [isTermsPage, isArohaSubdomain])
+    setActivePage(resolveActivePage())
+  }, [])
 
   const handlePageChange = (page) => {
     // Don't allow navigation away from aroha page when on aroha subdomain
-    if (isArohaSubdomain) {
+    if (window.location.hostname === 'aroha.theshetalks.club') {
       return
     }
     setActivePage(page)
@@ -58,6 +65,8 @@ function App() {
         return <ArohaEvent />
       case 'aroha-terms':
         return <ArohaTerms />
+      case 'aroha-ticket-offer':
+        return <ArohaTicketOffer />
       default:
         return (
           <>
@@ -69,8 +78,8 @@ function App() {
     }
   }
 
-  // Don't show header on terms page
-  const showHeader = activePage !== 'aroha-terms'
+  // Don't show header on terms page or ticket offer page
+  const showHeader = activePage !== 'aroha-terms' && activePage !== 'aroha-ticket-offer'
 
   return (
     <div className="app">

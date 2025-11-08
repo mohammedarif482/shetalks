@@ -157,11 +157,15 @@ const ArohaEvent = () => {
     setSelectedArtist(null)
   }
 
-  const scrollToExperiences = () => {
-    experiencesRef.current?.scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'start'
-    })
+  const handleTicketOfferClick = () => {
+    trackMetaEvent('ArohaTicketOfferClick', {
+      content_name: 'Aroha Ticket Offer',
+      content_category: 'Lead Capture'
+    }, true)
+
+    const isArohaSubdomain = typeof window !== 'undefined' && window.location.hostname === 'aroha.theshetalks.club'
+    const targetPath = isArohaSubdomain ? '/claim-ticket-offer' : '/aroha/claim-ticket-offer'
+    window.location.href = targetPath
   }
 
   // Track ticket booking button clicks
@@ -237,7 +241,7 @@ const ArohaEvent = () => {
                 <img src="/aroha/bmslogo.svg" alt="BookMyShow" className="pricing-btn-logo" />
               </div>
             </a>
-            <button className="aroha-btn secondary" onClick={scrollToExperiences}>Discover the Experience</button>
+            <button className="aroha-btn secondary" onClick={handleTicketOfferClick}>Claim Your Ticket Offer</button>
           </div>
 
         </div>
@@ -932,6 +936,7 @@ const ArohaEvent = () => {
           </div>
         </div>
       )}
+
 
       {/* Floating Button */}
       {showFloatingButton && (
