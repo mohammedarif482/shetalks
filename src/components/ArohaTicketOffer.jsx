@@ -33,6 +33,12 @@ const ArohaTicketOffer = () => {
           </p>
         </header>
 
+        <div className="form-actions top">
+          <button type="button" className="secondary-btn" onClick={handleBackToEvent}>
+            Back to Aroha
+          </button>
+        </div>
+
         <div className="ticket-offer-frame-wrapper">
           {!isFrameLoaded && (
             <div className="ticket-offer-frame-loading">
@@ -53,7 +59,7 @@ const ArohaTicketOffer = () => {
 
         <div className="form-actions">
           <button type="button" className="secondary-btn" onClick={handleBackToEvent}>
-            Back to Aroha Event Page
+            Back to Aroha
           </button>
         </div>
       </div>
