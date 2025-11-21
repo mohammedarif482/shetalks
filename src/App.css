@@ -219,6 +219,8 @@
 .hero-cta {
   display: inline-block;
   margin-top: 1rem;
+  background: #EB7470 !important;
+  background-color: #EB7470 !important;
 }
 
 .hero-right {

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Health Survey - Help Us Build Something Better</title>
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #FFF5F0;
+            --primary-pink: #EB7470;
+            --primary-hover: #D85D59;
+            --light-pink: #FDDDCF;
+            --card-border: #DDBFB5;
+            --text-dark: #454545;
+            --text-muted: #8A8A8A;
+            --text-white: #FFFFFF;
+            --white: #FFFFFF;
+            --selection-bg: #FFF0EC;
+            --border-default: #E8DDD8;
+            --font-body: 'Albert Sans', sans-serif;
+            --radius-card: 28px;
+            --radius-button: 50px;
+            --shadow-card: 0 8px 32px rgba(235, 116, 112, 0.12);
+            --shadow-button: 0 4px 16px rgba(235, 116, 112, 0.25);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .key-points {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .key-point {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .key-point-icon {
+            font-size: 36px;
+        }
+
+        .key-point-text {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 48px;
+            background: var(--primary-pink);
+            color: var(--text-white);
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius-button);
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-button);
+        }
+
+        .cta-button:hover {
+            background: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 24px rgba(235, 116, 112, 0.35);
+        }
+
+        /* Section Cards */
+        .section {
+            background: var(--white);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-card);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .section h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 16px;
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        /* What We'll Ask Section */
+        .topics {
+            display: grid;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .topic-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            background: var(--selection-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-default);
+        }
+
+        .topic-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .topic-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .topic-content p {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Privacy Section */
+        .privacy-items {
+            display: grid;
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .privacy-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .privacy-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .privacy-content h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .privacy-content p {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-default);
+        }
+
+        .footer .cta-button {
+            margin-bottom: 24px;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .footer-text a {
+            color: var(--primary-pink);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+
+        .social-proof {
+            font-size: 15px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 16px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .key-points {
+                gap: 24px;
+            }
+
+            .section {
+                padding: 28px 24px;
+            }
+
+            .section h2 {
+                font-size: 24px;
+            }
+
+            .cta-button {
+                padding: 16px 40px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 24px 16px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .key-points {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .topic-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Help Us Build Something Better for Women's Health</h1>
+            <p>Share your experiences to shape the future of health technology. Your voice matters.</p>
+            
+            <div class="key-points">
+                <div class="key-point">
+                    <div class="key-point-icon">🕐</div>
+                    <div class="key-point-text">Takes 5-7 minutes</div>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">🔒</div>
+                    <div class="key-point-text">Completely anonymous</div>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">💜</div>
+                    <div class="key-point-text">Help millions of women</div>
+                </div>
+            </div>
+
+            <a href="/survey.html" class="cta-button">
+                Start Survey
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </a>
+        </section>
+
+        <!-- What We'll Ask -->
+        <section class="section">
+            <h2>What to Expect</h2>
+            
+            <div class="topics">
+                <div class="topic-item">
+                    <div class="topic-icon">📊</div>
+                    <div class="topic-content">
+                        <h3>Your Health Journey</h3>
+                        <p>Questions about how you currently track your health and what matters most to you</p>
+                    </div>
+                </div>
+
+                <div class="topic-item">
+                    <div class="topic-icon">💬</div>
+                    <div class="topic-content">
+                        <h3>Relationships & Communication</h3>
+                        <p>How your partner, family, or people around you understand (or don't understand) your health</p>
+                    </div>
+                </div>
+
+                <div class="topic-item">
+                    <div class="topic-icon">😔</div>
+                    <div class="topic-content">
+                        <h3>Your Challenges</h3>
+                        <p>The real frustrations you face and how they impact your daily life</p>
+                    </div>
+                </div>
+
+                <div class="topic-item">
+                    <div class="topic-icon">💡</div>
+                    <div class="topic-content">
+                        <h3>Your Ideal Solution</h3>
+                        <p>What would actually make your health journey easier</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy Promise -->
+        <section class="section">
+            <h2>Your Privacy is Sacred</h2>
+            
+            <div class="privacy-items">
+                <div class="privacy-item">
+                    <div class="privacy-icon">🔐</div>
+                    <div class="privacy-content">
+                        <h3>Completely Anonymous</h3>
+                        <p>No names, no email required (unless you want follow-up)</p>
+                    </div>
+                </div>
+
+                <div class="privacy-item">
+                    <div class="privacy-icon">🛡️</div>
+                    <div class="privacy-content">
+                        <h3>Secure & Encrypted</h3>
+                        <p>Your responses are stored securely and never shared</p>
+                    </div>
+                </div>
+
+                <div class="privacy-item">
+                    <div class="privacy-icon">📝</div>
+                    <div class="privacy-content">
+                        <h3>You Control Your Data</h3>
+                        <p>See our <a href="/privacy.html" style="color: var(--primary-pink); text-decoration: none; font-weight: 600;">Privacy Policy</a> for full details</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <a href="/survey.html" class="cta-button">
+                Start Survey
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </a>
+            
+            <p class="footer-text">
+                By starting the survey, you agree to our <a href="/privacy.html">Privacy Policy</a>
+            </p>
+            
+            <p class="social-proof" id="responseCount">
+                <!-- Will be populated dynamically if you want to show count -->
+            </p>
+        </footer>
+    </div>
+
+    <script type="module">
+        // Optional: Load and display response count from Firebase
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAmTb1CuKCgDu3Wxo8bMLQJPmRNMqAU7J0",
+            authDomain: "thats-what-she-told-cdbf1.firebaseapp.com",
+            databaseURL: "https://thats-what-she-told-cdbf1-default-rtdb.firebaseio.com",
+            projectId: "thats-what-she-told-cdbf1",
+            storageBucket: "thats-what-she-told-cdbf1.firebasestorage.app",
+            messagingSenderId: "733741930919",
+            appId: "1:733741930919:web:a6490cd8df334cd3abbe82"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Get response count
+        const responsesRef = ref(database, 'survey_responses');
+        onValue(responsesRef, (snapshot) => {
+            const count = snapshot.size || 0;
+            if (count > 0) {
+                document.getElementById('responseCount').textContent = 
+                    `Join ${count} ${count === 1 ? 'woman' : 'women'} who've already shared their stories`;
+            }
+        }, { onlyOnce: true });
+    </script>
+</body>
+</html>
+

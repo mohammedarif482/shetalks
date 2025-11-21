@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Health Survey - TheShetalks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #FFF5F0;
+            --primary-pink: #EB7470;
+            --primary-hover: #D85D59;
+            --light-pink: #FDDDCF;
+            --card-border: #DDBFB5;
+            --text-dark: #454545;
+            --text-muted: #8A8A8A;
+            --text-white: #FFFFFF;
+            --white: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --selection-bg: #FFF0EC;
+            --border-default: #E8DDD8;
+            --border-hover: #DDBFB5;
+            --success: #6BBF7B;
+            --font-body: 'Albert Sans', sans-serif;
+            --radius-card: 28px;
+            --radius-button: 50px;
+            --radius-input: 12px;
+            --radius-option: 14px;
+            --shadow-card: 0 8px 32px rgba(235, 116, 112, 0.12);
+            --shadow-button: 0 4px 16px rgba(235, 116, 112, 0.25);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-dark);
+        }
+
+        .survey-page {
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: var(--bg-primary);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .survey-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-card);
+            padding: 28px 24px;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: var(--shadow-card);
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px) {
+            .survey-page {
+                padding: 32px;
+            }
+            .survey-card {
+                padding: 36px 32px;
+                max-width: 440px;
+            }
+        }
+
+        .progress-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .progress-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.3px;
+        }
+
+        .progress-bar-track {
+            width: 100%;
+            max-width: 200px;
+            height: 4px;
+            background: var(--border-default);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--primary-pink);
+            border-radius: 2px;
+            transition: width 0.4s ease;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary-pink);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .question-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.45;
+            text-align: center;
+            margin-bottom: 24px;
+            padding: 0 8px;
+        }
+
+        @media (min-width: 640px) {
+            .question-title {
+                font-size: 19px;
+            }
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            background: var(--white);
+            border: 1.5px solid var(--border-default);
+            border-radius: var(--radius-option);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .option-item:hover {
+            border-color: var(--primary-pink);
+            background: var(--selection-bg);
+        }
+
+        .option-item.selected {
+            border-color: var(--primary-pink);
+            background: var(--selection-bg);
+            box-shadow: 0 2px 8px rgba(235, 116, 112, 0.1);
+        }
+
+        .radio-circle, .checkbox-box {
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            border: 2px solid var(--border-default);
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .radio-circle {
+            border-radius: 50%;
+        }
+
+        .checkbox-box {
+            border-radius: 6px;
+        }
+
+        .option-item.selected .radio-circle,
+        .option-item.selected .checkbox-box {
+            border-color: var(--primary-pink);
+            background: var(--primary-pink);
+        }
+
+        .radio-circle::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--white);
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.2s ease;
+        }
+
+        .option-item.selected .radio-circle::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .checkbox-mark {
+            color: var(--white);
+            font-size: 14px;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.2s ease;
+        }
+
+        .option-item.selected .checkbox-mark {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .option-label {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-dark);
+            line-height: 1.35;
+        }
+
+        .option-item.selected .option-label {
+            font-weight: 500;
+        }
+
+        .scale-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .scale-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .scale-button {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-default);
+            background: var(--white);
+            font-family: var(--font-body);
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .scale-button:hover {
+            border-color: var(--primary-pink);
+            color: var(--primary-pink);
+        }
+
+        .scale-button.selected {
+            background: var(--primary-pink);
+            border-color: var(--primary-pink);
+            color: var(--white);
+            transform: scale(1.08);
+            box-shadow: 0 4px 12px rgba(235, 116, 112, 0.3);
+        }
+
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 300px;
+            padding: 0 4px;
+        }
+
+        .scale-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .matrix-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .matrix-row {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-default);
+        }
+
+        .matrix-row:last-child {
+            border-bottom: none;
+        }
+
+        .matrix-row-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .matrix-options {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .matrix-option {
+            flex: 1;
+            min-width: 60px;
+            padding: 8px 4px;
+            font-size: 11px;
+            text-align: center;
+            border: 1.5px solid var(--border-default);
+            border-radius: 8px;
+            background: var(--white);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .matrix-option:hover {
+            border-color: var(--primary-pink);
+        }
+
+        .matrix-option.selected {
+            background: var(--primary-pink);
+            border-color: var(--primary-pink);
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .text-input, .textarea {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            color: var(--text-dark);
+            background: var(--white);
+            border: 1.5px solid var(--border-default);
+            border-radius: var(--radius-input);
+            outline: none;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .text-input::placeholder, .textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .text-input:focus, .textarea:focus {
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 4px rgba(235, 116, 112, 0.1);
+        }
+
+        .textarea {
+            min-height: 110px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .number-input-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .number-input {
+            width: 120px;
+            padding: 10px 12px;
+            font-size: 15px;
+            color: var(--text-dark);
+            background: var(--white);
+            border: 1.5px solid var(--border-default);
+            border-radius: var(--radius-input);
+            outline: none;
+            font-family: inherit;
+        }
+
+        .number-input:focus {
+            border-color: var(--primary-pink);
+        }
+
+        .currency-symbol {
+            font-size: 15px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--white);
+            border: 1.5px solid var(--border-default);
+            border-radius: var(--radius-option);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 12px;
+        }
+
+        .checkbox-item:hover {
+            border-color: var(--primary-pink);
+        }
+
+        .checkbox-item.selected {
+            border-color: var(--primary-pink);
+            background: var(--selection-bg);
+        }
+
+        .button-container {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .btn-previous, .btn-next {
+            flex: 1;
+            padding: 14px 24px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: var(--radius-button);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .btn-previous {
+            max-width: 130px;
+            background: var(--white);
+            color: var(--text-dark);
+            border: 1.5px solid var(--border-default);
+        }
+
+        .btn-previous:hover {
+            border-color: var(--card-border);
+            background: var(--selection-bg);
+        }
+
+        .btn-next {
+            max-width: 150px;
+            background: var(--primary-pink);
+            color: var(--text-white);
+            font-weight: 600;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-button);
+        }
+
+        .btn-next:disabled {
+            background: var(--border-default);
+            color: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--success);
+            color: var(--white);
+            font-size: 48px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        .success-title {
+            font-size: 28px;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .success-message {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .validation-error {
+            color: var(--primary-pink);
+            font-size: 12px;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .max-selections-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .summary-container {
+            padding: 20px 0;
+        }
+
+        .summary-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .summary-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .summary-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .summary-body {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 24px;
+            padding: 0 4px;
+        }
+
+        .summary-loading {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-default);
+            border-top-color: var(--primary-pink);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .summary-section {
+            margin-bottom: 24px;
+            padding: 16px;
+            background: var(--selection-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-default);
+        }
+
+        .summary-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-pink);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-section p, .summary-section ul {
+            font-size: 14px;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .summary-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .summary-section li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+
+        .summary-section li::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            color: var(--primary-pink);
+            font-weight: bold;
+        }
+
+        .summary-actions {
+            margin-top: 24px;
+        }
+
+        .confirmation-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: var(--white);
+            border: 1.5px solid var(--border-default);
+            border-radius: var(--radius-option);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .confirmation-checkbox:hover {
+            border-color: var(--primary-pink);
+        }
+
+        .confirmation-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--primary-pink);
+        }
+
+        .confirmation-checkbox span {
+            font-size: 15px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .summary-error {
+            background: #FFF0F0;
+            border: 1.5px solid var(--primary-pink);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            text-align: center;
+        }
+
+        .summary-error p {
+            color: var(--primary-pink);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .retry-button {
+            padding: 10px 20px;
+            background: var(--primary-pink);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-button);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="survey-page">
+        <div class="survey-card" id="surveyCard">
+            <div id="surveyContent">
+                <div class="progress-container">
+                    <div class="progress-text" id="progressText"></div>
+                    <div class="progress-bar-track">
+                        <div class="progress-bar-fill" id="progressBar"></div>
+                    </div>
+                </div>
+
+                <div class="section-label" id="sectionLabel"></div>
+                <h2 class="question-title" id="questionTitle"></h2>
+
+                <div id="questionContent"></div>
+                
+                <div class="validation-error hidden" id="validationError"></div>
+
+                <div class="button-container" id="buttonContainer"></div>
+            </div>
+
+            <div id="summaryContent" class="summary-container hidden">
+                <div class="summary-header">
+                    <h2 class="summary-title">Review Your Responses</h2>
+                    <p class="summary-subtitle">We've created a personalized summary of your health journey</p>
+                </div>
+                
+                <div id="summaryBody" class="summary-body">
+                    <div class="summary-loading">
+                        <div class="loading-spinner"></div>
+                        <p>Generating your personalized summary...</p>
+                    </div>
+                </div>
+
+                <div id="summaryActions" class="summary-actions hidden">
+                    <label class="confirmation-checkbox">
+                        <input type="checkbox" id="confirmCheck" onchange="toggleSubmitButton()">
+                        <span>I confirm these responses are accurate</span>
+                    </label>
+                    
+                    <div class="button-container" style="margin-top: 24px;">
+                        <button class="btn-previous" onclick="goBackToEdit()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            Edit Answers
+                        </button>
+                        <button class="btn-next" id="finalSubmitBtn" onclick="finalSubmit()" disabled>
+                            Submit Survey
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="successContent" class="success-container hidden">
+                <div class="success-icon">✓</div>
+                <h2 class="success-title">Thank You!</h2>
+                <p class="success-message">Your responses have been submitted successfully. Your insights will help us build better health tools for women.</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAzCQiwxSEXSZ_cHLrrARjwu6KgCZBKQ98",
+            authDomain: "the-she-talks.firebaseapp.com",
+            projectId: "the-she-talks",
+            storageBucket: "the-she-talks.firebasestorage.app",
+            messagingSenderId: "965038343158",
+            appId: "1:965038343158:web:b6d5845f2d173a595abdd7",
+            measurementId: "G-1RWHC9F43D"
+        };
+
+        // Gemini API configuration
+        const GEMINI_API_KEY = "AIzaSyDNOSHGZftnCeXHHVE7xkx4n5CNS6l4qAg";
+        const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Survey state
+        let currentQuestionIndex = 0;
+        let answers = {};
+        let visitedQuestions = [0];
+        let totalQuestionsToAnswer = 30; // Will be recalculated based on branching
+        let showingSummary = false;
+        let aiSummary = null;
+        let summaryConfirmed = false;
+
+        // Load draft from localStorage on init
+        const savedDraft = localStorage.getItem('survey_draft');
+        if (savedDraft) {
+            const draft = JSON.parse(savedDraft);
+            if (confirm('We found a saved draft. Would you like to continue where you left off?')) {
+                answers = draft.answers || {};
+                currentQuestionIndex = draft.currentQuestionIndex || 0;
+                visitedQuestions = draft.visitedQuestions || [0];
+            }
+        }
+
+        // Auto-save to localStorage
+        function saveDraft() {
+            const draft = {
+                answers,
+                currentQuestionIndex,
+                visitedQuestions,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('survey_draft', JSON.stringify(draft));
+        }
+
+        // Clear draft after submission
+        function clearDraft() {
+            localStorage.removeItem('survey_draft');
+        }
+
+        // All survey questions definition
+        const questions = [
+            // SECTION 1: Screening & Demographics
+            { id: 'Q1', section: 'Demographics', question: 'What is your age group?', type: 'single', required: true, options: ['18-24', '25-34', '35-44', '45-54', '55+'] },
+            { id: 'Q2', section: 'Demographics', question: 'What is your current relationship status?', type: 'single', required: true, options: ['Single (not actively dating)', 'Single (actively dating)', 'In a relationship/partnered', 'Married/Domestic partnership', 'Divorced/Separated', 'Widowed'] },
+            { id: 'Q3', section: 'Demographics', question: 'Do you currently have a partner?', type: 'single', required: true, options: ['Yes', 'No'] },
+            { id: 'Q4', section: 'Demographics', question: 'How long have you been in your current relationship?', type: 'single', required: true, options: ['Less than 6 months', '6 months - 2 years', '2-5 years', '5-10 years', '10+ years'] },
+            
+            // SECTION 2: Health Tracking Behavior
+            { id: 'Q5', section: 'Health Tracking', question: 'Do you currently track any aspect of your health?', type: 'single', required: true, options: ['Yes, using an app', 'Yes, using paper/journal', 'No, but I\'ve tried before', 'No, never tried'] },
+            { id: 'Q6', section: 'Health Tracking', question: 'What aspects of your health do you track?', type: 'multiple', required: true, options: ['Menstrual cycle', 'Fertility/ovulation', 'Symptoms (physical)', 'Moods/emotions', 'Exercise/fitness', 'Sleep', 'Nutrition/diet', 'Medications', 'Mental health', 'Sexual activity', 'Other'] },
+            { id: 'Q7', section: 'Health Tracking', question: 'What prevents you from tracking or why did you stop?', type: 'multiple', required: true, options: ['Too time-consuming', 'Forgot to update regularly', 'App was too complicated', 'Felt like it wasn\'t helping', 'Privacy concerns', 'Partner didn\'t understand/support it', 'Couldn\'t share insights with my partner', 'No actionable insights provided', 'Other'] },
+            { id: 'Q8', section: 'Health Tracking', question: 'How important is it for you to understand your body patterns?', type: 'scale-5', required: true, scaleLabels: ['Not important', 'Extremely important'] },
+            { id: 'Q9', section: 'Health Tracking', question: 'Have you ever felt dismissed by healthcare providers regarding your health concerns?', type: 'single', required: true, options: ['Yes, frequently', 'Yes, occasionally', 'Rarely', 'Never'] },
+            
+            // SECTION 3: Partner Communication (Q10-Q17)
+            { id: 'Q10', section: 'Partner Communication', question: 'How comfortable are you discussing these topics with your partner?', type: 'matrix', required: true, rows: ['Menstrual cycle', 'Physical symptoms (cramps, pain)', 'Mood changes/emotional states', 'Sexual desires/concerns', 'Fertility/pregnancy planning', 'Mental health struggles'], columns: ['Very Uncomfortable', 'Uncomfortable', 'Neutral', 'Comfortable', 'Very Comfortable'] },
+            { id: 'Q11', section: 'Partner Communication', question: 'Does your partner understand how your cycle affects you?', type: 'single', required: true, options: ['Yes, completely', 'Somewhat', 'Not really', 'Not at all', 'I haven\'t discussed it with them'] },
+            { id: 'Q12', section: 'Partner Communication', question: 'How often does your partner dismiss your health concerns?', type: 'single', required: true, options: ['Never', 'Rarely', 'Sometimes', 'Often', 'Always'] },
+            { id: 'Q13', section: 'Partner Communication', question: 'Has lack of understanding caused conflict in your relationship?', type: 'single', required: true, options: ['Yes, frequently', 'Yes, occasionally', 'Rarely', 'Never'] },
+            { id: 'Q14', section: 'Partner Communication', question: 'What types of conflicts have occurred?', type: 'multiple', required: true, options: ['Partner doesn\'t understand why I feel unwell', 'Partner thinks I\'m overreacting to symptoms', 'Disagreements about intimacy during certain times', 'Partner doesn\'t help/support when I need it', 'Lack of empathy during emotional changes', 'Arguments about family planning/contraception', 'Other'] },
+            { id: 'Q15', section: 'Partner Communication', question: 'Would you use a tool to help your partner understand your health better?', type: 'single', required: true, options: ['Yes, definitely', 'Yes, maybe', 'Not sure', 'Probably not', 'Definitely not'] },
+            { id: 'Q16', section: 'Partner Communication', question: 'What features would be most helpful for partner involvement?', type: 'multiple', required: true, options: ['Gentle reminders when I might need support', 'Educational content about women\'s health', 'Visibility into my mood/symptom patterns', 'Suggestions for how to support me', 'Ability to ask questions anonymously', 'Understanding my cycle phases', 'Help with household tasks during difficult times', 'Other'] },
+            { id: 'Q17', section: 'Partner Communication', question: 'Share a time when your partner misunderstood your health needs (optional)', type: 'textarea', required: false, placeholder: 'Your story here...' },
+            
+            // SECTION 4: Pain Points & Unmet Needs
+            { id: 'Q18', section: 'Pain Points', question: 'What is your biggest frustration with managing your health?', type: 'single', required: true, options: ['Not understanding what\'s happening to my body', 'Partner/family doesn\'t understand my struggles', 'Healthcare providers don\'t listen', 'Can\'t find reliable health information', 'Feeling alone in my experience', 'Unpredictable symptoms disrupting my life', 'Managing symptoms without help', 'Other'] },
+            { id: 'Q19', section: 'Pain Points', question: 'How much do these challenges impact your daily life?', type: 'matrix-scale', required: true, rows: ['Physical symptoms (pain, fatigue, etc.)', 'Emotional/mood changes', 'Partner misunderstandings', 'Family/social misunderstandings', 'Work productivity', 'Social isolation', 'Intimate relationship quality'], scale: 5, scaleLabels: ['Not at all', 'Significantly impacts'] },
+            { id: 'Q20', section: 'Pain Points', question: 'Do you feel you need to "prove" your symptoms to others?', type: 'single', required: true, options: ['Yes, constantly', 'Yes, sometimes', 'Rarely', 'Never'] },
+            { id: 'Q21', section: 'Pain Points', question: 'What would have the biggest positive impact on your health?', type: 'single', required: true, options: ['Better understanding of my own body', 'Partner understanding and support', 'Predictive insights about symptoms', 'Community of women with similar experiences', 'Better communication with doctors', 'Personalized health recommendations', 'Mental health support', 'Other'] },
+            { id: 'Q22', section: 'Pain Points', question: 'How often do you wish you had better communication tools?', type: 'single', required: true, options: ['Daily', 'Weekly', 'Monthly', 'Rarely', 'Never'] },
+            { id: 'Q23', section: 'Pain Points', question: 'What is the ONE thing that would make managing your health easier?', type: 'textarea', required: true, placeholder: 'Describe the one thing...' },
+            
+            // SECTION 5: AI & Technology
+            { id: 'Q24', section: 'Technology', question: 'Would you trust an AI health assistant?', type: 'single', required: true, options: ['Yes, definitely', 'Yes, with doctor validation', 'Maybe, if it\'s accurate', 'Probably not', 'Definitely not'] },
+            { id: 'Q25', section: 'Technology', question: 'Which AI features would be most valuable to you? (Select up to 3)', type: 'multiple', required: true, maxSelections: 3, options: ['Predicting when symptoms will occur', 'Explaining why I feel a certain way', 'Suggesting how to manage symptoms', 'Translating my health data for my partner', 'Generating reports for doctors', 'Answering health questions 24/7', 'Connecting me with similar experiences', 'Personalized wellness plans', 'Other'] },
+            { id: 'Q26', section: 'Technology', question: 'How important is privacy to you?', type: 'single', required: true, options: ['Extremely important - must be anonymous', 'Very important - encrypted/secure', 'Moderately important', 'Slightly important', 'Not important'] },
+            { id: 'Q27', section: 'Technology', question: 'Would you be willing to pay for this tool?', type: 'payment', required: true, options: ['Yes, one-time purchase', 'Yes, monthly subscription', 'Yes, annual subscription', 'Only if free with ads', 'No, must be completely free'] },
+            
+            // SECTION 6: Final Insights
+            { id: 'Q28', section: 'Final Insights', question: 'What is your current reproductive health stage?', type: 'single', required: true, options: ['Not thinking about pregnancy', 'Trying to conceive', 'Currently pregnant', 'Postpartum', 'Preventing pregnancy', 'Perimenopause/Menopause', 'Post-menopause', 'Dealing with reproductive health condition (PCOS, endometriosis, etc.)'] },
+            { id: 'Q29', section: 'Final Insights', question: 'Describe your perfect health companion - what would it do for you?', type: 'textarea', required: true, placeholder: 'Describe your ideal health tool...' },
+            { id: 'Q30', section: 'Final Insights', question: 'Would you like to participate in follow-up interviews?', type: 'contact', required: false, placeholder: 'Enter your email or phone (optional)' }
+        ];
+
+        // Branching logic
+        function getNextQuestion(currentIdx, answers) {
+            const currentQ = questions[currentIdx];
+            const answer = answers[currentQ.id];
+
+            // Q2 branching
+            if (currentQ.id === 'Q2') {
+                if (['Single (not actively dating)', 'Widowed'].includes(answer)) {
+                    return 4; // Skip to Q5
+                }
+                return currentIdx + 1;
+            }
+
+            // Q3 branching
+            if (currentQ.id === 'Q3') {
+                if (answer === 'No') {
+                    return 4; // Skip to Q5
+                }
+                return currentIdx + 1; // Show Q4
+            }
+
+            // Q5 branching
+            if (currentQ.id === 'Q5') {
+                if (answer === 'No, never tried') {
+                    return 7; // Skip to Q8
+                }
+                if (answer === 'No, but I\'ve tried before') {
+                    return 6; // Show Q7
+                }
+                return 5; // Show Q6
+            }
+
+            // Q9 - Check if has partner for section 3
+            if (currentQ.id === 'Q9') {
+                const hasPartner = answers['Q3'] === 'Yes';
+                if (!hasPartner) {
+                    return 17; // Skip to Q18 (section 4)
+                }
+                return currentIdx + 1; // Show Q10
+            }
+
+            // Q13 branching
+            if (currentQ.id === 'Q13') {
+                if (['Rarely', 'Never'].includes(answer)) {
+                    return 14; // Skip to Q15
+                }
+                return currentIdx + 1; // Show Q14
+            }
+
+            // Default: next question
+            return currentIdx + 1;
+        }
+
+        function getPreviousQuestion() {
+            if (visitedQuestions.length <= 1) return 0;
+            visitedQuestions.pop(); // Remove current
+            return visitedQuestions[visitedQuestions.length - 1];
+        }
+
+        function calculateProgress() {
+            const answeredCount = Object.keys(answers).length;
+            const currentProgress = Math.min(((visitedQuestions.length) / 30) * 100, 100);
+            return currentProgress;
+        }
+
+        function renderQuestion() {
+            const question = questions[currentQuestionIndex];
+            const progress = calculateProgress();
+
+            document.getElementById('progressText').textContent = `${visitedQuestions.length}/${totalQuestionsToAnswer}`;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            document.getElementById('sectionLabel').textContent = question.section.toUpperCase();
+            document.getElementById('questionTitle').textContent = question.question;
+            document.getElementById('validationError').classList.add('hidden');
+
+            const content = document.getElementById('questionContent');
+            let html = '';
+
+            const currentAnswer = answers[question.id];
+
+            switch (question.type) {
+                case 'single':
+                    html = '<div class="options-container">';
+                    question.options.forEach(opt => {
+                        const selected = currentAnswer === opt ? 'selected' : '';
+                        html += `
+                            <div class="option-item ${selected}" onclick="selectOption('${question.id}', '${opt.replace(/'/g, "\\'")}')">
+                                <div class="radio-circle"></div>
+                                <span class="option-label">${opt}</span>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                    break;
+
+                case 'multiple':
+                    const maxNote = question.maxSelections ? `<div class="max-selections-note">Select up to ${question.maxSelections} options</div>` : '';
+                    html = '<div class="options-container">';
+                    question.options.forEach(opt => {
+                        const selected = Array.isArray(currentAnswer) && currentAnswer.includes(opt) ? 'selected' : '';
+                        html += `
+                            <div class="option-item ${selected}" onclick="toggleMultiple('${question.id}', '${opt.replace(/'/g, "\\'")}', ${question.maxSelections || 999})">
+                                <div class="checkbox-box">
+                                    <span class="checkbox-mark">✓</span>
+                                </div>
+                                <span class="option-label">${opt}</span>
+                            </div>
+                        `;
+                    });
+                    html += '</div>' + maxNote;
+                    break;
+
+                case 'scale-5':
+                    html = '<div class="scale-container"><div class="scale-buttons">';
+                    for (let i = 1; i <= 5; i++) {
+                        const selected = currentAnswer === i ? 'selected' : '';
+                        html += `<button class="scale-button ${selected}" onclick="selectScale('${question.id}', ${i})">${i}</button>`;
+                    }
+                    html += `</div><div class="scale-labels">
+                        <span class="scale-label">${question.scaleLabels[0]}</span>
+                        <span class="scale-label">${question.scaleLabels[1]}</span>
+                    </div></div>`;
+                    break;
+
+                case 'matrix':
+                    html = '<div class="matrix-container">';
+                    question.rows.forEach((row, rowIdx) => {
+                        html += `<div class="matrix-row">
+                            <div class="matrix-row-label">${row}</div>
+                            <div class="matrix-options">`;
+                        question.columns.forEach((col, colIdx) => {
+                            const selected = currentAnswer && currentAnswer[rowIdx] === colIdx ? 'selected' : '';
+                            html += `<div class="matrix-option ${selected}" onclick="selectMatrix('${question.id}', ${rowIdx}, ${colIdx})">${col}</div>`;
+                        });
+                        html += '</div></div>';
+                    });
+                    html += '</div>';
+                    break;
+
+                case 'matrix-scale':
+                    html = '<div class="matrix-container">';
+                    question.rows.forEach((row, rowIdx) => {
+                        html += `<div class="matrix-row">
+                            <div class="matrix-row-label">${row}</div>
+                            <div class="matrix-options">`;
+                        for (let i = 1; i <= question.scale; i++) {
+                            const selected = currentAnswer && currentAnswer[rowIdx] === i ? 'selected' : '';
+                            html += `<div class="matrix-option ${selected}" onclick="selectMatrixScale('${question.id}', ${rowIdx}, ${i})">${i}</div>`;
+                        }
+                        html += '</div></div>';
+                    });
+                    html += `<div class="scale-labels" style="margin-top: 12px;">
+                        <span class="scale-label">${question.scaleLabels[0]}</span>
+                        <span class="scale-label">${question.scaleLabels[1]}</span>
+                    </div></div>`;
+                    break;
+
+                case 'textarea':
+                    html = `<textarea class="textarea" placeholder="${question.placeholder}" oninput="updateText('${question.id}', this.value)">${currentAnswer || ''}</textarea>`;
+                    break;
+
+                case 'payment':
+                    html = '<div class="options-container">';
+                    question.options.forEach(opt => {
+                        const selected = currentAnswer && currentAnswer.type === opt ? 'selected' : '';
+                        html += `
+                            <div class="option-item ${selected}" onclick="selectPayment('${question.id}', '${opt.replace(/'/g, "\\'")}')">
+                                <div class="radio-circle"></div>
+                                <span class="option-label">${opt}</span>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                    if (currentAnswer && ['Yes, one-time purchase', 'Yes, monthly subscription', 'Yes, annual subscription'].includes(currentAnswer.type)) {
+                        html += `<div class="number-input-container">
+                            <span class="currency-symbol">$</span>
+                            <input type="number" class="number-input" placeholder="Amount" value="${currentAnswer.amount || ''}" oninput="updatePaymentAmount('${question.id}', this.value)" min="0" step="1">
+                        </div>`;
+                    }
+                    break;
+
+                case 'contact':
+                    html = `<div class="checkbox-item ${currentAnswer && currentAnswer.participate ? 'selected' : ''}" onclick="toggleContact('${question.id}')">
+                        <div class="checkbox-box">
+                            <span class="checkbox-mark">✓</span>
+                        </div>
+                        <span class="option-label">Yes, I'd like to participate in follow-up interviews</span>
+                    </div>`;
+                    if (currentAnswer && currentAnswer.participate) {
+                        html += `<input type="text" class="text-input" placeholder="${question.placeholder}" value="${currentAnswer.contact || ''}" oninput="updateContact('${question.id}', this.value)" style="margin-top: 12px;">`;
+                    }
+                    break;
+            }
+
+            content.innerHTML = html;
+
+            // Render buttons
+            renderButtons();
+            saveDraft();
+        }
+
+        function renderButtons() {
+            const container = document.getElementById('buttonContainer');
+            const isFirst = currentQuestionIndex === 0;
+            const isLast = currentQuestionIndex === questions.length - 1;
+
+            let html = '';
+            if (!isFirst) {
+                html += `<button class="btn-previous" onclick="goBack()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Previous
+                </button>`;
+            }
+            const nextStyle = isFirst ? 'style="margin-left: auto;"' : '';
+            html += `<button class="btn-next" onclick="goNext()" ${nextStyle}>
+                ${isLast ? 'Submit' : 'Next'}
+                ${!isLast ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round" /></svg>' : ''}
+            </button>`;
+            container.innerHTML = html;
+        }
+
+        // Answer selection functions
+        window.selectOption = function(qId, value) {
+            answers[qId] = value;
+            renderQuestion();
+        };
+
+        window.toggleMultiple = function(qId, value, max) {
+            if (!answers[qId]) answers[qId] = [];
+            const idx = answers[qId].indexOf(value);
+            if (idx > -1) {
+                answers[qId].splice(idx, 1);
+            } else {
+                if (answers[qId].length < max) {
+                    answers[qId].push(value);
+                } else {
+                    showError(`You can only select up to ${max} options`);
+                    return;
+                }
+            }
+            renderQuestion();
+        };
+
+        window.selectScale = function(qId, value) {
+            answers[qId] = value;
+            renderQuestion();
+        };
+
+        window.selectMatrix = function(qId, row, col) {
+            if (!answers[qId]) answers[qId] = {};
+            answers[qId][row] = col;
+            renderQuestion();
+        };
+
+        window.selectMatrixScale = function(qId, row, value) {
+            if (!answers[qId]) answers[qId] = {};
+            answers[qId][row] = value;
+            renderQuestion();
+        };
+
+        window.updateText = function(qId, value) {
+            answers[qId] = value;
+            saveDraft();
+        };
+
+        window.selectPayment = function(qId, type) {
+            answers[qId] = { type, amount: answers[qId]?.amount || '' };
+            renderQuestion();
+        };
+
+        window.updatePaymentAmount = function(qId, amount) {
+            if (answers[qId]) {
+                answers[qId].amount = amount;
+                saveDraft();
+            }
+        };
+
+        window.toggleContact = function(qId) {
+            if (!answers[qId]) answers[qId] = { participate: false, contact: '' };
+            answers[qId].participate = !answers[qId].participate;
+            renderQuestion();
+        };
+
+        window.updateContact = function(qId, contact) {
+            if (answers[qId]) {
+                answers[qId].contact = contact;
+                saveDraft();
+            }
+        };
+
+        function showError(message) {
+            const errorEl = document.getElementById('validationError');
+            errorEl.textContent = message;
+            errorEl.classList.remove('hidden');
+        }
+
+        function validateCurrentQuestion() {
+            const question = questions[currentQuestionIndex];
+            const answer = answers[question.id];
+
+            if (!question.required && !answer) return true;
+
+            if (!answer) {
+                showError('This question is required');
+                return false;
+            }
+
+            // Validate based on type
+            if (question.type === 'multiple' && Array.isArray(answer) && answer.length === 0) {
+                showError('Please select at least one option');
+                return false;
+            }
+
+            if (question.type === 'matrix') {
+                const completedRows = Object.keys(answer).length;
+                if (completedRows < question.rows.length) {
+                    showError('Please answer all rows');
+                    return false;
+                }
+            }
+
+            if (question.type === 'matrix-scale') {
+                const completedRows = Object.keys(answer).length;
+                if (completedRows < question.rows.length) {
+                    showError('Please rate all items');
+                    return false;
+                }
+            }
+
+            if (question.type === 'contact' && answer.participate && !answer.contact) {
+                showError('Please provide your contact information');
+                return false;
+            }
+
+            if (question.type === 'payment' && ['Yes, one-time purchase', 'Yes, monthly subscription', 'Yes, annual subscription'].includes(answer.type) && !answer.amount) {
+                showError('Please enter an amount');
+                return false;
+            }
+
+            return true;
+        }
+
+        window.goNext = function() {
+            if (!validateCurrentQuestion()) return;
+
+            if (currentQuestionIndex === questions.length - 1) {
+                // Last question - show summary instead of submitting
+                showSummaryScreen();
+                return;
+            }
+
+            const nextIdx = getNextQuestion(currentQuestionIndex, answers);
+            currentQuestionIndex = nextIdx;
+            visitedQuestions.push(nextIdx);
+            renderQuestion();
+        };
+
+        window.goBack = function() {
+            const prevIdx = getPreviousQuestion();
+            currentQuestionIndex = prevIdx;
+            renderQuestion();
+        };
+
+        async function showSummaryScreen() {
+            document.getElementById('surveyContent').classList.add('hidden');
+            document.getElementById('summaryContent').classList.remove('hidden');
+            showingSummary = true;
+
+            // Generate AI summary
+            await generateAISummary();
+        }
+
+        async function generateAISummary() {
+            const summaryBody = document.getElementById('summaryBody');
+            summaryBody.innerHTML = `
+                <div class="summary-loading">
+                    <div class="loading-spinner"></div>
+                    <p>Generating your personalized summary...</p>
+                </div>
+            `;
+
+            try {
+                const prompt = createSummaryPrompt(answers);
+                
+                const response = await fetch(GEMINI_API_URL + '?key=' + GEMINI_API_KEY, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{ text: prompt }]
+                        }],
+                        generationConfig: {
+                            temperature: 0.7,
+                            maxOutputTokens: 1024,
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to generate summary');
+                }
+
+                const data = await response.json();
+                aiSummary = data.candidates[0].content.parts[0].text;
+                
+                displaySummary(aiSummary);
+                document.getElementById('summaryActions').classList.remove('hidden');
+
+            } catch (error) {
+                console.error('Error generating summary:', error);
+                summaryBody.innerHTML = `
+                    <div class="summary-error">
+                        <p>We couldn't generate your summary. You can still submit your responses.</p>
+                        <button class="retry-button" onclick="generateAISummary()">Try Again</button>
+                    </div>
+                `;
+                document.getElementById('summaryActions').classList.remove('hidden');
+            }
+        }
+
+        function createSummaryPrompt(answers) {
+            const hasPartner = answers['Q3'] === 'Yes';
+            
+            return `You are a compassionate women's health assistant. A woman has just completed a survey about her health experiences and needs. Summarize her responses in a warm, validating tone.
+
+Survey Responses:
+${JSON.stringify(answers, null, 2)}
+
+Create a summary with these sections:
+
+1. **Your Health Journey**
+   - Current tracking behavior and what matters to you
+   - Health priorities and goals
+
+2. **Your Experiences**
+   - Key frustrations and challenges you face
+   - How these impact your daily life
+
+${hasPartner ? `3. **Relationship & Communication**
+   - Your partner's understanding level
+   - Communication gaps identified
+   - Conflicts experienced
+
+` : ''}4. **What You're Looking For**
+   - Your biggest need right now
+   - Features that would help most
+   - Your ideal health companion vision
+
+5. **Quick Stats**
+   - Age group, life stage, relationship status
+   - Privacy preference, AI trust level
+
+Important guidelines:
+- Use warm, empathetic language ("You mentioned...", "It sounds like...")
+- Validate their experiences ("Many women feel this way")
+- Keep it concise (200-300 words total)
+- Use bullet points for readability
+- Highlight the most important points
+- Do NOT include raw question numbers or codes
+- Group related responses together
+- Format with markdown headers (###) and bullets (-)
+
+Output as clean markdown.`;
+        }
+
+        function displaySummary(markdownText) {
+            // Simple markdown to HTML conversion
+            let html = markdownText
+                .replace(/###\s+(.+)/g, '<h3>$1</h3>')
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/^-\s+(.+)/gm, '<li>$1</li>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/<li>/g, '<ul><li>')
+                .replace(/<\/li>(?![\s\S]*<li>)/g, '</li></ul>');
+
+            // Wrap in sections
+            const sections = html.split('<h3>').filter(s => s.trim());
+            let finalHtml = '';
+
+            sections.forEach(section => {
+                const [title, ...content] = section.split('</h3>');
+                finalHtml += `
+                    <div class="summary-section">
+                        <h3>${title}</h3>
+                        <div>${content.join('</h3>')}</div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('summaryBody').innerHTML = finalHtml;
+        }
+
+        window.toggleSubmitButton = function() {
+            const checkbox = document.getElementById('confirmCheck');
+            const submitBtn = document.getElementById('finalSubmitBtn');
+            submitBtn.disabled = !checkbox.checked;
+        };
+
+        window.goBackToEdit = function() {
+            document.getElementById('summaryContent').classList.add('hidden');
+            document.getElementById('surveyContent').classList.remove('hidden');
+            showingSummary = false;
+            summaryConfirmed = false;
+            document.getElementById('confirmCheck').checked = false;
+            renderQuestion();
+        };
+
+        window.finalSubmit = async function() {
+            const btn = document.getElementById('finalSubmitBtn');
+            btn.disabled = true;
+            btn.textContent = 'Submitting...';
+
+            try {
+                const responsesRef = collection(db, 'survey_responses');
+
+                const responseData = {
+                    answers,
+                    aiSummary: aiSummary || null,
+                    submittedAt: serverTimestamp(),
+                    completed: true,
+                    questionsAnswered: Object.keys(answers).length,
+                    completionTime: Date.now() - (JSON.parse(localStorage.getItem('survey_draft'))?.timestamp || Date.now())
+                };
+
+                await addDoc(responsesRef, responseData);
+
+                document.getElementById('summaryContent').classList.add('hidden');
+                document.getElementById('successContent').classList.remove('hidden');
+                clearDraft();
+
+                setTimeout(() => {
+                    window.location.href = 'https://theshetalks.club';
+                }, 4000);
+
+            } catch (error) {
+                console.error('Error submitting survey:', error);
+                alert('Failed to submit. Please try again.');
+                btn.disabled = false;
+                btn.textContent = 'Submit Survey';
+            }
+        };
+
+        window.closeSurvey = function() {
+            if (Object.keys(answers).length > 0) {
+                if (confirm('Your progress will be saved. Are you sure you want to exit?')) {
+                    saveDraft();
+                    window.location.href = 'https://theshetalks.club';
+                }
+            } else {
+                window.location.href = 'https://theshetalks.club';
+            }
+        };
+
+        // Initialize
+        renderQuestion();
+    </script>
+</body>
+</html>

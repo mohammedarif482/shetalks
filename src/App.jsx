@@ -1,49 +1,57 @@
-import { useState, useEffect } from 'react'
-import Header from './components/Header'
-import Hero from './components/Hero'
-import Cards from './components/Cards'
-import SocialFooter from './components/SocialFooter'
-import ComingSoon from './components/ComingSoon'
-import ArohaEvent from './components/ArohaEvent'
-import ArohaTerms from './components/ArohaTerms'
-import ArohaTicketOffer from './components/ArohaTicketOffer'
-import './App.css'
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Cards from './components/Cards';
+import SocialFooter from './components/SocialFooter';
+import ComingSoon from './components/ComingSoon';
+import ArohaEvent from './components/ArohaEvent';
+import ArohaTerms from './components/ArohaTerms';
+import ArohaTicketOffer from './components/ArohaTicketOffer';
+import Survey from './components/Survey';
 
-function App() {
-  // Check if we're on the aroha subdomain
+// Admin imports
+import AdminLogin from './admin/AdminLogin';
+import AdminDashboard from './admin/AdminDashboard';
+import ResponsesList from './admin/ResponsesList';
+import ResponseView from './admin/ResponseView';
+import InsightsPage from './admin/InsightsPage';
+import ProtectedRoute from './admin/ProtectedRoute';
+
+import './App.css';
+
+function MainApp() {
   const resolveActivePage = () => {
-    const { hostname, pathname } = window.location
-    const isArohaSubdomain = hostname === 'aroha.theshetalks.club'
+    const { hostname, pathname } = window.location;
+    const isArohaSubdomain = hostname === 'aroha.theshetalks.club';
     if (pathname === '/aroha/terms' || pathname.includes('/terms')) {
-      return 'aroha-terms'
+      return 'aroha-terms';
     }
     if (
       pathname === '/aroha/claim-ticket-offer' ||
       pathname.includes('/claim-ticket-offer') ||
       (isArohaSubdomain && pathname === '/claim-ticket-offer')
     ) {
-      return 'aroha-ticket-offer'
+      return 'aroha-ticket-offer';
     }
     if (isArohaSubdomain) {
-      return 'aroha'
+      return 'aroha';
     }
-    return 'community'
-  }
+    return 'community';
+  };
 
-  const [activePage, setActivePage] = useState(resolveActivePage)
+  const [activePage, setActivePage] = useState(resolveActivePage);
 
-  // Update active page based on pathname changes
   useEffect(() => {
-    setActivePage(resolveActivePage())
-  }, [])
+    setActivePage(resolveActivePage());
+  }, []);
 
   const handlePageChange = (page) => {
-    // Don't allow navigation away from aroha page when on aroha subdomain
     if (window.location.hostname === 'aroha.theshetalks.club') {
-      return
+      return;
     }
-    setActivePage(page)
-  }
+    setActivePage(page);
+  };
 
   const renderPageContent = () => {
     switch (activePage) {
@@ -54,19 +62,21 @@ function App() {
             <Cards onPageChange={handlePageChange} />
             <SocialFooter />
           </>
-        )
+        );
       case 'events':
-        return <ComingSoon pageName="Events" onPageChange={handlePageChange} />
+        return <ComingSoon pageName="Events" onPageChange={handlePageChange} />;
       case 'launches':
-        return <ComingSoon pageName="Launches" />
+        return <ComingSoon pageName="Launches" />;
       case 'updates':
-        return <ComingSoon pageName="Updates" />
+        return <ComingSoon pageName="Updates" />;
       case 'aroha':
-        return <ArohaEvent />
+        return <ArohaEvent />;
       case 'aroha-terms':
-        return <ArohaTerms />
+        return <ArohaTerms />;
       case 'aroha-ticket-offer':
-        return <ArohaTicketOffer />
+        return <ArohaTicketOffer />;
+      case 'survey':
+        return <Survey onClose={() => handlePageChange('community')} />;
       default:
         return (
           <>
@@ -74,12 +84,11 @@ function App() {
             <Cards onPageChange={handlePageChange} />
             <SocialFooter />
           </>
-        )
+        );
     }
-  }
+  };
 
-  // Don't show header on terms page or ticket offer page
-  const showHeader = activePage !== 'aroha-terms' && activePage !== 'aroha-ticket-offer'
+  const showHeader = activePage !== 'aroha-terms' && activePage !== 'aroha-ticket-offer' && activePage !== 'survey';
 
   return (
     <div className="app">
@@ -88,7 +97,56 @@ function App() {
         {renderPageContent()}
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/dashboard/responses"
+          element={
+            <ProtectedRoute>
+              <ResponsesList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/dashboard/response/:id"
+          element={
+            <ProtectedRoute>
+              <ResponseView />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/dashboard/insights"
+          element={
+            <ProtectedRoute>
+              <InsightsPage />
+            </ProtectedRoute>
+          }
+        />
+        
+        {/* Redirect /admin to /admin/login */}
+        <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
+        
+        {/* Main App Routes - everything else */}
+        <Route path="*" element={<MainApp />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;

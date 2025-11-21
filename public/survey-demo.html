@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Demo - All Question Types</title>
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #FFF5F0;
+            --primary-pink: #EB7470;
+            --primary-hover: #D85D59;
+            --light-pink: #FDDDCF;
+            --card-border: #DDBFB5;
+            --text-dark: #454545;
+            --text-muted: #8A8A8A;
+            --text-white: #FFFFFF;
+            --white: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --selection-bg: #FFF0EC;
+            --border-default: #E8DDD8;
+            --border-hover: #DDBFB5;
+            --success: #6BBF7B;
+            --font-body: 'Albert Sans', sans-serif;
+            --radius-card: 28px;
+            --radius-button: 50px;
+            --radius-input: 12px;
+            --radius-option: 14px;
+            --shadow-card: 0 8px 32px rgba(235, 116, 112, 0.12);
+            --shadow-button: 0 4px 16px rgba(235, 116, 112, 0.25);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-dark);
+            padding: 40px 20px;
+        }
+
+        .demo-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .demo-header h1 {
+            font-size: 32px;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .demo-header p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .demo-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-card);
+            padding: 28px 24px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .demo-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-pink);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary-pink);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .question-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.45;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            background: var(--white);
+            border: 1.5px solid var(--border-default);
+            border-radius: var(--radius-option);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-item:hover, .option-item.selected {
+            border-color: var(--primary-pink);
+            background: var(--selection-bg);
+        }
+
+        .radio-circle {
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            border-radius: 50%;
+            border: 2px solid var(--border-default);
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .option-item.selected .radio-circle {
+            border-color: var(--primary-pink);
+            background: var(--primary-pink);
+        }
+
+        .radio-circle::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--white);
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.2s ease;
+        }
+
+        .option-item.selected .radio-circle::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .option-label {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-dark);
+            line-height: 1.35;
+        }
+
+        .option-item.selected .option-label {
+            font-weight: 500;
+        }
+
+        .scale-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .scale-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .scale-button {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-default);
+            background: var(--white);
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .scale-button:hover {
+            border-color: var(--primary-pink);
+            color: var(--primary-pink);
+        }
+
+        .scale-button.selected {
+            background: var(--primary-pink);
+            border-color: var(--primary-pink);
+            color: var(--white);
+            transform: scale(1.08);
+            box-shadow: 0 4px 12px rgba(235, 116, 112, 0.3);
+        }
+
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 260px;
+        }
+
+        .scale-label {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .likert-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .likert-track {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+        }
+
+        .likert-track::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 24px;
+            right: 24px;
+            height: 2px;
+            background: var(--border-default);
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+
+        .likert-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2.5px solid var(--border-default);
+            background: var(--white);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .likert-dot:hover {
+            border-color: var(--primary-pink);
+            transform: scale(1.15);
+        }
+
+        .likert-dot.selected {
+            background: var(--primary-pink);
+            border-color: var(--primary-pink);
+            transform: scale(1.2);
+            box-shadow: 0 3px 12px rgba(235, 116, 112, 0.35);
+        }
+
+        .likert-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+
+        .likert-label {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            color: var(--text-dark);
+            background: var(--white);
+            border: 1.5px solid var(--border-default);
+            border-radius: var(--radius-input);
+            outline: none;
+            font-family: inherit;
+        }
+
+        .text-input:focus {
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 4px rgba(235, 116, 112, 0.1);
+        }
+
+        @media (max-width: 800px) {
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-header">
+        <h1>Survey Design - All Question Types</h1>
+        <p>Pixel-perfect implementation following the design specification</p>
+    </div>
+
+    <div class="demo-grid">
+        <!-- Radio Question -->
+        <div class="demo-card">
+            <div class="demo-title">Radio Selection</div>
+            <div class="section-label">Demographics</div>
+            <h2 class="question-title">What is your age group?</h2>
+            <div class="options-container">
+                <div class="option-item selected">
+                    <div class="radio-circle"></div>
+                    <span class="option-label">18-24</span>
+                </div>
+                <div class="option-item">
+                    <div class="radio-circle"></div>
+                    <span class="option-label">25-34</span>
+                </div>
+                <div class="option-item">
+                    <div class="radio-circle"></div>
+                    <span class="option-label">35-44</span>
+                </div>
+                <div class="option-item">
+                    <div class="radio-circle"></div>
+                    <span class="option-label">45-54</span>
+                </div>
+                <div class="option-item">
+                    <div class="radio-circle"></div>
+                    <span class="option-label">55+</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scale Question -->
+        <div class="demo-card">
+            <div class="demo-title">Scale (1-5)</div>
+            <div class="section-label">Experience</div>
+            <h2 class="question-title">How satisfied are you with your experience?</h2>
+            <div class="scale-container">
+                <div class="scale-buttons">
+                    <button class="scale-button">1</button>
+                    <button class="scale-button">2</button>
+                    <button class="scale-button selected">3</button>
+                    <button class="scale-button">4</button>
+                    <button class="scale-button">5</button>
+                </div>
+                <div class="scale-labels">
+                    <span class="scale-label">Very dissatisfied</span>
+                    <span class="scale-label">Very satisfied</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Likert Scale -->
+        <div class="demo-card">
+            <div class="demo-title">Likert Scale (7 points)</div>
+            <div class="section-label">Communication</div>
+            <h2 class="question-title">I feel comfortable discussing health topics with my partner</h2>
+            <div class="likert-container">
+                <div class="likert-track">
+                    <div class="likert-dot"></div>
+                    <div class="likert-dot"></div>
+                    <div class="likert-dot"></div>
+                    <div class="likert-dot"></div>
+                    <div class="likert-dot selected"></div>
+                    <div class="likert-dot"></div>
+                    <div class="likert-dot"></div>
+                </div>
+                <div class="likert-labels">
+                    <span class="likert-label">Totally disagree</span>
+                    <span class="likert-label">Totally agree</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Text Input -->
+        <div class="demo-card">
+            <div class="demo-title">Text Input</div>
+            <div class="section-label">Feedback</div>
+            <h2 class="question-title">Tell us something that keeps you coming back</h2>
+            <input type="text" class="text-input" placeholder="Tell us more..." value="The supportive community and valuable content">
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px; color: var(--text-muted);">
+        <p>
+            <a href="/survey.html" style="color: var(--primary-pink); text-decoration: none; font-weight: 600;">
+                → Try the full interactive survey
+            </a>
+        </p>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Women's Health Survey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #FFF5F0;
+            --primary-pink: #EB7470;
+            --primary-hover: #D85D59;
+            --light-pink: #FDDDCF;
+            --card-border: #DDBFB5;
+            --text-dark: #454545;
+            --text-muted: #8A8A8A;
+            --text-white: #FFFFFF;
+            --white: #FFFFFF;
+            --selection-bg: #FFF0EC;
+            --border-default: #E8DDD8;
+            --font-body: 'Albert Sans', sans-serif;
+            --radius-card: 28px;
+            --radius-button: 50px;
+            --shadow-card: 0 8px 32px rgba(235, 116, 112, 0.12);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-pink);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            margin-bottom: 24px;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .last-updated {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Content */
+        .content {
+            background: var(--white);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-card);
+            padding: 48px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--selection-bg);
+        }
+
+        .section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 24px 0 12px;
+        }
+
+        .section p {
+            font-size: 16px;
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .section ul, .section ol {
+            margin: 16px 0 16px 24px;
+        }
+
+        .section li {
+            font-size: 16px;
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: var(--selection-bg);
+            border-left: 4px solid var(--primary-pink);
+            padding: 20px 24px;
+            margin: 24px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        .contact-box {
+            background: var(--selection-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .contact-box h3 {
+            margin-top: 0;
+        }
+
+        .contact-info {
+            font-size: 16px;
+            color: var(--text-dark);
+        }
+
+        .contact-info strong {
+            color: var(--primary-pink);
+        }
+
+        a {
+            color: var(--primary-pink);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-default);
+        }
+
+        .footer-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 32px;
+            background: var(--primary-pink);
+            color: var(--text-white);
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius-button);
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-button:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content {
+                padding: 32px 24px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .section h2 {
+                font-size: 22px;
+            }
+
+            .section h3 {
+                font-size: 17px;
+            }
+
+            .section p, .section li {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 24px 16px;
+            }
+
+            .content {
+                padding: 24px 20px;
+            }
+
+            .section {
+                margin-bottom: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/survey-landing.html" class="back-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Back to Survey
+            </a>
+            <h1>Privacy Policy & Data Safety</h1>
+            <p class="last-updated">Last Updated: November 21, 2024</p>
+        </div>
+
+        <div class="content">
+            <!-- Section 1: Overview -->
+            <section class="section">
+                <h2>Our Commitment to Your Privacy</h2>
+                <p>We take your privacy seriously. This survey collects information about your health experiences, relationship dynamics, and product preferences. Here's exactly how we protect your data.</p>
+            </section>
+
+            <!-- Section 2: What Data We Collect -->
+            <section class="section">
+                <h2>Information We Collect</h2>
+                
+                <h3>We collect:</h3>
+                <ul>
+                    <li>Demographic information (age group, relationship status)</li>
+                    <li>Health tracking behaviors and preferences</li>
+                    <li>Experiences with health management and partner communication</li>
+                    <li>Product feature preferences and willingness to pay</li>
+                    <li>Optional open-ended responses about your experiences</li>
+                    <li>Optional contact information (only if you consent to follow-up)</li>
+                </ul>
+
+                <h3>We DO NOT collect:</h3>
+                <ul>
+                    <li>Your name (unless you provide it voluntarily)</li>
+                    <li>Precise location data</li>
+                    <li>Payment information</li>
+                    <li>Health records or medical history</li>
+                    <li>Any identifying information unless you explicitly provide it</li>
+                </ul>
+            </section>
+
+            <!-- Section 3: How We Use Your Data -->
+            <section class="section">
+                <h2>How We Use Your Information</h2>
+                
+                <h3>Your responses are used to:</h3>
+                <ul>
+                    <li>Identify gaps in the women's health technology market</li>
+                    <li>Understand common challenges women face</li>
+                    <li>Develop product features that address real needs</li>
+                    <li>Determine target audiences and pricing strategies</li>
+                    <li>Generate anonymized insights and statistics</li>
+                </ul>
+
+                <h3>Your data is NEVER:</h3>
+                <ul>
+                    <li>Sold to third parties</li>
+                    <li>Shared with advertisers</li>
+                    <li>Used to identify you personally</li>
+                    <li>Shared publicly in identifiable form</li>
+                </ul>
+            </section>
+
+            <!-- Section 4: Data Storage & Security -->
+            <section class="section">
+                <h2>How We Protect Your Data</h2>
+                
+                <h3>Security measures:</h3>
+                <ul>
+                    <li>Data stored in secure, encrypted Firebase database</li>
+                    <li>Access restricted to authorized personnel only</li>
+                    <li>Industry-standard encryption protocols</li>
+                    <li>Regular security audits and updates</li>
+                    <li>Automatic data backup and recovery systems</li>
+                </ul>
+
+                <h3>Data retention:</h3>
+                <ul>
+                    <li>Survey responses stored indefinitely for research purposes</li>
+                    <li>All data stored in anonymized format</li>
+                    <li>You can request deletion of your specific response by contacting us</li>
+                </ul>
+            </section>
+
+            <!-- Section 5: Anonymous vs Identifiable -->
+            <section class="section">
+                <h2>Anonymity Options</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>By default, your survey is completely anonymous:</strong></p>
+                    <ul style="margin-top: 12px;">
+                        <li>No personal identifiers required</li>
+                        <li>Responses cannot be traced back to you</li>
+                        <li>We cannot identify who submitted which responses</li>
+                    </ul>
+                </div>
+
+                <h3>If you choose to provide contact information:</h3>
+                <ul>
+                    <li>This is optional and only at the end of the survey</li>
+                    <li>Used solely for potential follow-up interviews</li>
+                    <li>Stored separately from your survey responses</li>
+                    <li>You can request removal at any time</li>
+                </ul>
+            </section>
+
+            <!-- Section 6: Data Sharing -->
+            <section class="section">
+                <h2>Who Has Access to Your Data</h2>
+                
+                <h3>Internal use:</h3>
+                <ul>
+                    <li>Product development team (to analyze gaps and build features)</li>
+                    <li>Researchers (to generate insights and recommendations)</li>
+                    <li>All access is logged and monitored</li>
+                </ul>
+
+                <h3>External sharing:</h3>
+                <ul>
+                    <li>Aggregated, anonymized statistics may be shared publicly (e.g., "60% of respondents experience X")</li>
+                    <li>Individual responses are NEVER shared</li>
+                    <li>No third-party marketing or advertising use</li>
+                    <li>No sale of data to external companies</li>
+                </ul>
+
+                <h3>AI Processing:</h3>
+                <ul>
+                    <li>We use Google Gemini AI to analyze survey responses</li>
+                    <li>Data is sent securely to Gemini API for pattern analysis</li>
+                    <li>Gemini processes data but does not store it permanently</li>
+                    <li>All AI analysis follows Google's privacy and security standards</li>
+                </ul>
+            </section>
+
+            <!-- Section 7: Your Rights -->
+            <section class="section">
+                <h2>Your Data Rights</h2>
+                
+                <h3>You have the right to:</h3>
+                <ul>
+                    <li>Access your survey response (contact us with approximate submission date/time)</li>
+                    <li>Request deletion of your data</li>
+                    <li>Withdraw consent for follow-up contact</li>
+                    <li>Ask questions about how your data is used</li>
+                    <li>Request a copy of aggregated insights (if applicable)</li>
+                </ul>
+
+                <p><strong>How to exercise your rights:</strong><br>
+                Email us at <a href="mailto:privacy@theshetalks.club">privacy@theshetalks.club</a> with your request.</p>
+            </section>
+
+            <!-- Section 8: Cookies & Tracking -->
+            <section class="section">
+                <h2>Cookies and Browser Storage</h2>
+                
+                <h3>We use:</h3>
+                <ul>
+                    <li>Browser localStorage to auto-save your survey progress (so you don't lose answers if you close the browser)</li>
+                    <li>No tracking cookies</li>
+                    <li>No advertising cookies</li>
+                    <li>No analytics cookies</li>
+                </ul>
+
+                <h3>Local storage is:</h3>
+                <ul>
+                    <li>Stored only on your device</li>
+                    <li>Automatically cleared after survey submission</li>
+                    <li>Not accessible to third parties</li>
+                </ul>
+            </section>
+
+            <!-- Section 9: Children's Privacy -->
+            <section class="section">
+                <h2>Age Requirement</h2>
+                <p>This survey is intended for adults aged 18 and over. We do not knowingly collect information from minors. If you are under 18, please do not complete this survey.</p>
+            </section>
+
+            <!-- Section 10: Changes to Policy -->
+            <section class="section">
+                <h2>Policy Updates</h2>
+                <p>We may update this Privacy Policy occasionally. Changes will be posted on this page with an updated "Last Updated" date. Significant changes will be communicated if you provided contact information.</p>
+            </section>
+
+            <!-- Section 11: Contact Us -->
+            <section class="section">
+                <h2>Questions or Concerns?</h2>
+                <div class="contact-box">
+                    <h3>Contact Information</h3>
+                    <p class="contact-info">
+                        If you have questions about this Privacy Policy or how we handle your data, contact us:<br><br>
+                        <strong>Email:</strong> <a href="mailto:privacy@theshetalks.club">privacy@theshetalks.club</a><br>
+                        <strong>Response time:</strong> Within 48 hours
+                    </p>
+                </div>
+            </section>
+
+            <!-- Section 12: Legal Compliance -->
+            <section class="section">
+                <h2>Legal Basis & Compliance</h2>
+                <ul>
+                    <li>This survey complies with data protection regulations</li>
+                    <li>Data processing is based on your voluntary consent</li>
+                    <li>You may withdraw consent at any time</li>
+                    <li>Data is processed lawfully, fairly, and transparently</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <a href="/survey-landing.html" class="footer-button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Back to Survey
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -2,7 +2,26 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/index.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?!survey\\.)"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/survey-landing.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "survey.theshetalks.club"
+        }
+      ],
+      "permanent": false
     }
   ],
   "headers": [
