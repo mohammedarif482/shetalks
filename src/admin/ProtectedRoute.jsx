@@ -28,7 +28,9 @@ export default function ProtectedRoute({ children }) {
         alignItems: 'center',
         justifyContent: 'center',
         fontSize: '18px',
-        color: '#666'
+        color: '#8A8A8A',
+        fontFamily: "'Albert Sans', sans-serif",
+        background: '#FFF5F0'
       }}>
         Loading...
       </div>

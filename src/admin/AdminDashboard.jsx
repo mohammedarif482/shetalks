@@ -126,7 +126,7 @@ export default function AdminDashboard() {
     }
   };
 
-  const COLORS = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b', '#fa709a', '#feca57'];
+  const COLORS = ['#EB7470', '#D85D59', '#FDDDCF', '#F8A89E', '#F5C7C4', '#EFA5A1', '#E99491'];
 
   if (loading) {
     return (
@@ -206,7 +206,7 @@ export default function AdminDashboard() {
                   labelLine={false}
                   label={({ name, percentage }) => `${name}: ${percentage}%`}
                   outerRadius={100}
-                  fill="#8884d8"
+                  fill="#EB7470"
                   dataKey="value"
                 >
                   {ageDistribution.map((entry, index) => (
@@ -229,7 +229,7 @@ export default function AdminDashboard() {
                 <XAxis type="number" />
                 <YAxis type="category" dataKey="name" width={200} />
                 <Tooltip />
-                <Bar dataKey="value" fill="#667eea" />
+                <Bar dataKey="value" fill="#EB7470" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -249,7 +249,7 @@ export default function AdminDashboard() {
                   labelLine={false}
                   label={({ name, percentage }) => `${name}: ${percentage}%`}
                   outerRadius={100}
-                  fill="#8884d8"
+                  fill="#EB7470"
                   dataKey="value"
                 >
                   {partnerToolInterest.map((entry, index) => (
@@ -272,7 +272,7 @@ export default function AdminDashboard() {
                 <XAxis dataKey="name" angle={-45} textAnchor="end" height={100} />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey="value" fill="#764ba2" />
+                <Bar dataKey="value" fill="#D85D59" />
               </BarChart>
             </ResponsiveContainer>
           </div>
