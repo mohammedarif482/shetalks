@@ -1,16 +1,4 @@
 {
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html",
-      "has": [
-        {
-          "type": "host",
-          "value": "(?!survey\\.)"
-        }
-      ]
-    }
-  ],
   "redirects": [
     {
       "source": "/",
@@ -22,6 +10,12 @@
         }
       ],
       "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
