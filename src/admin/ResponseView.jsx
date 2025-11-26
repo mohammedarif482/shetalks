@@ -22,10 +22,7 @@ export default function ResponseView() {
       const docSnap = await getDoc(docRef);
       
       if (docSnap.exists()) {
-        const responseData = { id: docSnap.id, ...docSnap.data() };
-        console.log('Response data:', responseData);
-        console.log('Answers:', responseData.answers);
-        setResponse(responseData);
+        setResponse({ id: docSnap.id, ...docSnap.data() });
       } else {
         console.error('Response not found');
       }
@@ -57,9 +54,31 @@ export default function ResponseView() {
   }
 
   const answers = response.answers || {};
-  console.log('Processing answers:', answers);
-  console.log('Available keys:', Object.keys(answers));
-  const hasPartner = answers['Q3'] === 'Yes' || answers['Q3'] === 'Yes, in a relationship';
+  // Helper function to get answer by question number
+  const getAnswer = (qNum, subKey = null) => {
+    // Try different key formats that might exist
+    const baseKeys = [`${qNum}`, `0${qNum}`, `Q${qNum}`, `${qNum.toString().padStart(2, '0')}`];
+    
+    if (subKey) {
+      // For matrix questions like Q10_1
+      const matrixKeys = [
+        `${qNum}_${subKey}`, 
+        `0${qNum}_${subKey}`, 
+        `Q${qNum}_${subKey}`, 
+        `${qNum.toString().padStart(2, '0')}_${subKey}`
+      ];
+      for (const key of matrixKeys) {
+        if (answers[key] !== undefined) return answers[key];
+      }
+    } else {
+      for (const key of baseKeys) {
+        if (answers[key] !== undefined) return answers[key];
+      }
+    }
+    return null;
+  };
+  
+  const hasPartner = getAnswer(3) === 'Yes' || getAnswer(3) === 'Yes, in a relationship';
 
   return (
     <div className="response-view">
@@ -86,10 +105,10 @@ export default function ResponseView() {
         <section className="response-section">
           <h2>👤 Demographics</h2>
           <div className="response-fields">
-            <Field label="Age Group (Q1)" value={answers['Q1']} />
-            <Field label="Relationship Status (Q2)" value={answers['Q2']} />
-            <Field label="Has Partner (Q3)" value={answers['Q3']} />
-            {hasPartner && <Field label="Relationship Duration (Q4)" value={answers['Q4']} />}
+            <Field label="Age Group (Q1)" value={getAnswer(1)} />
+            <Field label="Relationship Status (Q2)" value={getAnswer(2)} />
+            <Field label="Has Partner (Q3)" value={getAnswer(3)} />
+            {hasPartner && <Field label="Relationship Duration (Q4)" value={getAnswer(4)} />}
           </div>
         </section>
 
@@ -97,11 +116,11 @@ export default function ResponseView() {
         <section className="response-section">
           <h2>📊 Health Tracking</h2>
           <div className="response-fields">
-            <Field label="Currently Tracks Health (Q5)" value={answers['Q5']} />
-            {answers['Q6'] && <Field label="What They Track (Q6)" value={answers['Q6']} />}
-            {answers['Q7'] && <Field label="Why Stopped Tracking (Q7)" value={answers['Q7']} />}
-            <Field label="Importance of Understanding Body Patterns (Q8)" value={answers['Q8']} />
-            <Field label="Dismissed by Healthcare Providers (Q9)" value={answers['Q9']} />
+            <Field label="Currently Tracks Health (Q5)" value={getAnswer(5)} />
+            {getAnswer(6) && <Field label="What They Track (Q6)" value={getAnswer(6)} />}
+            {getAnswer(7) && <Field label="Why Stopped Tracking (Q7)" value={getAnswer(7)} />}
+            <Field label="Importance of Understanding Body Patterns (Q8)" value={getAnswer(8)} />
+            <Field label="Dismissed by Healthcare Providers (Q9)" value={getAnswer(9)} />
           </div>
         </section>
 
@@ -111,19 +130,19 @@ export default function ResponseView() {
             <h2>💬 Partner Communication</h2>
             <div className="response-fields">
               <h3>Comfort Levels Discussing Topics (Q10):</h3>
-              <RatingField label="Menstrual Cycle" value={answers['Q10_1']} />
-              <RatingField label="Mood Changes" value={answers['Q10_2']} />
-              <RatingField label="Physical Symptoms" value={answers['Q10_3']} />
-              <RatingField label="Sexual Health" value={answers['Q10_4']} />
-              <RatingField label="Mental Health" value={answers['Q10_5']} />
+              <RatingField label="Menstrual Cycle" value={getAnswer(10, 1)} />
+              <RatingField label="Mood Changes" value={getAnswer(10, 2)} />
+              <RatingField label="Physical Symptoms" value={getAnswer(10, 3)} />
+              <RatingField label="Sexual Health" value={getAnswer(10, 4)} />
+              <RatingField label="Mental Health" value={getAnswer(10, 5)} />
               
-              <Field label="Partner Understanding Level (Q11)" value={answers['Q11']} />
-              <Field label="Partner Dismisses Concerns (Q12)" value={answers['Q12']} />
-              <Field label="Conflicts Due to Misunderstanding (Q13)" value={answers['Q13']} />
-              {answers['Q14'] && <Field label="Types of Conflicts (Q14)" value={answers['Q14']} isLong />}
-              <Field label="Would Use Partner Tool (Q15)" value={answers['Q15']} highlight />
-              {answers['Q16'] && <Field label="Desired Partner Features (Q16)" value={answers['Q16']} isLong />}
-              {answers['Q17'] && <Field label="Partner Story (Q17)" value={answers['Q17']} isLong />}
+              <Field label="Partner Understanding Level (Q11)" value={getAnswer(11)} />
+              <Field label="Partner Dismisses Concerns (Q12)" value={getAnswer(12)} />
+              <Field label="Conflicts Due to Misunderstanding (Q13)" value={getAnswer(13)} />
+              {getAnswer(14) && <Field label="Types of Conflicts (Q14)" value={getAnswer(14)} isLong />}
+              <Field label="Would Use Partner Tool (Q15)" value={getAnswer(15)} highlight />
+              {getAnswer(16) && <Field label="Desired Partner Features (Q16)" value={getAnswer(16)} isLong />}
+              {getAnswer(17) && <Field label="Partner Story (Q17)" value={getAnswer(17)} isLong />}
             </div>
           </section>
         )}
@@ -132,19 +151,19 @@ export default function ResponseView() {
         <section className="response-section">
           <h2>😔 Pain Points</h2>
           <div className="response-fields">
-            <Field label="Biggest Frustration (Q18)" value={answers['Q18']} highlight />
+            <Field label="Biggest Frustration (Q18)" value={getAnswer(18)} highlight />
             
             <h3>Challenge Impacts (1-5 scale) (Q19):</h3>
-            <RatingField label="Daily Activities" value={answers['Q19_1']} />
-            <RatingField label="Relationships" value={answers['Q19_2']} />
-            <RatingField label="Work/Productivity" value={answers['Q19_3']} />
-            <RatingField label="Mental Health" value={answers['Q19_4']} />
-            <RatingField label="Healthcare Access" value={answers['Q19_5']} />
+            <RatingField label="Daily Activities" value={getAnswer(19, 1)} />
+            <RatingField label="Relationships" value={getAnswer(19, 2)} />
+            <RatingField label="Work/Productivity" value={getAnswer(19, 3)} />
+            <RatingField label="Mental Health" value={getAnswer(19, 4)} />
+            <RatingField label="Healthcare Access" value={getAnswer(19, 5)} />
             
-            <Field label="Need to Prove Symptoms (Q20)" value={answers['Q20']} />
-            <Field label="Biggest Desired Impact (Q21)" value={answers['Q21']} highlight />
-            <Field label="Communication Tool Usage Frequency (Q22)" value={answers['Q22']} />
-            {answers['Q23'] && <Field label="One Thing to Make Easier (Q23)" value={answers['Q23']} isLong />}
+            <Field label="Need to Prove Symptoms (Q20)" value={getAnswer(20)} />
+            <Field label="Biggest Desired Impact (Q21)" value={getAnswer(21)} highlight />
+            <Field label="Communication Tool Usage Frequency (Q22)" value={getAnswer(22)} />
+            {getAnswer(23) && <Field label="One Thing to Make Easier (Q23)" value={getAnswer(23)} isLong />}
           </div>
         </section>
 
@@ -152,11 +171,11 @@ export default function ResponseView() {
         <section className="response-section">
           <h2>🤖 AI & Technology</h2>
           <div className="response-fields">
-            <Field label="Trust AI (Q24)" value={answers['Q24']} />
-            {answers['Q25'] && <Field label="Most Valuable AI Features (Q25)" value={answers['Q25']} isLong />}
-            <Field label="Privacy Importance (Q26)" value={answers['Q26']} />
-            <Field label="Payment Willingness (Q27)" value={answers['Q27']} highlight />
-            {answers['Q27_amount'] && <Field label="Payment Amount" value={answers['Q27_amount']} />}
+            <Field label="Trust AI (Q24)" value={getAnswer(24)} />
+            {getAnswer(25) && <Field label="Most Valuable AI Features (Q25)" value={getAnswer(25)} isLong />}
+            <Field label="Privacy Importance (Q26)" value={getAnswer(26)} />
+            <Field label="Payment Willingness (Q27)" value={getAnswer(27)} highlight />
+            {getAnswer(27, 'amount') && <Field label="Payment Amount" value={getAnswer(27, 'amount')} />}
           </div>
         </section>
 
@@ -164,10 +183,10 @@ export default function ResponseView() {
         <section className="response-section">
           <h2>🌸 Final Questions</h2>
           <div className="response-fields">
-            <Field label="Reproductive Health Stage (Q28)" value={answers['Q28']} />
-            {answers['Q29'] && <Field label="Perfect Companion Vision (Q29)" value={answers['Q29']} isLong />}
-            <Field label="Follow-up Consent (Q30)" value={answers['Q30']} />
-            {answers['Q31'] && <Field label="Contact Information (Q31)" value={answers['Q31']} highlight />}
+            <Field label="Reproductive Health Stage (Q28)" value={getAnswer(28)} />
+            {getAnswer(29) && <Field label="Perfect Companion Vision (Q29)" value={getAnswer(29)} isLong />}
+            <Field label="Follow-up Consent (Q30)" value={getAnswer(30)} />
+            {getAnswer(31) && <Field label="Contact Information (Q31)" value={getAnswer(31)} highlight />}
           </div>
         </section>
       </div>
