@@ -22,7 +22,10 @@ export default function ResponseView() {
       const docSnap = await getDoc(docRef);
       
       if (docSnap.exists()) {
-        setResponse({ id: docSnap.id, ...docSnap.data() });
+        const responseData = { id: docSnap.id, ...docSnap.data() };
+        console.log('Response data:', responseData);
+        console.log('Answers:', responseData.answers);
+        setResponse(responseData);
       } else {
         console.error('Response not found');
       }
@@ -54,6 +57,8 @@ export default function ResponseView() {
   }
 
   const answers = response.answers || {};
+  console.log('Processing answers:', answers);
+  console.log('Available keys:', Object.keys(answers));
   const hasPartner = answers['Q3'] === 'Yes' || answers['Q3'] === 'Yes, in a relationship';
 
   return (
