@@ -55,14 +55,24 @@ export default function ResponsesList() {
   const applyFilters = () => {
     let filtered = [...responses];
 
+    // Helper function for filtering
+    const getFilterAnswer = (response, qNum) => {
+      const answers = response.answers || {};
+      const baseKeys = [`${qNum}`, `0${qNum}`, `Q${qNum}`, `${qNum.toString().padStart(2, '0')}`];
+      for (const key of baseKeys) {
+        if (answers[key] !== undefined) return answers[key];
+      }
+      return null;
+    };
+
     // Filter by age groups
     if (filters.ageGroups.length > 0) {
-      filtered = filtered.filter(r => filters.ageGroups.includes(r.answers?.['Q1']));
+      filtered = filtered.filter(r => filters.ageGroups.includes(getFilterAnswer(r, 1)));
     }
 
     // Filter by life stages (Q28)
     if (filters.lifeStages.length > 0) {
-      filtered = filtered.filter(r => filters.lifeStages.includes(r.answers?.['Q28']));
+      filtered = filtered.filter(r => filters.lifeStages.includes(getFilterAnswer(r, 28)));
     }
 
     // Filter by date range
@@ -287,8 +297,31 @@ export default function ResponsesList() {
           </thead>
           <tbody>
             {currentResponses.map(response => {
-              const hasPartner = response.answers?.['Q3'];
-              const frustration = response.answers?.['Q18'];
+              // Helper function to get answer by question number
+              const getAnswer = (qNum, subKey = null) => {
+                const answers = response.answers || {};
+                const baseKeys = [`${qNum}`, `0${qNum}`, `Q${qNum}`, `${qNum.toString().padStart(2, '0')}`];
+                
+                if (subKey) {
+                  const matrixKeys = [
+                    `${qNum}_${subKey}`, 
+                    `0${qNum}_${subKey}`, 
+                    `Q${qNum}_${subKey}`, 
+                    `${qNum.toString().padStart(2, '0')}_${subKey}`
+                  ];
+                  for (const key of matrixKeys) {
+                    if (answers[key] !== undefined) return answers[key];
+                  }
+                } else {
+                  for (const key of baseKeys) {
+                    if (answers[key] !== undefined) return answers[key];
+                  }
+                }
+                return null;
+              };
+
+              const hasPartner = getAnswer(3);
+              const frustration = getAnswer(18);
               
               return (
                 <tr key={response.id}>
@@ -301,8 +334,8 @@ export default function ResponsesList() {
                         )
                       : 'N/A'}
                   </td>
-                  <td>{response.answers?.['Q1'] || 'N/A'}</td>
-                  <td>{response.answers?.['Q28'] || 'N/A'}</td>
+                  <td>{getAnswer(1) || 'N/A'}</td>
+                  <td>{getAnswer(28) || 'N/A'}</td>
                   <td>{hasPartner === 'Yes' || hasPartner === 'Yes, in a relationship' ? 'Yes' : 'No'}</td>
                   <td className="frustration-cell">{frustration || 'N/A'}</td>
                   <td>
