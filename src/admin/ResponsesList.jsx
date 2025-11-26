@@ -57,12 +57,12 @@ export default function ResponsesList() {
 
     // Filter by age groups
     if (filters.ageGroups.length > 0) {
-      filtered = filtered.filter(r => filters.ageGroups.includes(r.answers?.['1']));
+      filtered = filtered.filter(r => filters.ageGroups.includes(r.answers?.['Q1']));
     }
 
     // Filter by life stages (Q28)
     if (filters.lifeStages.length > 0) {
-      filtered = filtered.filter(r => filters.lifeStages.includes(r.answers?.['28']));
+      filtered = filtered.filter(r => filters.lifeStages.includes(r.answers?.['Q28']));
     }
 
     // Filter by date range
@@ -132,7 +132,7 @@ export default function ResponsesList() {
 
       // Add answers for each question
       for (let i = 1; i <= 30; i++) {
-        const answer = response.answers?.[String(i)];
+        const answer = response.answers?.[`Q${i}`];
         if (Array.isArray(answer)) {
           row.push(escapeCSV(answer.join('; ')));
         } else {
@@ -287,8 +287,8 @@ export default function ResponsesList() {
           </thead>
           <tbody>
             {currentResponses.map(response => {
-              const hasPartner = response.answers?.['3'];
-              const frustration = response.answers?.['18'];
+              const hasPartner = response.answers?.['Q3'];
+              const frustration = response.answers?.['Q18'];
               
               return (
                 <tr key={response.id}>
@@ -301,8 +301,8 @@ export default function ResponsesList() {
                         )
                       : 'N/A'}
                   </td>
-                  <td>{response.answers?.['1'] || 'N/A'}</td>
-                  <td>{response.answers?.['28'] || 'N/A'}</td>
+                  <td>{response.answers?.['Q1'] || 'N/A'}</td>
+                  <td>{response.answers?.['Q28'] || 'N/A'}</td>
                   <td>{hasPartner === 'Yes' || hasPartner === 'Yes, in a relationship' ? 'Yes' : 'No'}</td>
                   <td className="frustration-cell">{frustration || 'N/A'}</td>
                   <td>

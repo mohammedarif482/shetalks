@@ -54,7 +54,7 @@ export default function AdminDashboard() {
       // Age Distribution
       const ageCounts = {};
       responses.forEach(r => {
-        const age = r.answers?.['1'] || 'Not specified';
+        const age = r.answers?.['Q1'] || 'Not specified';
         ageCounts[age] = (ageCounts[age] || 0) + 1;
       });
       const ageData = Object.entries(ageCounts).map(([name, value]) => ({
@@ -67,7 +67,7 @@ export default function AdminDashboard() {
       // Biggest Frustrations (Q18)
       const frustrationCounts = {};
       responses.forEach(r => {
-        const frustration = r.answers?.['18'] || 'Not specified';
+        const frustration = r.answers?.['Q18'] || 'Not specified';
         frustrationCounts[frustration] = (frustrationCounts[frustration] || 0) + 1;
       });
       const frustrationData = Object.entries(frustrationCounts)
@@ -78,12 +78,12 @@ export default function AdminDashboard() {
 
       // Partner Tool Interest (Q15)
       const partnerResponses = responses.filter(r => {
-        const q3 = r.answers?.['3'];
+        const q3 = r.answers?.['Q3'];
         return q3 === 'Yes' || q3 === 'Yes, in a relationship';
       });
       const partnerToolCounts = {};
       partnerResponses.forEach(r => {
-        const interest = r.answers?.['15'] || 'Not specified';
+        const interest = r.answers?.['Q15'] || 'Not specified';
         partnerToolCounts[interest] = (partnerToolCounts[interest] || 0) + 1;
       });
       const partnerToolData = Object.entries(partnerToolCounts).map(([name, value]) => ({
@@ -96,7 +96,7 @@ export default function AdminDashboard() {
       // Payment Willingness (Q27)
       const paymentCounts = {};
       responses.forEach(r => {
-        const payment = r.answers?.['27'] || 'Not specified';
+        const payment = r.answers?.['Q27'] || 'Not specified';
         paymentCounts[payment] = (paymentCounts[payment] || 0) + 1;
       });
       const paymentData = Object.entries(paymentCounts).map(([name, value]) => ({

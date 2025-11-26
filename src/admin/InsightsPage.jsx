@@ -65,7 +65,7 @@ export default function InsightsPage() {
     
     // Partner data
     const partnerResponses = responses.filter(r => {
-      const q3 = r.answers?.['3'];
+      const q3 = r.answers?.['Q3'];
       return q3 === 'Yes' || q3 === 'Yes, in a relationship';
     });
     const partnerToolInterest = {};
